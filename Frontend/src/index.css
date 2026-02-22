@@ -1,0 +1,24 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+
+ background: #F8FAFC;
+
+  
+  font-size: clamp(14px, 0.9vw, 18px);
+
+
+}
+
+
+.layout {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}

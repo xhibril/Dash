@@ -1,0 +1,314 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.leftContainer{
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.leftWrapper{
+    display: flex;  
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-evenly;
+    
+  background: white;
+  border-radius: .5rem;
+
+
+
+
+
+    border-radius: .5rem;
+    padding-top: 1rem;
+     padding-bottom: 1rem;
+}
+
+.rightContainer{
+    display: flex;
+    height: 100%;
+    width: 30%;
+    justify-content: center;
+}
+
+.chartAndUrlWrapper{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.widgetsContainer {
+    display: flex;
+
+   
+    justify-content: center;
+    align-items: center;
+}
+
+
+.widgets {
+    height: 10rem;
+
+    display: flex;
+    width:20rem;
+
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 3rem;
+
+}
+
+/* visits widget*/
+.visits {
+    width: 100%;
+    max-width: 17rem;
+    height: 100%;
+    max-height: 12rem;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+      box-shadow: 5px 5px 10px #b892de,
+             -5px -5px 10px #ffffff;
+    text-align: center;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.visits p {
+
+    margin-top: 1rem;
+}
+
+
+.visits:hover,
+.popularContainer:hover {
+    transform: scale(1.05);
+}
+
+.trend {
+    font-weight: bold;
+}
+
+.trend.up {
+    color: rgb(145, 192, 145);
+}
+
+.trend.down {
+    color: rgb(249, 61, 61);
+}
+
+
+/* most popular url widget */
+.popularContainer {
+    display: flex;
+    max-width: 17rem;
+
+    height: 100%;
+    max-height: 12rem;
+
+    width: 100%;
+
+
+
+
+ background: #F2F5FB;
+  box-shadow: 5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+
+
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+    justify-content: center;
+    flex-direction: column;
+    color: #6b7280;
+    font-size: 0.9rem;
+    gap: rem;
+    
+}
+
+.mostPopular {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0.3rem 0;
+
+}
+
+.popularContainer .mostVisits {
+    color: rgb(145, 192, 145);
+    font-weight: bold;
+}
+
+.popularText {
+    font-size: 1rem;
+}
+
+
+
+
+.visitsWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+
+
+
+/* urls */
+.storage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+
+.delete {
+    color: red;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+
+
+
+}
+
+
+
+.urlContainer,
+.urlWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+.urlWrapper {
+    position: relative;
+    height: 18rem;
+    height: 90%;
+
+    width: 80%;
+    padding: 2rem 2.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+background: #F8FAFF;
+
+    border-radius: 1rem;
+    justify-content: flex-start;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.urlWrapper p {
+    width: 100%;
+    text-align: center;
+    margin: .5rem;
+    padding-bottom: .5rem;
+}
+
+.deleteUrl{
+    color:red;
+    cursor: pointer;
+}
+
+.newUrlWrapper{
+    display: flex;
+        width: 100%;
+    flex-direction: column;
+}
+
+.original{
+    opacity: .5;
+    font-size:.8rem;
+    margin:0;
+    width: 100%;
+    margin-left:1rem;
+    display: flex;
+    padding: 0;
+    text-align: left;
+} 
+
+/* wrapper for dyna created urls */
+.created {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgb(51, 48, 48, 0.3);
+}
+
+
+.url {
+    display: flex;
+  
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.url:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+
+.urlVisits {
+    margin-right: 0;
+    color: #685AFF;
+    font-weight: bold;
+}
+
+
+/* chart */
+.chartContainer {
+    display: flex;
+  background: white;
+  border-radius: 1.2rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.05);
+
+    justify-content: flex-end;
+    align-items: flex-end;
+ 
+     width: 80%;
+  border-radius: .5rem;
+  padding-top:1rem;
+  padding-top: 1rem;
+}
+
+.chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: 5rem;
+}
+
+
+*:focus {
+    outline: none;
+}
+
+

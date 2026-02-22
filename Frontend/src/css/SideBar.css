@@ -1,0 +1,116 @@
+.sideBarContainer {
+  width: 0; /* fixed elements don't take layout space */
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%) translateX(-120%);
+  width: 8rem;
+  height: 95vh;
+  background: #5B23FF;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.sidebar.active {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* TOGGLE BUTTON */
+.sidebar-btn {
+  z-index: 2000;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  color: black;
+  display: none;
+}
+
+.sidebar-btn.active {
+  transform: translateX(100%);
+}
+
+/* TOP + BOTTOM GROUPS */
+.sidebar-top,
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.sidebar-bottom {
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+/* ICON BUTTONS */
+.sidebar-icon {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-icon:hover {
+  transform: translateY(-0.25rem);
+}
+
+/* PROFILE BUTTON */
+.profile {
+  width: 70%;
+  height: 5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile:hover {
+  transform: scale(1.05);
+}
+
+.site-title{
+ margin-top:auto;
+    font-size:2rem;
+    color: white;
+    opacity: .7;
+    margin:0;
+    padding: 0;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .sidebar {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .sidebar-btn {
+    display: block;
+  }
+}
