@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+
+.top-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    background-color: #B8B8B8;
+    color: rgb(45, 38, 38);
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+
+.ad-msg {
+    align-self: center;
+    text-align: center;
+    flex: 1;
+    opacity: .6;
+}
+
+.site-title {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-left: 3rem;
+
+    color: black;
+
+    font-size: 4rem;
+    letter-spacing: -2px;
+
+}
+
+.features {
+    font-weight: 200;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.features:hover {
+    color: #ffffff;
+}
+
+.login {
+    margin-left: auto;
+
+
+
+}
+
+.signup {
+    margin-right: 3rem;
+    color: white;
+    background-color: #8c8acf;
+}
+
+.login:hover {
+    background-color: rgb(201, 227, 201);
+    transform: scale(1.05);
+    background-color: #818080;
+}
+
+.signup:hover {
+    transform: scale(1.05);
+    background-color: #4238b5;
+
+}
+
+.authBtns {
+    transition: transform 0.2s ease;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+
+}
+
+
+.profile-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-btn img {
+    width:3.5rem;
+    margin-right:2rem;
+}
