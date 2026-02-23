@@ -12,6 +12,8 @@
     display: flex;
     flex-direction: column;
 
+    margin-top:0;
+    gap:2rem;
 
 }
 
@@ -27,10 +29,11 @@
 
 
 
+margin-top:0;
 
     border-radius: .5rem;
     padding-top: 1rem;
-     padding-bottom: 1rem;
+
 }
 
 .rightContainer{
@@ -285,12 +288,13 @@ background: #F8FAFF;
 .chartContainer {
     display: flex;
   background: white;
+  flex-direction: column;
   border-radius: 1.2rem;
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.05);
 
-    justify-content: flex-end;
-    align-items: flex-end;
+    
+    align-items: center;
  
      width: 80%;
   border-radius: .5rem;
@@ -304,6 +308,29 @@ background: #F8FAFF;
     justify-content: center;
     width: 100%;
     margin-left: 5rem;
+}
+
+
+.chartSettings{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.period{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.viewing{
+    display: flex;  
+    align-self:flex-start;
+    align-items: flex-start;
+    width: 80%;
+    opacity: .7;
+    font-size:.8rem;
+    margin-bottom: 1rem;
 }
 
 

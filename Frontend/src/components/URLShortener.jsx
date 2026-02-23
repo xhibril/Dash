@@ -7,7 +7,7 @@ import { FiLink, FiPenTool } from "react-icons/fi";
 
 function URLShortener() {
 
-    const [longUrl, url] = useState("");
+    const [originalUrl, url] = useState("");
     const [alias, al] = useState("");
 
 
@@ -39,7 +39,7 @@ function URLShortener() {
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>
 
             <button
-            onClick={()=> generateNewUrl(url, al, "dash.com")}
+            onClick={()=> generateNewUrl(originalUrl, alias)}
              className={styles.shortenBtn}
             >Shorten</button>
         </div>
@@ -50,22 +50,41 @@ function URLShortener() {
 export default URLShortener;
 
 
-async function generateNewUrl( originalUrl, alias, domain ) {
+async function generateNewUrl( originalUrl, shortUrl ) {
 
 
-    if (alias?.length > 0) {
-        console.log("hello")
-        const dom = domain + "/" + alias;
+    // if user entered an alias
+    if (shortUrl?.length > 0) {
 
         const response = await fetch("api/url", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ originalUrl, dom })
+            body: JSON.stringify({ originalUrl, shortUrl })
         })
 
         if(!response.ok){
             console.log("error, already exists")
         }
+    } else {
+
+
+        const res = await fetch("/api/generate/url",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({originalUrl})
+        })
+
+        if(!res.ok){
+            console.log("error, already exists")
+        }
+
+        const data = await res.text();
+        console.log(data);
+
+
+
+
+
     }
 
 

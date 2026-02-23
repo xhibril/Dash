@@ -1,4 +1,4 @@
-package com.Xhibril.Dash.model;
+package com.Xhibril.Dash.Model;
 import jakarta.persistence.*;
 
 @Entity

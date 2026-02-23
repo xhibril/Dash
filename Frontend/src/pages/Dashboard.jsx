@@ -3,6 +3,7 @@ import styles from "../css/Dashboard.module.css";
 import URLShortener from "../components/URLShortener.jsx";
 import {FiTrash} from 'react-icons/fi';
 
+import { useEffect, useState } from "react";
 
 
 import {
@@ -16,13 +17,26 @@ import {
 
 export default function Dashboard() {
 
-  const urls = [
-    { id: 1, url: "google.com", clicks: 120 },
-    { id: 2, url: "youtube.com", clicks: 95 },
-    { id: 3, url: "github.com", clicks: 60 },
-    { id: 4, url: "google.com", clicks: 120 },
-    { id: 5, url: "youtube.com", clicks: 95 },
-  ];
+
+  const domain = "dash.com/"
+
+const [urls, setUrls] = useState([]);
+useEffect(() => {
+  async function fetchUrls() {
+    const res = await fetch("api/urls");
+
+    if (!res.ok) {
+      console.log("Error getting urls");
+      return;
+    }
+
+    const data = await res.json();
+    setUrls(data); 
+  }
+
+  fetchUrls();
+}, []);
+
 
   return (
     <>
@@ -46,7 +60,7 @@ export default function Dashboard() {
 
 
       <div className={styles.rightContainer}>
-        <Urls used={5} urls={urls} />
+        <Urls urls={urls} domain = {domain}/>
       </div>
 
 </div>
@@ -106,7 +120,7 @@ function Widgets({ visits, trend, mostPopular, mostPopularClicks }) {
 
 
 
-function Urls({ used, urls }) {
+function Urls({urls, domain}) {
   return (
     <div className={styles.urlContainer}>
       <FiTrash className = {styles.deleteUrl}/>
@@ -121,10 +135,10 @@ function Urls({ used, urls }) {
             <div key={item.id} className={styles.created}>
 
 <div className = {styles.newUrlWrapper}>
-              <p className={styles.url}>{item.url}</p>
-              <p className = {styles.original}>original.com</p>
+              <p className={styles.url}> {domain}{item.shortUrl}</p>
+              <p className = {styles.original}>{item.originalUrl}</p>
               </div>
-              <p className={styles.urlVisits}>{item.clicks}</p>
+              <p className={styles.urlVisits}>{item.visits}</p>
             </div>
 
           ))
@@ -151,9 +165,25 @@ function Chart() {
 
   return (
     <div className={styles.chartContainer}>
+  
+
+
+<div className = {styles.chartSettings}> 
+      <p className = {styles.viewing}>Currently viewing</p>
+        <button className = {styles.period}>Daily</button>
+      <button className = {styles.period}>Weekly</button>
+      <button className = {styles.period}>Monthly</button>
+  
+</div>
+
+
+
+
+
+
       <div className={styles.chartCard}>
 
-<ResponsiveContainer width="100%" height={400}>
+<ResponsiveContainer padding = "2rem" width="100%" height={400}>
   <LineChart data={data}>
 
     <XAxis 
