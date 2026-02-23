@@ -1,8 +1,7 @@
 package com.Xhibril.Dash.Controller;
 
 import com.Xhibril.Dash.Service.AuthService;
-import com.Xhibril.Dash.model.User;
-import jakarta.servlet.http.HttpServletRequest;
+import com.Xhibril.Dash.Model.User;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

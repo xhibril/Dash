@@ -1,5 +1,4 @@
-package com.Xhibril.Dash.model;
-
+package com.Xhibril.Dash.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
@@ -22,7 +21,7 @@ public class Url {
     @Column(name = "short_url")
     private String shortUrl;
 
-    private Long visits;
+    private Integer visits;
 
 
     public Long getId(){
@@ -51,11 +50,11 @@ public class Url {
         return shortUrl;
     }
 
-    public void setVisits(Long visits){
+    public void setVisits(Integer visits){
         this.visits = visits;
     }
 
-    public Long getVisits(){
+    public Integer getVisits(){
         return visits;
     }
 

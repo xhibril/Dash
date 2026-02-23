@@ -5,7 +5,7 @@ import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 
 import com.Xhibril.Dash.Repository.AuthRepository;
-import com.Xhibril.Dash.model.User;
+import com.Xhibril.Dash.Model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Cookie;
