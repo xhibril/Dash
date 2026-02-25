@@ -17,8 +17,7 @@ import {
 
 export default function Dashboard() {
 
-
-  const domain = "dash.com/"
+const domain = "dash.com/"
 
 const [urls, setUrls] = useState([]);
 useEffect(() => {
@@ -38,6 +37,79 @@ useEffect(() => {
 }, []);
 
 
+const [visits, setVisits] = useState("");
+const [trend, setTrend] = useState("");
+const [mostPopular, setMostPopular] = useState([]);
+const [chartData, setChartData] = useState([]);
+
+useEffect(() => {
+  async function fetchVisits(){
+    const res = await fetch("/api/visits");
+
+    if(!res.ok){
+      console.log("Error getting visits");
+      return;
+    }
+
+    const data = await res.json();
+    setVisits(data);
+  }
+
+  async function fetchTrend(){
+    const res = await fetch("/api/trend");
+
+    if(!res.ok){
+      console.log("Error getting trend");
+      return;
+    }
+
+    const data = await res.json();
+    setTrend(data);
+  }
+
+  async function fetchMostPopular(){
+    const res = await fetch("/api/popular");
+    
+    if(!res.ok){
+      console.log("Error getting most popular");
+      return;
+    }
+
+    const data = await res.json();
+    setMostPopular(data);
+  }
+
+
+  async function fetchChartData(){
+
+    const res = await fetch("/api/chart");
+
+    if(!res.ok){
+      console.log("Error fetching chart data")
+    }
+
+    const data = await res.json();
+    setChartData(data);
+
+
+  }
+
+  fetchVisits();
+  fetchTrend();
+  fetchMostPopular();
+  fetchChartData();
+
+}, []); 
+
+
+
+
+
+
+
+
+
+
   return (
     <>
     <div className = {styles.mainContainer}>
@@ -45,15 +117,15 @@ useEffect(() => {
 
         <div className = {styles.leftWrapper}>
         <Widgets
-          visits={10}
-          trend={20}
-          mostPopular="google.com"
-          mostPopularClicks={120}
+          visits={visits}
+          trend={trend}
+          mostPopular={mostPopular}
+          domain = {domain}
         />
           <URLShortener />
           </div>
         <div className = {styles.chartAndUrlWrapper}>
-        <Chart />
+        <Chart data = {chartData}/>
       
         </div>
       </div>
@@ -73,7 +145,7 @@ useEffect(() => {
 
 
 
-function Widgets({ visits, trend, mostPopular, mostPopularClicks }) {
+function Widgets({ visits, trend, mostPopular, domain }) {
   let trendClass;
   let trendText;
 
@@ -104,11 +176,11 @@ function Widgets({ visits, trend, mostPopular, mostPopularClicks }) {
           <div className={styles.popularContainer}>
             <p className={styles.popularText}>Most popular</p>
 
-            <p className={styles.mostPopular}>{mostPopular}</p>
+            <p className={styles.mostPopular}>{domain}{mostPopular.shortUrl}</p>
 
             <span className={styles.visitsWrapper}>
               <p >Visits:</p>
-              <p className={styles.mostVisits}>{mostPopularClicks}</p>
+              <p className={styles.mostVisits}>{mostPopular.visits}</p>
             </span>
 
           </div>
@@ -152,16 +224,19 @@ function Urls({urls, domain}) {
 
 
 function Chart() {
+
+
   const data = [
-    { day: "Tue", clicks: 100 },
-    { day: "Wed", clicks: 340 },
-    { day: "Thu", clicks: 630 },
-    { day: "Fri", clicks: 1200 },
-    { day: "Mon", clicks: 20 },
-    { day: "Tue", clicks: 45 },
-    { day: "Wed", clicks: -340 },
-    { day: "Thu", clicks: -10 },
-  ];
+  { period: "Mon", clicks: 12 },
+  { period: "Tue", clicks: 18 },
+  { period: "Wed", clicks: 9 },
+  { period: "Thu", clicks: 22 },
+  { period: "Fri", clicks: 15 },
+  { period: "Sat", clicks: 7 },
+  { period: "Sun", clicks: 19 }
+];
+
+
 
   return (
     <div className={styles.chartContainer}>
@@ -169,7 +244,7 @@ function Chart() {
 
 
 <div className = {styles.chartSettings}> 
-      <p className = {styles.viewing}>Currently viewing</p>
+        <p className = {styles.viewing}>Currently viewing {data.shortUrl}</p>
         <button className = {styles.period}>Daily</button>
       <button className = {styles.period}>Weekly</button>
       <button className = {styles.period}>Monthly</button>
@@ -187,12 +262,13 @@ function Chart() {
   <LineChart data={data}>
 
     <XAxis 
-      dataKey="day"
+      dataKey="period"
       axisLine={false}
       tickLine={false}
     />
 
     <YAxis 
+    dataKey = "url"
       axisLine={false}
       tickLine={false}
     />

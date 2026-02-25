@@ -2,6 +2,8 @@ package com.Xhibril.Dash.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "urls")
@@ -22,6 +24,9 @@ public class Url {
     private String shortUrl;
 
     private Integer visits;
+
+    private LocalDate createdDate;
+
 
 
     public Long getId(){
@@ -53,13 +58,10 @@ public class Url {
     public void setVisits(Integer visits){
         this.visits = visits;
     }
-
-    public Integer getVisits(){
-        return visits;
-    }
+    public Integer getVisits(){ return visits; }
 
 
-
-
+    public void setCreatedDate(LocalDate date){ this.createdDate = date; }
+    public LocalDate getCreatedDate(){ return createdDate; }
 
 }

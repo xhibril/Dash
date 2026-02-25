@@ -64,7 +64,7 @@ public class AuthService {
                 .setSubject("authToken")
                 .claim("id", id)
                 .setIssuedAt(Date.from(now))
-                .setExpiration(Date.from(now.plusSeconds(3600)))
+                .setExpiration(Date.from(now.plusSeconds(604800)))
                 .signWith(key)
                 .compact();
 
