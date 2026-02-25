@@ -60,5 +60,42 @@ public class UrlController {
     }
 
 
+    @GetMapping("/popular")
+    private Url getMostPopular(HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+
+        if(id != null){
+            return urlService.mostPopular(id);
+        }
+
+        return null;
+    }
+
+
+
+    @GetMapping("/visits")
+    private Integer getVisits(HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+
+        if(id != null){
+          return urlService.getVisits(id);
+        }
+        return 0;
+    }
+
+
+    @GetMapping("/trend")
+    private Integer getTrend(HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+
+        if(id != null){
+            return urlService.getTrend(id);
+        }
+        return 0;
+    }
+
+
+
+
 
 }

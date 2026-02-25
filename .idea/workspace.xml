@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/Redirecter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/UrlStat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlStatRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/AuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/AuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/model/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/Url.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +114,13 @@
       <workItem from="1771865858125" duration="214000" />
       <workItem from="1771866115018" duration="143000" />
       <workItem from="1771866270922" duration="320000" />
-      <workItem from="1771866601557" duration="1272000" />
+      <workItem from="1771866601557" duration="1878000" />
+      <workItem from="1771937870904" duration="3329000" />
+      <workItem from="1771941854294" duration="99000" />
+      <workItem from="1771943988796" duration="4514000" />
+      <workItem from="1772017317893" duration="5660000" />
+      <workItem from="1772025633864" duration="8376000" />
+      <workItem from="1772041366969" duration="2997000" />
     </task>
     <servers />
   </component>
