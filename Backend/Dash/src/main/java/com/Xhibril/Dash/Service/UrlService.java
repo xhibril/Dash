@@ -101,7 +101,7 @@ public class UrlService {
             urlStat = stat.get();
 
             visits = urlStat.getVisits() + 1;
-            urlStatRepo.updateVisits(visits, urlId);
+            urlStatRepo.updateVisits(visits, urlId, bucket);
         } else {
             urlStat = new UrlStat();
             urlStat.setUrlId(urlId);
@@ -161,14 +161,14 @@ public class UrlService {
         System.out.println("diff: " + diff);
 
        if(yesterdayVisits != 0){
-           Integer percentage = (diff / yesterdayVisits) * 100;
+           Float percentage = (float) diff / yesterdayVisits * 100;
 
            System.out.println("PERCENTAGE: " + percentage);
 
            if(diff >= 0){
                return Math.round(percentage);
            } else {
-               return -Math.round(percentage);
+               return Math.round(percentage);
            }
 
        } else {
