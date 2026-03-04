@@ -45,4 +45,22 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
     );
 
 
+    @Query("""
+                  SELECT new com.Xhibril.Dash.Dto.ChartDataResponse(
+                                                         HOUR(u.bucket),
+                                                         SUM(u.visits)
+                                                     )
+                                                     FROM UrlStat u
+                                                     WHERE u.urlId = :urlId
+                                                       AND u.bucket BETWEEN :start AND :end
+                                                     GROUP BY HOUR(u.bucket)
+                                                     ORDER BY HOUR(u.bucket)
+            """)
+    List<ChartDataResponse> getDaily(
+            Long urlId,
+            LocalDateTime start,
+            LocalDateTime end
+    );
+
+
 }

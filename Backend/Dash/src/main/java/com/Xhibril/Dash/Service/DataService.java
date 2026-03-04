@@ -13,6 +13,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,24 +31,19 @@ public class DataService {
     public List<ChartDataResponse> chartData(String period, Long urlId) {
         LocalDate date = LocalDate.now();
         LocalDateTime start = null, end = null;
-        System.out.println("PERIODDDDDDDDDD" + period);
 
         switch (period) {
             case "DAILY":
                 start = date.atStartOfDay();
                 end = date.atTime(LocalTime.MAX);
-                return transformData(urlStatRepo.getStats(urlId, start, end), "WEEKLY");
-
+                return transformData(urlStatRepo.getDaily(urlId, start, end), "DAILY");
 
 
             case "WEEKLY":
                 date = date.with(DayOfWeek.MONDAY);
                 start = date.atStartOfDay();
                 end = date.plusDays(6).atTime(LocalTime.MAX);
-                System.out.println("\nSTART: " + start);
-                System.out.println("\nEND: " + end);
-            return transformData(urlStatRepo.getStats(urlId, start, end), "WEEKLY");
-
+                return transformData(urlStatRepo.getStats(urlId, start, end), "WEEKLY");
 
 
             case "MONTHLY":
@@ -67,55 +63,78 @@ public class DataService {
 
         List<ChartDataResponse> transformedData = new ArrayList<>();
 
-
         switch (period) {
+            case "DAILY":
+
+                for (ChartDataResponse cdr : data) {
+                    String formattedHour = cdr.getHour() + ":00";
+                    cdr.setPeriod(formattedHour);
+                    transformedData.add(cdr);
+                }
+                return transformedData;
+
+
             case "WEEKLY":
                 for (ChartDataResponse cdr : data) {
-
                     LocalDate date = cdr.getBucket();
-                    String dayName = date.getDayOfWeek()
-                            .getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
 
-                    System.out.println("PRINTING CHART DATA:"+cdr.getBucket() + cdr.getVisits() + "\n");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd");
+                    String dateStr = date.format(formatter);
 
-
-                    cdr.setPeriod(dayName);
+                    cdr.setPeriod(dateStr);
                     transformedData.add(cdr);
                 }
                 break;
 
 
             case "MONTHLY":
-                LocalDate date = LocalDate.now().withDayOfMonth(1);
-                int lastDay = date.lengthOfMonth();
                 Long sum = 0L;
+                int bucketIndex = 0, prev = 0;
 
-                int[][] ranges = {{1, 7}, {8, 14}, {15, 21}, {22, lastDay}};
+                for (int i = 0; i < data.size(); ) {
+                    ChartDataResponse cdr = data.get(i);
+                    int currentDate = cdr.getBucket().getDayOfMonth();
+                    bucketIndex = (currentDate - 1) / 7;
+                    if (bucketIndex >= 4) bucketIndex = 3;
 
-                int i = 0;
-
-
-                ChartDataResponse tempData = new ChartDataResponse();
-
-
-                for (ChartDataResponse cdr : data) {
-
-                    if (cdr.getVisits() >= ranges[i][0] && cdr.getVisits() <= ranges[i][1]) {
+                    if (bucketIndex == prev) {
                         sum += cdr.getVisits();
                         i++;
+
                     } else {
-
-                        tempData.setVisits(sum);
-                        tempData.setPeriod(Arrays.toString(ranges[i-1]));
-                        transformedData.add(tempData);
+                        ChartDataResponse finalData = getFinalData(prev, sum);
+                        transformedData.add(finalData);
+                        sum = 0L;
                     }
+                    prev = bucketIndex;
                 }
-                break;
 
+                ChartDataResponse finalData = getFinalData(bucketIndex, sum);
+                transformedData.add(finalData);
+                break;
+        }
+        return transformedData;
+    }
+
+
+    private ChartDataResponse getFinalData(int bucketIndex, Long sum) {
+
+        LocalDate date = LocalDate.now().withDayOfMonth(1);
+        int lastDay = date.lengthOfMonth();
+
+        ChartDataResponse finalData = new ChartDataResponse();
+        switch (bucketIndex) {
+            case 0 -> finalData.setPeriod("1-7");
+            case 1 -> finalData.setPeriod("8-14");
+            case 2 -> finalData.setPeriod("15-21");
+            case 3 -> finalData.setPeriod("22-" + lastDay);
+            default -> finalData.setPeriod("No date");
         }
 
 
-        return transformedData;
+        finalData.setVisits(sum);
+
+        return finalData;
     }
 
 

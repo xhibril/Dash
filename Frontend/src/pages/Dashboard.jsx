@@ -280,13 +280,13 @@ function Chart({ data }) {
 
             <XAxis
               dataKey="period"
-              axisLine={false}
+              axisLine={true}
               tickLine={false}
             />
 
             <YAxis
               dataKey="visits"
-              axisLine={false}
+              axisLine={true}
               tickLine={false}
             />
 
