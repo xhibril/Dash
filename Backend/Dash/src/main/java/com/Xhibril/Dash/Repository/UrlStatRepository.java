@@ -14,6 +14,8 @@ import java.util.Optional;
 public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
 
 
+
+
     List<UrlStat> findByUrlId(Long urlId);
 
     List<UrlStat> findByBucketBetweenAndUrlId(LocalDateTime start, LocalDateTime end, Long urlId);
@@ -63,4 +65,6 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
     );
 
 
+    @Modifying
+    void deleteAllByUrlId(Long urlId);
 }

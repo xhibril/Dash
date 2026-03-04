@@ -5,20 +5,20 @@ import com.Xhibril.Dash.Dto.ChartDataResponse;
 import com.Xhibril.Dash.Model.UrlStat;
 import com.Xhibril.Dash.Repository.UrlStatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.Locale;
+
 
 @Service
 public class DataService {
@@ -26,11 +26,9 @@ public class DataService {
     @Autowired
     UrlStatRepository urlStatRepo;
 
-
-    @GetMapping("/chart")
     public List<ChartDataResponse> chartData(String period, Long urlId) {
         LocalDate date = LocalDate.now();
-        LocalDateTime start = null, end = null;
+        LocalDateTime start, end;
 
         switch (period) {
             case "DAILY":

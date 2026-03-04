@@ -28,7 +28,7 @@ export default function Dashboard() {
   //const [period, setSelectedPeriod] = useState("");
 
   const id = 24;
-  const period= "MONTHLY"
+  const period= "DAILY"
 
   
   const domain = "dash.com/"
@@ -136,6 +136,9 @@ export default function Dashboard() {
 
 
 
+ 
+
+
 
 
 
@@ -225,7 +228,18 @@ function Widgets({ visits, trend, mostPopular, domain }) {
 function Urls({ urls, domain }) {
   return (
     <div className={styles.urlContainer}>
-      <FiTrash className={styles.deleteUrl} />
+
+      <FiTrash className={styles.deleteUrl} 
+      
+      onDragOver={(e) => e.preventDefault()}
+
+      onDrop={(e) =>{
+          const id = e.dataTransfer.getData("id");
+          deleteUrl(id);
+      }}
+      
+      
+      />
 
       <div className={styles.urlWrapper}>
 
@@ -236,8 +250,19 @@ function Urls({ urls, domain }) {
           urls.map(item => (
             <div key={item.id} className={styles.created}>
 
-              <div className={styles.newUrlWrapper}>
-                <p className={styles.url}> {domain}{item.shortUrl}</p>
+              <div data-id = {item.id} className={styles.newUrlWrapper}>
+
+                <p className={styles.url} draggable
+                
+     onDragStart={(e)=>
+        e.dataTransfer.setData("id", item.id)
+      }
+> {domain}{item.shortUrl}
+
+
+
+                </p>
+
                 <p className={styles.original}>{item.originalUrl}</p>
               </div>
               <p className={styles.urlVisits}>{item.visits}</p>
@@ -250,6 +275,21 @@ function Urls({ urls, domain }) {
     </div>
   );
 }
+
+
+async function deleteUrl(urlId){
+
+    const res = await fetch(`/api/delete/url?urlId=${urlId}`, {
+  method: "POST"
+})
+
+    if(!res.ok){
+      console.log("error deleting url");
+    }
+
+  
+  }
+
 
 
 
@@ -308,5 +348,8 @@ function Chart({ data }) {
     </div>
   );
 }
+
+
+
 
 

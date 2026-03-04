@@ -30,6 +30,9 @@ public interface UrlRepository  extends JpaRepository<Url, Long> {
                       @Param("shortUrl") String shortUrl);
 
 
+    boolean existsByIdAndUserId(Long id, Long userId);
 
+    @Modifying
+    void deleteUrlById(Long id);
 
 }

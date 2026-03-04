@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/ChartDataResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/ChartDataResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlStatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlStatRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/DataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +126,7 @@
       <workItem from="1772475760447" duration="311000" />
       <workItem from="1772525865344" duration="1184000" />
       <workItem from="1772612179863" duration="16000" />
-      <workItem from="1772627266354" duration="10092000" />
+      <workItem from="1772627266354" duration="14064000" />
     </task>
     <servers />
   </component>

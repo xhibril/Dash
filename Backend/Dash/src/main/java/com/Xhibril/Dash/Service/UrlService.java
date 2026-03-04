@@ -207,9 +207,14 @@ public class UrlService {
 
 
 
+    @Transactional
+    public void deleteUrl(Long id, Long urlId){
+        System.out.println("deleting" + urlId + " " + id);
+        if(urlRepo.existsByIdAndUserId(urlId, id)){
+            urlStatRepo.deleteAllByUrlId(urlId);
+            urlRepo.deleteUrlById(urlId);
 
-
-
-
+        }
+    }
 
 }

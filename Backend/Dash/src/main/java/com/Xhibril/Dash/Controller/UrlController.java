@@ -4,6 +4,7 @@ import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Service.UrlService;
 import com.Xhibril.Dash.Model.Url;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,6 +95,17 @@ public class UrlController {
         return 0;
     }
 
+
+
+    @PostMapping("/delete/url")
+    private void deleteUrl(@RequestParam Long urlId, HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+
+        if(id != null){
+            urlService.deleteUrl(id, urlId);
+        }
+
+    }
 
 
 
