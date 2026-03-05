@@ -147,33 +147,28 @@ public class UrlService {
     }
 
 
-    public Integer getTrend(Long id){
+    public Integer getTrend(Long id) {
         LocalDate date = LocalDate.now();
         LocalDateTime start = date.atStartOfDay();
         LocalDateTime end = date.atTime(LocalTime.MAX);
 
-        Integer todayVisits = visitsHelper(start,end, id);
-        Integer yesterdayVisits = visitsHelper(start.minusDays(1),end.minusDays(1), id);
+        Integer todayVisits = visitsHelper(start, end, id);
+        Integer yesterdayVisits = visitsHelper(start.minusDays(1), end.minusDays(1), id);
 
-       Integer diff = todayVisits - yesterdayVisits;
+        Integer diff = todayVisits - yesterdayVisits;
         System.out.println("today: " + todayVisits);
         System.out.println("yesterday: " + yesterdayVisits);
         System.out.println("diff: " + diff);
 
-       if(yesterdayVisits != 0){
-           Float percentage = (float) diff / yesterdayVisits * 100;
+        Float percentage;
 
-           System.out.println("PERCENTAGE: " + percentage);
+        if (yesterdayVisits != 0) {
+             percentage = (float) diff / yesterdayVisits * 100;
+        } else {
+             return 100;
+        }
 
-           if(diff >= 0){
-               return Math.round(percentage);
-           } else {
-               return Math.round(percentage);
-           }
-
-       } else {
-           return 0;
-       }
+       return Math.round(percentage);
     }
 
 
