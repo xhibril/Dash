@@ -14,6 +14,7 @@ public class User {
     @Column(name = "password")
     private String pass;
 
+    private Boolean verified;
 
 
 
@@ -36,4 +37,7 @@ public class User {
     public String getPass(){
         return pass;
     }
+
+    public void setVerified(Boolean verified){ this.verified = verified;}
+    public Boolean getVerified(){ return verified;}
 }

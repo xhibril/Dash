@@ -76,7 +76,7 @@ function TicketSubmit() {
     async function submitTicket() {
 
         const res = await fetch("/api/support", {
-            method: "POST",
+            method: "GET",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, subject, message })
         })
