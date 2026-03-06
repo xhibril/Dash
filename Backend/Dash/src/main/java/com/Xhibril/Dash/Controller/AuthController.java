@@ -2,6 +2,7 @@ package com.Xhibril.Dash.Controller;
 
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Model.User;
+import com.Xhibril.Dash.Service.EmailService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,8 @@ public class AuthController {
 
     @Autowired
     AuthService authService;
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping("/signup")
     private void Signup(@RequestBody User user) throws Exception {
@@ -25,7 +28,11 @@ public class AuthController {
 
     @GetMapping("/email/verify/{token}")
     public boolean verifyUser(@PathVariable String token) {
-        System.out.println("HITTTTTTTTTTTTINGGGGGGGGGGG");
         return authService.verifyUser(token);
+    }
+
+    @GetMapping("/email/resend")
+    public boolean resendVerificationToken(@RequestBody User user) throws Exception {
+        return emailService.resendVerificationCode(user.getEmail());
     }
 }

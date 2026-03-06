@@ -1,8 +1,8 @@
 .sideBarContainer {
-  width: 0; /* fixed elements don't take layout space */
+  width: 0; 
 }
 
-/* SIDEBAR */
+
 .sidebar {
   position: fixed;
   top: 50%;
@@ -25,7 +25,7 @@
   transform: translateY(-50%) translateX(0);
 }
 
-/* TOGGLE BUTTON */
+
 .sidebar-btn {
   z-index: 2000;
   position: fixed;
@@ -44,7 +44,7 @@
   transform: translateX(100%);
 }
 
-/* TOP + BOTTOM GROUPS */
+
 .sidebar-top,
 .sidebar-bottom {
   display: flex;
@@ -58,7 +58,7 @@
   align-items: center;
 }
 
-/* ICON BUTTONS */
+
 .sidebar-icon {
   background-color: transparent;
   border: none;
@@ -73,7 +73,7 @@
   transform: translateY(-0.25rem);
 }
 
-/* PROFILE BUTTON */
+
 .profile {
   width: 70%;
   height: 5rem;
@@ -97,7 +97,7 @@
     padding: 0;
 }
 
-/* MOBILE */
+
 @media (max-width: 900px) {
   .sidebar {
     top: 0;

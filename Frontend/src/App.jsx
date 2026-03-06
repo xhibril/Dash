@@ -5,20 +5,26 @@ import Support from "./pages/Support.jsx";
 import Layout from "./pages/Layout.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import SimpleLayout from "./pages/SimpleLayout.jsx";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+     
+     
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/support" element={<Support />} />
-                   <Route path="/signup" element={<Signup />} />
-                     <Route path="/login" element={<Login />} />
         </Route>
-      </Routes>
 
+        <Route element={<SimpleLayout />}>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+      </Routes>
     </BrowserRouter>
   );
 }

@@ -165,7 +165,7 @@ public class UrlService {
         if (yesterdayVisits != 0) {
              percentage = (float) diff / yesterdayVisits * 100;
         } else {
-             return 100;
+            percentage = (float) diff / 1 * 100;
         }
 
        return Math.round(percentage);

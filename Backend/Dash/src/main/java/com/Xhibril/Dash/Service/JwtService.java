@@ -1,0 +1,81 @@
+package com.Xhibril.Dash.Service;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Service;
+
+import javax.crypto.SecretKey;
+import java.time.Instant;
+import java.util.Date;
+import java.util.Map;
+
+@Service
+public class JwtService {
+
+    public String generateToken(String subject, Map<String, Object> claims, int time){
+        String secret = System.getenv("JWT_SECRET");
+        Instant now = Instant.now();
+
+        SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
+
+        JwtBuilder builder = Jwts.builder()
+                .setSubject(subject)
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plusSeconds(time)));
+
+        if (claims != null){
+            builder.addClaims(claims);
+        }
+
+
+        return builder.signWith(key).compact();
+    }
+
+
+    public void saveToken(String tokenName, String token, HttpServletResponse res){
+        Cookie cookie = new Cookie(tokenName, token);
+        cookie.setHttpOnly(true);
+        //  cookie.setSecure(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(7 * 24 * 60 * 60);  // 7 days
+        res.addCookie(cookie);
+    }
+
+
+
+
+    public String getTokenFromCookie(String tokenName, HttpServletRequest req){
+        Cookie[] cookies = req.getCookies();
+        String token = null;
+
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(tokenName.equals(cookie.getName())){
+                    token = cookie.getValue();
+                }
+            }
+        }
+        return token;
+    }
+
+
+    public <T> T extractFromToken(String token, String claimName, Class<T> type){
+        String secretKey = System.getenv("JWT_SECRET");
+
+
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.get(claimName, type);
+    }
+
+
+}
