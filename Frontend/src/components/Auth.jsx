@@ -14,7 +14,9 @@ export default function Auth({ mode }) {
     const [step, setStep] = useState("EMAIL")
     const [code, setCode] = useState("")
     const [resetToken, setResetToken] = useState("")
+
     const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     async function ForgotPassword() {
 
@@ -53,7 +55,7 @@ export default function Auth({ mode }) {
             const data = await res.json();
 
             setResetToken(data.resetToken);
-            
+
                  setStep("RESET");
         }
 
@@ -145,16 +147,16 @@ export default function Auth({ mode }) {
 
                 {mode === "FORGET" && step === "RESET" && (
                     <>
-                        <label className={styles.label}> Old Password
+                        <label className={styles.label}> New Password
                             <input className={styles.input}
-                                onChange={(e) => setOldPassword(e.target.value)}
+                                onChange={(e) => setNewPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
                         </label>
 
-                        <label className={styles.label}> New Password
+                        <label className={styles.label}> Confirm New Password
                             <input className={styles.input}
-                                onChange={(e) => setNewPassword(e.target.value)}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
                         </label>
