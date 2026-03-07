@@ -6,6 +6,7 @@ import Layout from "./pages/Layout.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import SimpleLayout from "./pages/SimpleLayout.jsx";
+import ForgotPassword from "./pages/FrogotPassword.jsx";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route element={<SimpleLayout />}>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+                  <Route path="/forget" element={<ForgotPassword />} />
         </Route>
 
       </Routes>
