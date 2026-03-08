@@ -5,6 +5,8 @@ import com.Xhibril.Dash.Model.User;
 import com.Xhibril.Dash.Service.EmailService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,22 +19,19 @@ public class AuthController {
     private EmailService emailService;
 
     @PostMapping("/signup")
-    private void Signup(@RequestBody User user) throws Exception {
-       authService.addUser(user.getEmail(), user.getPass());
+    private ResponseEntity<String> Signup(@RequestBody User user) throws Exception {
+       return authService.addUser(user.getEmail(), user.getPass());
     }
 
     @PostMapping("/login")
-    private String Login(@RequestBody User user, HttpServletResponse res){
+    private ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse res){
         return authService.login(user.getEmail(), user.getPass(), res);
     }
 
-    @GetMapping("/email/verify/{token}")
-    public boolean verifyUser(@PathVariable String token) {
-        return authService.verifyUser(token);
-    }
 
-    @GetMapping("/email/resend")
-    public boolean resendVerificationToken(@RequestBody User user) throws Exception {
-        return emailService.resendVerificationCode(user.getEmail());
+
+    @PostMapping("/email/resend")
+    public void resendVerificationToken(@RequestBody User user) throws Exception {
+        emailService.sendVerificationEmail(user.getEmail());
     }
 }

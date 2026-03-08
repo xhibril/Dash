@@ -1,0 +1,43 @@
+.notification {
+  background-color: white;
+ 
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -30px);
+  padding: 1rem;
+  border-radius: .5rem;
+  width: fit-content;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: all 0.25s ease;
+ border:1px solid rgb(0, 0, 0, 0.2);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top:.5rem;
+font-size: .95rem;
+gap:1rem;
+}
+
+.notification.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: none;
+}
+
+
+
+.notificationBell {
+  width:2rem;
+  height: 1.5rem;
+}
+
+.notificationBell.success{
+ color:lightgreen;
+}
+
+.notificationBell.error{
+ color:red;
+}

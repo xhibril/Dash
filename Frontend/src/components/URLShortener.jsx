@@ -4,53 +4,15 @@ import { useState } from "react";
 import { FiLink, FiPenTool } from "react-icons/fi";
 
 
-
-function URLShortener() {
+function URLShortener({notify}) {
 
     const [originalUrl, url] = useState("");
     const [alias, al] = useState("");
 
+    async function generateNewUrl( originalUrl, shortUrl ) {
 
 
-    return (
-        <div className={styles.inputContainer}>
-
-            <label className={styles.inputTitle}>
-                <FiLink />
-                <p>Long URL</p>
-            </label>
-
-            <input
-                onChange={(e) => url(e.target.value)}
-                placeholder='Paste Long URL'
-            ></input>
-
-
-            <label className={styles.inputTitle}>
-                <FiPenTool />
-                <p>Alias</p>
-            </label>
-
-            <input
-                onChange={(e) => al(e.target.value)}
-                placeholder='Add Alias'
-            ></input>
-
-            <p className={styles.aliasDesc}>Must be at least 5 characters</p>
-
-            <button
-            onClick={()=> generateNewUrl(originalUrl, alias)}
-             className={styles.shortenBtn}
-            >Shorten</button>
-        </div>
-
-    );
-}
-
-export default URLShortener;
-
-
-async function generateNewUrl( originalUrl, shortUrl ) {
+    notify("CREATED", "error");
 
 
     // if user entered an alias
@@ -91,6 +53,51 @@ async function generateNewUrl( originalUrl, shortUrl ) {
 
 
 }
+
+
+
+
+
+
+    return (
+        <div className={styles.inputContainer}>
+
+            <label className={styles.inputTitle}>
+                <FiLink />
+                <p>Long URL</p>
+            </label>
+
+            <input
+                onChange={(e) => url(e.target.value)}
+                placeholder='Paste Long URL'
+            ></input>
+
+
+            <label className={styles.inputTitle}>
+                <FiPenTool />
+                <p>Alias</p>
+            </label>
+
+            <input
+                onChange={(e) => al(e.target.value)}
+                placeholder='Add Alias'
+            ></input>
+
+            <p className={styles.aliasDesc}>Must be at least 5 characters</p>
+
+            <button
+            onClick={()=> generateNewUrl(originalUrl, alias)}
+             className={styles.shortenBtn}
+
+            >Shorten</button>
+        </div>
+
+    );
+}
+
+export default URLShortener;
+
+
 
 
 

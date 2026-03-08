@@ -6,6 +6,7 @@ import { FiTrash } from 'react-icons/fi';
 import { useEffect, useState } from "react";
 
 
+
 import {
   ResponsiveContainer,
   LineChart,
@@ -17,12 +18,13 @@ import {
 
 
 
-export default function Dashboard() {
+export default function Dashboard({notify}) {
 
   const [visits, setVisits] = useState("");
   const [trend, setTrend] = useState("");
   const [mostPopular, setMostPopular] = useState([]);
   const [chartData, setChartData] = useState([]);
+
 
   //const [id, setSelectedUrlId] = useState("");
   //const [period, setSelectedPeriod] = useState("");
@@ -45,7 +47,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function fetchUrls() {
-      const res = await fetch("api/urls");
+      const res = await fetch("/api/urls");
 
       if (!res.ok) {
         console.log("Error getting urls");
@@ -155,7 +157,7 @@ export default function Dashboard() {
               mostPopular={mostPopular}
               domain={domain}
             />
-            <URLShortener />
+      <URLShortener notify = {notify}/>
           </div>
           <div className={styles.chartAndUrlWrapper}>
             <Chart data={chartData} />

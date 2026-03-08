@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/Auth.module.css";
 
-export default function Auth({ mode }) {
+import { useParams } from "react-router-dom";
+
+import { ValidateEmail, ValidatePassword, ValidateCode } from "./Validation.jsx";
+
+export default function Auth({ mode, notify }) {
+
     const nav = useNavigate();
 
     // turn is login into a bool
@@ -18,10 +23,40 @@ export default function Auth({ mode }) {
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
+
+    function checkIfVerified(){
+
+            const params = new URLSearchParams(window.location.search);
+            const isVerified = params.get("verified");
+
+
+            if(isVerified === "true"){
+                notify("Successfully verified", "SUCCESS");
+            } 
+            
+            if (isVerified === "false"){
+                notify("Verification failed", "ERROR");
+            }
+        }
+
+    useEffect(()=>{
+            checkIfVerified();
+    },[])
+
     async function ForgotPassword() {
 
         if (step === "EMAIL") {
-            const res = await fetch("api/password/reset", {
+
+
+            const emailRes = ValidateEmail(email)
+
+                if(emailRes !== "VALID"){
+                    notify(emailRes, "ERROR");
+                    return;
+                }
+            
+
+            const res = await fetch("/api/password/reset", {
 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -30,7 +65,7 @@ export default function Auth({ mode }) {
 
 
             if (!res.ok) {
-                console.log("error sending email");
+               notify("Something went wrong, please try again", "ERROR");
                 return;
             }
 
@@ -39,7 +74,16 @@ export default function Auth({ mode }) {
 
 
         if (step === "VERIFY") {
-            const res = await fetch("api/password/reset/verify", {
+
+            const codeRes = ValidateCode(code, 6);
+
+            if(codeRes !== "VALID"){
+                notify(codeRes, "ERROR");
+                return;
+            }
+
+
+            const res = await fetch("/api/password/reset/verify", {
 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -48,20 +92,34 @@ export default function Auth({ mode }) {
 
 
             if (!res.ok) {
-                console.log("error verifying");
-                      return;
+                notify("Something went wrong, please try again", "ERROR");
+                return;
             }
+
 
             const data = await res.json();
 
             setResetToken(data.resetToken);
 
-                 setStep("RESET");
+            setStep("RESET");
         }
 
 
         if (step === "RESET") {
-            const res = await fetch("api/password/reset/new", {
+
+            if(newPassword !== confirmPassword){
+                notify("Passwords do not match");
+                return;
+            }
+
+            const passRes = ValidatePassword(confirmPassword);
+
+            if(passRes !== "VALID"){
+                notify(passRes, "ERROR");
+                return;
+            }
+
+            const res = await fetch("/api/password/reset/new", {
 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -70,14 +128,64 @@ export default function Auth({ mode }) {
 
 
             if (!res.ok) {
-                console.log("error changing");
-                      return;
+            notify("Something went wrong, please try again", "ERROR");
+                return;
             }
 
         }
 
 
     }
+
+
+    async function submitCredentials(mode, email, pass, nav, path) {
+
+    const emailRes = ValidateEmail(email);
+
+
+    if (emailRes !== "VALID") {
+        notify(emailRes, "ERROR");
+        return;
+    }
+
+    const passwordRes = ValidatePassword(pass);
+
+    if(passwordRes !== "VALID"){
+        notify(passwordRes, "ERROR");
+        return;
+    }
+
+
+
+    const res = await fetch(path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, pass })
+    })
+
+
+    if (!res.ok) {
+        const data = await res.text();
+
+        notify(data, "ERROR");
+        return;
+    }
+
+    
+        if (mode === "LOGIN") {
+            nav("/dashboard")
+        
+            localStorage.removeItem("email");
+        } else {
+            nav("/verify/email")
+            localStorage.setItem("email", email);
+        }
+   
+    
+}
+
+
+
 
     return (
 
@@ -149,6 +257,7 @@ export default function Auth({ mode }) {
                     <>
                         <label className={styles.label}> New Password
                             <input className={styles.input}
+                                type="email"
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
@@ -156,6 +265,7 @@ export default function Auth({ mode }) {
 
                         <label className={styles.label}> Confirm New Password
                             <input className={styles.input}
+                                type="password"
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
@@ -204,7 +314,7 @@ export default function Auth({ mode }) {
                 {
                     mode == "LOGIN" ? (
                         <label className={styles.forgot}
-                        onClick={() => nav("/forget")}>
+                            onClick={() => nav("/forget")}>
                             <a>Forgot your password?</a>
                         </label>
                     ) : null
@@ -236,35 +346,7 @@ export default function Auth({ mode }) {
     );
 }
 
-async function submitCredentials(mode, email, pass, nav, path) {
 
-
-    const res = await fetch(path, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, pass })
-    })
-
-
-    if (!res.ok) {
-        console.log("Sum went wrong");
-        return;
-    }
-
-
-    const data = await res.text();
-
-
-    console.log(data);
-
-
-    if (data === "SUCCESS" && mode == "LOGIN") {
-        nav("/dashboard");
-    } else {
-        nav("/verify/email")
-    }
-
-}
 
 
 

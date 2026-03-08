@@ -64,17 +64,22 @@ public class JwtService {
     }
 
 
-    public <T> T extractFromToken(String token, String claimName, Class<T> type){
+    public <T> T extractFromToken(String token, String claimName, Class<T> type) {
         String secretKey = System.getenv("JWT_SECRET");
 
 
-        Claims claims = Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        try {
 
-        return claims.get(claimName, type);
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            return claims.get(claimName, type);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 

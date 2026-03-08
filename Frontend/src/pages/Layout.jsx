@@ -1,10 +1,14 @@
-import { Outlet } from "react-router-dom";
+
 import { useState } from "react";
 import SideBar from "../components/SideBar";
+import { Outlet } from "react-router-dom";
+
 import "../index.css";
 
 export default function Layout() {
   const [active, setActive] = useState(true);
+
+
   const toggleSidebar = () => setActive(!active);
 
   return (
@@ -13,7 +17,7 @@ export default function Layout() {
       <div className="layout">
         <SideBar active={active} toggleSidebar={toggleSidebar} />
         <div className="content">
-          <Outlet />
+          <Outlet/>
         </div>
       </div>
     </>

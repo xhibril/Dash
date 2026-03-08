@@ -1,6 +1,8 @@
 package com.Xhibril.Dash.Service;
 import io.jsonwebtoken.JwtBuilder;
 import jakarta.mail.internet.MimeMessage;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -37,22 +39,25 @@ public class AuthService {
 
     @Autowired EmailService emailService;
 
-    public void addUser(String email, String password) throws Exception {
+    public ResponseEntity<String> addUser(String email, String password) throws Exception {
 
         if(userRepo.findByEmail(email).isEmpty()){
             User user = new User();
             user.setEmail(email);
             user.setPass(password);
             user.setVerified(false);
-            User savedUser = userRepo.save(user);
 
+            userRepo.save(user);
             emailService.sendVerificationEmail(email);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().body("Account already exists");
         }
     }
 
 
 
-    public String login(String email, String pass, HttpServletResponse res){
+    public ResponseEntity<String> login(String email, String pass, HttpServletResponse res){
         Optional<User> cred = userRepo.findByEmail(email);
 
         if(cred.isPresent()){
@@ -68,25 +73,24 @@ public class AuthService {
                 String token = jwtService.generateToken("authToken", claims, 604800);
                 jwtService.saveToken("authToken",token, res);
             } else {
-                return "Password is incorrect";
+                return ResponseEntity.badRequest().body("Incorrect credentials");
             }
         } else {
-            return "User does not exist";
+            return ResponseEntity.badRequest().body("Incorrect credentials");
         }
-        return "SUCCESS";
+        return ResponseEntity.ok().build();
     }
 
 
 
     @Transactional
     public boolean verifyUser(String token){
-        Long id = jwtService.extractFromToken(token, "id", Long.class);
-        System.out.println("Extracted ID: " + id);
+        String email = jwtService.extractFromToken(token, "email", String.class);
 
-        Optional<User> isFound = userRepo.findById(id);
+        Optional<User> isFound = userRepo.findByEmail(email);
 
         if(isFound.isPresent()){
-            userRepo.verifyUser(id);
+            userRepo.verifyUser(email);
             return true;
         }
 

@@ -145,8 +145,8 @@ justify-content: center;
     height:2.2rem;
     border-radius: .5rem;
     width: 100%;
-
-background-color:   #1A2433;
+/*1A2433*/
+background-color:   #482c5a;
 color:white;
 font-weight: bold;
 cursor: pointer;
@@ -154,5 +154,5 @@ cursor: pointer;
 }
 
 .submit:hover{
-    background-color:   #2F3B4F;
+    background-color:  rgb(72, 44, 90,0.85);
 }
