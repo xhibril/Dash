@@ -5,7 +5,7 @@ import Support from "./pages/Support.jsx";
 import Layout from "./pages/Layout.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import SimpleLayout from "./pages/SimpleLayout.jsx";
+import AuthLayout from "./pages/AuthLayout.jsx";
 import ForgotPassword from "./pages/FrogotPassword.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import { useState } from "react";
@@ -45,7 +45,7 @@ export default function App() {
           <Route path="/support" element={<Support notify = {notify}/>} />
         </Route>
 
-        <Route element={<SimpleLayout />}>
+        <Route element={<AuthLayout />}>
           <Route path="/signup" element={<Signup notify = {notify}/>} />
           <Route path="/login" element={<Login notify = {notify}/>} />
                   <Route path="/forget" element={<ForgotPassword notify = {notify}/>} />

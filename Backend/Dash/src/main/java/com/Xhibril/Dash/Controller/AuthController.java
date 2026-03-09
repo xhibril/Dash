@@ -35,4 +35,9 @@ public class AuthController {
     public void resendVerificationToken(@RequestBody User user) throws Exception {
         emailService.sendVerificationEmail(user.getEmail());
     }
+
+    @GetMapping("/auth/status")
+    public boolean isAuthenticated(HttpServletRequest req){
+        return authService.isAuthenticated(req);
+    }
 }

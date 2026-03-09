@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/LoginRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Configs/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Configs/AuthFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/SimpleLayout.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +163,7 @@
       <workItem from="1773053087374" duration="3269000" />
       <workItem from="1773056415603" duration="46000" />
       <workItem from="1773056469200" duration="46000" />
-      <workItem from="1773056527466" duration="8848000" />
+      <workItem from="1773056527466" duration="11433000" />
     </task>
     <servers />
   </component>

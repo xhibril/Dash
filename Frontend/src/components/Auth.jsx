@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 import { ValidateEmail, ValidatePassword, ValidateCode } from "./Validation.jsx";
 import { HandleError } from "./ErrorHandler.jsx";
+import { FiEye } from "react-icons/fi";
 
 export default function Auth({ mode, notify }) {
 
@@ -25,6 +26,8 @@ export default function Auth({ mode, notify }) {
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const [rememberMe, setRememberMe] = useState(false);
+
+    const [showPass, setShowPass] = useState(false)
 
 
     function checkIfVerified() {
@@ -281,10 +284,13 @@ export default function Auth({ mode, notify }) {
                         <label className={styles.label} > Password
                             <input className={styles.input}
                                 value={pass}
+                                    type= {showPass ? "text" : "password"}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="•••••"
-                                type="password"
+                              
                             ></input>
+                                 <FiEye className = {styles.eye}
+                                 onClick={()=> setShowPass(!showPass)}/>
                         </label>
                     </div>
 
@@ -316,20 +322,23 @@ export default function Auth({ mode, notify }) {
                     <>
                         <label className={styles.label}> New Password
                             <input className={styles.input}
-                                type="password"
+                                type= {showPass ? "text" : "password"}
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
+                          
                         </label>
 
                         <label className={styles.label}> Confirm New Password
                             <input className={styles.input}
-                                type="password"
+                             type= {showPass ? "text" : "password"}
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
+                                  <FiEye className = {styles.eye}
+                                     onClick={()=> setShowPass(!showPass)}/>
                         </label>
                     </>
                 )}
@@ -389,12 +398,14 @@ export default function Auth({ mode, notify }) {
                     mode === "LOGIN" ? (
                         <span className={styles.redirect}>
                             <p>Don't have an account?</p>
-                            <a>Sign up</a>
+                            <a
+                            onClick={()=> nav("/signup")}>Sign up</a>
                         </span>
                     ) : (
                         <span className={styles.redirect}>
                             <p>Already have an account?</p>
-                            <a>Login</a>
+                            <a
+                            onClick={()=>nav("/login")}>Login</a>
                         </span>
                     )
                 ) : null}

@@ -126,6 +126,11 @@ public class AuthService {
 
 
 
+    public boolean isAuthenticated(HttpServletRequest req){
+        Long id = getAuthenticatedId(req);
+        return id != null;
+    }
+
 
 
 }
