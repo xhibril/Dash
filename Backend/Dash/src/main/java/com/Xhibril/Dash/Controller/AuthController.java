@@ -1,5 +1,6 @@
 package com.Xhibril.Dash.Controller;
 
+import com.Xhibril.Dash.Dto.LoginRequest;
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Model.User;
 import com.Xhibril.Dash.Service.EmailService;
@@ -25,8 +26,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse res) throws Exception {
-        return authService.login(user.getEmail(), user.getPass(), res);
+    private ResponseEntity<String> Login(@RequestBody LoginRequest loginRequest, HttpServletResponse res) throws Exception {
+        return authService.login(loginRequest.getEmail(), loginRequest.getPass(), loginRequest.getRememberMe(), res);
     }
 
 

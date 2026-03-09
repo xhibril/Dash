@@ -37,12 +37,12 @@ public class JwtService {
     }
 
 
-    public void saveToken(String tokenName, String token, HttpServletResponse res){
+    public void saveToken(String tokenName, String token, int time, HttpServletResponse res){
         Cookie cookie = new Cookie(tokenName, token);
         cookie.setHttpOnly(true);
         //  cookie.setSecure(true);
         cookie.setPath("/");
-        cookie.setMaxAge(7 * 24 * 60 * 60);  // 7 days
+        cookie.setMaxAge(time);  // 7 days
         res.addCookie(cookie);
     }
 

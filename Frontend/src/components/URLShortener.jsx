@@ -2,6 +2,7 @@ import styles from "../css/URLShortener.module.css";
 import { useState } from "react";
 
 import { FiLink, FiPenTool } from "react-icons/fi";
+import { HandleError } from "./ErrorHandler.jsx";
 
 
 function URLShortener({notify}) {
@@ -18,15 +19,20 @@ function URLShortener({notify}) {
     // if user entered an alias
     if (shortUrl?.length > 0) {
 
-        const response = await fetch("api/url", {
+        const res = await fetch("api/url", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ originalUrl, shortUrl })
         })
 
-        if(!response.ok){
-            console.log("error, already exists")
-        }
+        
+        
+        if (!res.ok) {
+              HandleError(res.status);
+              notify("Something went wrong, please try again", "ERROR");
+              return;
+            }
+      
     } else {
 
 
@@ -36,17 +42,12 @@ function URLShortener({notify}) {
             body: JSON.stringify({originalUrl})
         })
 
-        if(!res.ok){
-            console.log("error, already exists")
-        }
-
-        const data = await res.text();
-        console.log(data);
-
-
-
-
-
+  
+      if (!res.ok) {
+              HandleError(res.status);
+              notify("Something went wrong, please try again", "ERROR");
+              return;
+            }
     }
 
 

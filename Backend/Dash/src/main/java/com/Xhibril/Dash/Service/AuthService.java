@@ -57,7 +57,7 @@ public class AuthService {
 
 
 
-    public ResponseEntity<String> login(String email, String pass, HttpServletResponse res) throws Exception {
+    public ResponseEntity<String> login(String email, String pass, boolean rememberMe, HttpServletResponse res) throws Exception {
         Optional<User> cred = userRepo.findByEmail(email);
 
         if(cred.isPresent()){
@@ -74,9 +74,12 @@ public class AuthService {
              Map<String, Object> claims = new HashMap<>();
              claims.put("id", user.getId());
 
+             int time = (rememberMe ? 604800 : 7200);
 
-                String token = jwtService.generateToken("authToken", claims, 604800);
-                jwtService.saveToken("authToken",token, res);
+
+             System.out.println("TIMEEEE" + time);
+                String token = jwtService.generateToken("authToken", claims, time);
+                jwtService.saveToken("authToken",token,time, res);
             } else {
                 return ResponseEntity.badRequest().body("Incorrect credentials");
             }

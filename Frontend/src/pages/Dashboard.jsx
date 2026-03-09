@@ -4,7 +4,7 @@ import URLShortener from "../components/URLShortener.jsx";
 import { FiTrash } from 'react-icons/fi';
 
 import { useEffect, useState } from "react";
-
+import { HandleError } from "../components/ErrorHandler.jsx";
 
 
 import {
@@ -49,12 +49,15 @@ export default function Dashboard({notify}) {
     async function fetchUrls() {
       const res = await fetch("/api/urls");
 
+     
       if (!res.ok) {
-        console.log("Error getting urls");
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
         return;
       }
 
-      const data = await res.json();
+    const data = await res.json();
+
       setUrls(data);
     }
 
@@ -68,26 +71,34 @@ export default function Dashboard({notify}) {
   useEffect(() => {
     async function fetchVisits() {
       const res = await fetch("/api/visits");
+    
 
-      if (!res.ok) {
-        console.log("Error getting visits");
+  if (!res.ok) {
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
         return;
       }
 
-      const data = await res.json();
+        const data = await res.json();
       setVisits(data);
     }
 
+
     async function fetchTrend() {
       const res = await fetch("/api/trend");
+      
 
-      if (!res.ok) {
-        console.log("Error getting trend");
+   
+  if (!res.ok) {
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
         return;
       }
 
-      const popular = await res.json();
-      setTrend(popular);
+            const data = await res.json();
+
+
+      setTrend(data);
     }
 
 
@@ -96,12 +107,15 @@ export default function Dashboard({notify}) {
     async function fetchMostPopular() {
       const res = await fetch("/api/popular");
 
-      if (!res.ok) {
-        console.log("Error getting most popular");
+
+   
+  if (!res.ok) {
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
         return;
       }
 
-      const data = await res.json();
+            const data = await res.json();
      // setDefault({ data });
       setMostPopular(data);
     }
@@ -113,11 +127,16 @@ export default function Dashboard({notify}) {
         `/api/chart?id=${id}&period=${period}`
       );
 
-      if (!res.ok) {
-        console.log("Error fetching chart data")
+            const data = await res.json();
+
+  if (!res.ok) {
+        HandleError(data.status);
+        notify("Something went wrong, please try again", "ERROR");
+        return;
       }
 
-      const data = await res.json();
+
+
       setChartData(data);
 
 
@@ -285,9 +304,14 @@ async function deleteUrl(urlId){
   method: "POST"
 })
 
-    if(!res.ok){
-      console.log("error deleting url");
-    }
+
+  if (!res.ok) {
+   
+
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
+        return;
+      }
 
   
   }

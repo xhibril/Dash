@@ -34,7 +34,6 @@ public class AuthFilter extends OncePerRequestFilter {
                 path.startsWith("/api/account/status") ||
                 path.startsWith("/api/email/resend") ||
                 path.startsWith("/api/email/verify") ||
-                path.startsWith("/") ||
                 path.startsWith("/api/password/reset")
         ) {
             chain.doFilter(req, res);

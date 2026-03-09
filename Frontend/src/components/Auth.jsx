@@ -24,6 +24,8 @@ export default function Auth({ mode, notify }) {
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
+    const [rememberMe, setRememberMe] = useState(false);
+
 
     function checkIfVerified() {
 
@@ -173,7 +175,7 @@ export default function Auth({ mode, notify }) {
     }
 
 
-    async function submitCredentials(mode, email, pass, path) {
+    async function submitCredentials(mode, email, pass, rememberMe, path) {
         localStorage.setItem("email", email);
 
 
@@ -197,7 +199,7 @@ export default function Auth({ mode, notify }) {
         const res = await fetch(path, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, pass })
+            body: JSON.stringify({ email, pass, rememberMe })
         })
 
 
@@ -341,7 +343,8 @@ export default function Auth({ mode, notify }) {
                 {
                     mode == "LOGIN" ? (
                         <div className={styles.remember}>
-                            <input type="checkbox"></input>
+                            <input type="checkbox"
+                            onChange={(e) => setRememberMe(e.target.checked)}></input>
                             <p>Remember me</p>
 
                         </div>
@@ -352,7 +355,7 @@ export default function Auth({ mode, notify }) {
                 {mode !== "FORGET" ? (
                     <button className={styles.submit}
                         style={!isLogin ? { marginTop: "1rem" } : {}}
-                        onClick={() => submitCredentials(mode, email, pass, isLogin ? "api/login" : "api/signup")} >
+                        onClick={() => submitCredentials(mode, email, pass, rememberMe,  isLogin ? "api/login" : "api/signup")} >
                         {isLogin ? "Login" : "Sign up"}
                     </button>
                 ) :
