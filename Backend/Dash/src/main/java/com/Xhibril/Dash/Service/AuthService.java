@@ -57,7 +57,7 @@ public class AuthService {
 
 
 
-    public ResponseEntity<String> login(String email, String pass, HttpServletResponse res){
+    public ResponseEntity<String> login(String email, String pass, HttpServletResponse res) throws Exception {
         Optional<User> cred = userRepo.findByEmail(email);
 
         if(cred.isPresent()){
@@ -65,6 +65,11 @@ public class AuthService {
 
             if(pass.equals(user.getPass())){
 
+                // user is not verified
+                if(!accountStatus(email)){
+                    emailService.sendVerificationEmail(email);
+                    return ResponseEntity.status(403).build();
+                }
 
              Map<String, Object> claims = new HashMap<>();
              claims.put("id", user.getId());
@@ -103,6 +108,18 @@ public class AuthService {
         return jwtService.extractFromToken(token, "id", Long.class);
     }
 
+
+    public boolean accountStatus(String email){
+        Optional<User> isFound = userRepo.findByEmail(email);
+
+
+        if(isFound.isPresent()){
+            User user = isFound.get();
+
+            return user.getVerified();
+        }
+        return false;
+    }
 
 
 

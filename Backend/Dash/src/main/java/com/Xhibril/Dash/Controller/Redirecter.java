@@ -1,6 +1,8 @@
 package com.Xhibril.Dash.Controller;
 
+import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Service.UrlService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,9 @@ public class Redirecter {
     @Autowired
     private UrlService urlService = new UrlService();
 
+    @Autowired
+    AuthService authService;
+
     @GetMapping("/{alias}")
     public String redirect(@PathVariable String alias){
 
@@ -24,5 +29,6 @@ public class Redirecter {
         }
         return "redirect:http://localhost:5173/dashboard";
     }
+
 
 }

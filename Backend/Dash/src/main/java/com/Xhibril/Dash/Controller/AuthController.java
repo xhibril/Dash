@@ -3,6 +3,7 @@ package com.Xhibril.Dash.Controller;
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Model.User;
 import com.Xhibril.Dash.Service.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse res){
+    private ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse res) throws Exception {
         return authService.login(user.getEmail(), user.getPass(), res);
     }
-
 
 
     @PostMapping("/email/resend")

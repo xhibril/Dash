@@ -24,6 +24,7 @@ export function ValidatePassword(password) {
 
 
 export function ValidateEmail(email) {
+    email = email.trim();
 
       if(ValidateInput(email, "EMAIL") !== "VALID"){
         return "Invalid Input";

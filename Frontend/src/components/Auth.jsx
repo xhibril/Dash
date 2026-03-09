@@ -5,6 +5,7 @@ import styles from "../css/Auth.module.css";
 import { useParams } from "react-router-dom";
 
 import { ValidateEmail, ValidatePassword, ValidateCode } from "./Validation.jsx";
+import { HandleError } from "./ErrorHandler.jsx";
 
 export default function Auth({ mode, notify }) {
 
@@ -24,24 +25,25 @@ export default function Auth({ mode, notify }) {
     const [confirmPassword, setConfirmPassword] = useState("")
 
 
-    function checkIfVerified(){
+    function checkIfVerified() {
 
-            const params = new URLSearchParams(window.location.search);
-            const isVerified = params.get("verified");
+        const params = new URLSearchParams(window.location.search);
+        const isVerified = params.get("verified");
 
 
-            if(isVerified === "true"){
-                notify("Successfully verified", "SUCCESS");
-            } 
-            
-            if (isVerified === "false"){
-                notify("Verification failed", "ERROR");
-            }
+        if (isVerified === "true") {
+            notify("Successfully verified", "SUCCESS");
         }
 
-    useEffect(()=>{
-            checkIfVerified();
-    },[])
+        if (isVerified === "false") {
+            notify("Verification failed", "ERROR");
+        }
+    }
+
+    useEffect(() => {
+        checkIfVerified();
+    }, [])
+
 
     async function ForgotPassword() {
 
@@ -50,11 +52,11 @@ export default function Auth({ mode, notify }) {
 
             const emailRes = ValidateEmail(email)
 
-                if(emailRes !== "VALID"){
-                    notify(emailRes, "ERROR");
-                    return;
-                }
-            
+            if (emailRes !== "VALID") {
+                notify(emailRes, "ERROR");
+                return;
+            }
+
 
             const res = await fetch("/api/password/reset", {
 
@@ -63,13 +65,23 @@ export default function Auth({ mode, notify }) {
                 body: JSON.stringify({ email })
             })
 
+            
 
             if (!res.ok) {
-               notify("Something went wrong, please try again", "ERROR");
+                const data = await res.json();
+
+                if(data.message !== ""){
+                    notify(data.message, "ERROR");
+                    return;
+                } 
+                notify("Something went wrong, please try again", "ERROR");
+
                 return;
             }
 
+            notify("Verification code sent", "SUCCESS");
             setStep("VERIFY");
+
         }
 
 
@@ -77,7 +89,7 @@ export default function Auth({ mode, notify }) {
 
             const codeRes = ValidateCode(code, 6);
 
-            if(codeRes !== "VALID"){
+            if (codeRes !== "VALID") {
                 notify(codeRes, "ERROR");
                 return;
             }
@@ -90,31 +102,44 @@ export default function Auth({ mode, notify }) {
                 body: JSON.stringify({ email, code })
             })
 
+             const data = await res.json();
+
 
             if (!res.ok) {
-                notify("Something went wrong, please try again", "ERROR");
+
+
+                if(data.message !== ""){
+                    notify(data.message, "ERROR");
+                    return;
+                }
+               
+
+                notify("Something went wrplease try again", "ERROR");
+              
                 return;
             }
 
 
-            const data = await res.json();
+           
 
             setResetToken(data.resetToken);
 
+            setCode("");
+            notify("Verification successful", "SUCCESS");
             setStep("RESET");
         }
 
 
         if (step === "RESET") {
 
-            if(newPassword !== confirmPassword){
+            if (newPassword !== confirmPassword) {
                 notify("Passwords do not match");
                 return;
             }
 
             const passRes = ValidatePassword(confirmPassword);
 
-            if(passRes !== "VALID"){
+            if (passRes !== "VALID") {
                 notify(passRes, "ERROR");
                 return;
             }
@@ -127,62 +152,89 @@ export default function Auth({ mode, notify }) {
             })
 
 
+
             if (!res.ok) {
-            notify("Something went wrong, please try again", "ERROR");
+                const data = await res.json();
+                if(data.message !== ""){
+                    notify(data, "ERROR");
+                    return;
+                }
+                notify("Something went wrong, please try again", "ERROR");
+
                 return;
             }
 
+            setNewPassword("")
+            setConfirmPassword("")
+            notify("Password changed successfully", "SUCCESS");
         }
 
 
     }
 
 
-    async function submitCredentials(mode, email, pass, nav, path) {
-
-    const emailRes = ValidateEmail(email);
-
-
-    if (emailRes !== "VALID") {
-        notify(emailRes, "ERROR");
-        return;
-    }
-
-    const passwordRes = ValidatePassword(pass);
-
-    if(passwordRes !== "VALID"){
-        notify(passwordRes, "ERROR");
-        return;
-    }
+    async function submitCredentials(mode, email, pass, path) {
+        localStorage.setItem("email", email);
 
 
-
-    const res = await fetch(path, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, pass })
-    })
+        const emailRes = ValidateEmail(email);
 
 
-    if (!res.ok) {
-        const data = await res.text();
+        if (emailRes !== "VALID") {
+            notify(emailRes, "ERROR");
+            return;
+        }
 
-        notify(data, "ERROR");
-        return;
-    }
+        const passwordRes = ValidatePassword(pass);
 
-    
+        if (passwordRes !== "VALID") {
+            notify(passwordRes, "ERROR");
+            return;
+        }
+
+
+
+        const res = await fetch(path, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, pass })
+        })
+
+
+        if (!res.ok) {
+
+          HandleError(res.status);
+
+            const data = await res.text();
+
+            if (data !== "") {
+                notify(data, "ERROR")
+
+            } else {
+                notify("Something went wrong, please try again");
+            };
+            return;
+        }
+
+
+
         if (mode === "LOGIN") {
-            nav("/dashboard")
-        
+
+            window.location.href = "/dashboard";
             localStorage.removeItem("email");
+
         } else {
-            nav("/verify/email")
-            localStorage.setItem("email", email);
+            setEmail("");
+            setPassword("");
+            window.location.href = "/verify/email"
+
         }
-   
-    
-}
+
+
+
+
+
+    }
 
 
 
@@ -216,6 +268,7 @@ export default function Auth({ mode, notify }) {
 
                         <label className={styles.label}> Email
                             <input className={styles.input}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@email.com"
                             ></input>
@@ -225,8 +278,10 @@ export default function Auth({ mode, notify }) {
 
                         <label className={styles.label} > Password
                             <input className={styles.input}
+                                value={pass}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="•••••"
+                                type="password"
                             ></input>
                         </label>
                     </div>
@@ -237,6 +292,7 @@ export default function Auth({ mode, notify }) {
                 {mode === "FORGET" && step === "EMAIL" && (
                     <label className={styles.label}> Email
                         <input className={styles.input}
+
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="you@email.com"
                         ></input>
@@ -244,8 +300,9 @@ export default function Auth({ mode, notify }) {
                 )}
 
                 {mode === "FORGET" && step === "VERIFY" && (
-                    <label className={styles.label}> 6 digit code
+                    <label className={styles.label}> 6-digit code
                         <input className={styles.input}
+
                             onChange={(e) => setCode(e.target.value)}
                             placeholder="123456"
                         ></input>
@@ -257,7 +314,8 @@ export default function Auth({ mode, notify }) {
                     <>
                         <label className={styles.label}> New Password
                             <input className={styles.input}
-                                type="email"
+                                type="password"
+                                value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
@@ -266,6 +324,7 @@ export default function Auth({ mode, notify }) {
                         <label className={styles.label}> Confirm New Password
                             <input className={styles.input}
                                 type="password"
+                                value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="•••••"
                             ></input>
@@ -293,7 +352,7 @@ export default function Auth({ mode, notify }) {
                 {mode !== "FORGET" ? (
                     <button className={styles.submit}
                         style={!isLogin ? { marginTop: "1rem" } : {}}
-                        onClick={() => submitCredentials(mode, email, pass, nav, isLogin ? "api/login" : "api/signup")} >
+                        onClick={() => submitCredentials(mode, email, pass, isLogin ? "api/login" : "api/signup")} >
                         {isLogin ? "Login" : "Sign up"}
                     </button>
                 ) :

@@ -5,23 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/EmailVerificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Configs/AuthFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/Redirecter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/Redirecter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/SupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/SupportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/UrlController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/PasswordResetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/PasswordResetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/FrogotPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Signup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/SimpleLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/SimpleLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Validation.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +162,12 @@
       <workItem from="1772994667158" duration="22000" />
       <workItem from="1772994698359" duration="19000" />
       <workItem from="1772994725541" duration="2204000" />
+      <workItem from="1773052311833" duration="647000" />
+      <workItem from="1773053024728" duration="22000" />
+      <workItem from="1773053087374" duration="3269000" />
+      <workItem from="1773056415603" duration="46000" />
+      <workItem from="1773056469200" duration="46000" />
+      <workItem from="1773056527466" duration="4969000" />
     </task>
     <servers />
   </component>

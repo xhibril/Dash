@@ -28,11 +28,7 @@ public class UrlController {
     private String generateUrl(@RequestBody Url url, HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
 
-        if(id != null){
-            return urlService.generateUrl(id, url.getOriginalUrl());
-        } else {
-            return "Could not generate a url at the moment";
-        }
+        return urlService.generateUrl(id, url.getOriginalUrl());
     }
 
 
@@ -40,11 +36,9 @@ public class UrlController {
     private ResponseEntity<Void> addUrl(@RequestBody Url url, HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
 
-        if(id != null){
             urlService.addUrl(id, url.getOriginalUrl(), url.getShortUrl());
             return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
     }
 
 
@@ -52,24 +46,14 @@ public class UrlController {
     @GetMapping("/urls")
     private List<Url> getUrls(HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-
-        if(id != null){
             return urlService.getUrls(id);
-        }
-
-        return null;
     }
 
 
     @GetMapping("/popular")
     private Url getMostPopular(HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-
-        if(id != null){
             return urlService.mostPopular(id);
-        }
-
-        return null;
     }
 
 
@@ -77,22 +61,16 @@ public class UrlController {
     @GetMapping("/visits")
     private Integer getVisits(HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-
-        if(id != null){
           return urlService.getVisits(id);
-        }
-        return 0;
+
     }
 
 
     @GetMapping("/trend")
     private Integer getTrend(HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-
-        if(id != null){
             return urlService.getTrend(id);
-        }
-        return 0;
+
     }
 
 
@@ -100,11 +78,7 @@ public class UrlController {
     @PostMapping("/delete/url")
     private void deleteUrl(@RequestParam Long urlId, HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-
-        if(id != null){
             urlService.deleteUrl(id, urlId);
-        }
-
     }
 
 
