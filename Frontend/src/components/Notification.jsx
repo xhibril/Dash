@@ -9,7 +9,9 @@ export default function Notification({ message, type }) {
 
     return (
         <div className={name}>
-            <FiBell className={bellName}/>{message}</div>
+        <FiBell className={bellName}/>
+        {message}
+        </div>
     );
 
 }

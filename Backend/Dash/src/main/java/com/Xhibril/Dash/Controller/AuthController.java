@@ -40,4 +40,9 @@ public class AuthController {
     public boolean isAuthenticated(HttpServletRequest req){
         return authService.isAuthenticated(req);
     }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse res){
+        return authService.logout(res);
+    }
 }

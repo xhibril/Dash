@@ -1,76 +1,54 @@
-.mainContainer{
+.mainContainer {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
+
 }
-.leftContainer{
-    height: 100%;
+
+
+/* left side of dashboard*/
+
+.leftContainer {
+    flex: 1;
     width: 100%;
     justify-content: space-around;
     align-items: center;
     display: flex;
     flex-direction: column;
-
-    margin-top:0;
-    gap:2rem;
-
+    margin-top: 0;
+    gap: 2rem;
 }
 
-.leftWrapper{
-    display: flex;  
+.widgetsPanel {
+    display: flex;
     flex-direction: row;
     width: 80%;
     justify-content: space-evenly;
-    
-  background: white;
-  border-radius: .5rem;
-
-
-
-
-margin-top:0;
-
+    border-radius: .5rem;
+    flex: 1;
+    margin-top: 0;
     border-radius: .5rem;
     padding-top: 1rem;
-
-}
-
-.rightContainer{
-    display: flex;
-    height: 100%;
-    width: 30%;
-    justify-content: center;
-}
-
-.chartAndUrlWrapper{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
 }
 
 .widgetsContainer {
     display: flex;
-
-   
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
 
 .widgets {
     height: 10rem;
-
     display: flex;
-    width:20rem;
-
-    height: 100%;
+    width: 20rem;
+    max-height: 100%;
     flex-direction: column;
     justify-content: center;
     align-self: center;
     gap: 3rem;
-
 }
 
 /* visits widget*/
@@ -81,18 +59,16 @@ margin-top:0;
     max-height: 12rem;
     background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 1rem;
-      box-shadow: 5px 5px 10px #b892de,
-             -5px -5px 10px #ffffff;
+    box-shadow: 2px 2px 5px #b892de,
+        -2px -2px 5px #ffffff;
     text-align: center;
     color: white;
     transition: transform 0.2s ease;
 }
 
 .visits p {
-
     margin-top: 1rem;
 }
-
 
 .visits:hover,
 .popularContainer:hover {
@@ -116,36 +92,27 @@ margin-top:0;
 .popularContainer {
     display: flex;
     max-width: 17rem;
-
     height: 100%;
     max-height: 12rem;
-
     width: 100%;
-
-
-
-
- background: #F2F5FB;
-  box-shadow: 5px 5px 10px #bebebe,
-             -5px -5px 10px #ffffff;
-
+    background-color: white;
+    box-shadow: 2px 2px 5px #bebebe,
+        -2px -2px 5px #ffffff;
 
     border-radius: 1rem;
     text-align: center;
     transition: transform 0.2s ease;
     justify-content: center;
     flex-direction: column;
-    color: #6b7280;
+    color: #000000;
+    opacity: .8;
     font-size: 0.9rem;
-    gap: rem;
-    
 }
 
 .mostPopular {
     font-size: 1.4rem;
     font-weight: 600;
     margin: 0.3rem 0;
-
 }
 
 .popularContainer .mostVisits {
@@ -157,9 +124,6 @@ margin-top:0;
     font-size: 1rem;
 }
 
-
-
-
 .visitsWrapper {
     display: flex;
     width: 100%;
@@ -169,30 +133,85 @@ margin-top:0;
 
 
 
-
-/* urls */
-.storage {
+/* chart */
+.chartContainer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 1.2rem;
     align-items: center;
+    width: 80%;
+    flex: 1;
+    border-radius: .5rem;
+    padding-top: 1rem;
+    padding-top: 1rem;
+}
+
+.chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     width: 100%;
-    text-align: center;
+    margin-left: 5rem;
 }
 
 
-.delete {
-    color: red;
+.chartSettings {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.period {
     background-color: transparent;
     border: none;
-    font-size: 1.2rem;
     cursor: pointer;
-
-
-
-
 }
 
 
+.period.selected {
+    color:green;
+
+}
+
+.viewing {
+    display: flex;
+    align-self: flex-start;
+    width: 70%;
+    opacity: .7;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+}
+
+
+*:focus {
+    outline: none;
+}
+
+
+
+/* right side of dashboard*/
+
+.rightContainer {
+    display: flex;
+    height: 100%;
+    width: 30%;
+    justify-content: center;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+.explinationIcon{
+    width:1.5rem;
+    height: 1.5rem;
+}
 
 .urlContainer,
 .urlWrapper {
@@ -205,23 +224,26 @@ margin-top:0;
 
 }
 
+
+.urlContainer{
+    gap:1rem;
+}
+
 .urlWrapper {
     position: relative;
     height: 18rem;
     height: 90%;
-
     width: 80%;
     padding: 2rem 2.5rem;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
-background: #F8FAFF;
+    background: #F8FAFF;
 
     border-radius: 1rem;
     justify-content: flex-start;
     gap: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -232,27 +254,28 @@ background: #F8FAFF;
     padding-bottom: .5rem;
 }
 
-.deleteUrl{
-    color:red;
+.deleteUrl {
+    color: red;
     cursor: pointer;
+    font-size: 1.5rem;
 }
 
-.newUrlWrapper{
+.newUrlWrapper {
     display: flex;
-        width: 100%;
+    width: 100%;
     flex-direction: column;
 }
 
-.original{
+.original {
     opacity: .5;
-    font-size:.8rem;
-    margin:0;
+    font-size: .8rem;
+    margin: 0;
     width: 100%;
-    margin-left:1rem;
+    margin-left: 1rem;
     display: flex;
     padding: 0;
     text-align: left;
-} 
+}
 
 /* wrapper for dyna created urls */
 .created {
@@ -264,10 +287,7 @@ background: #F8FAFF;
 
 .url {
     display: flex;
-  
-
     transition: transform 0.2s ease;
-
 }
 
 
@@ -282,60 +302,3 @@ background: #F8FAFF;
     color: #685AFF;
     font-weight: bold;
 }
-
-
-/* chart */
-.chartContainer {
-    display: flex;
-  background: white;
-  flex-direction: column;
-  border-radius: 1.2rem;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.05);
-
-    
-    align-items: center;
- 
-     width: 80%;
-  border-radius: .5rem;
-  padding-top:1rem;
-  padding-top: 1rem;
-}
-
-.chartCard {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-left: 5rem;
-}
-
-
-.chartSettings{
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-}
-
-.period{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.viewing{
-    display: flex;  
-    align-self:flex-start;
-    align-items: flex-start;
-    width: 80%;
-    opacity: .7;
-    font-size:.8rem;
-    margin-bottom: 1rem;
-}
-
-
-*:focus {
-    outline: none;
-}
-
-

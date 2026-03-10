@@ -4,15 +4,16 @@
     padding: 2rem;
   
     gap: 1.5rem;
-    height: fit-content;
+ 
     align-self: center;
     width: 20rem;
- background: #F2F5FB;
-  box-shadow: 5px 5px 10px #bebebe,
-             -5px -5px 10px #ffffff;
+background-color: white;
+  box-shadow: 2px 2px 5px #bebebe,
+             -2px -2px 5px #ffffff;
 
     border-radius: 1rem;
     height: 18rem;
+    max-height: 100%;
 
 }
 

@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -129,6 +130,17 @@ public class AuthService {
     public boolean isAuthenticated(HttpServletRequest req){
         Long id = getAuthenticatedId(req);
         return id != null;
+    }
+
+    public ResponseEntity<Void> logout(HttpServletResponse res){
+        Cookie cookie = new Cookie("authToken", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        res.addCookie(cookie);
+
+        return ResponseEntity.ok().build();
     }
 
 

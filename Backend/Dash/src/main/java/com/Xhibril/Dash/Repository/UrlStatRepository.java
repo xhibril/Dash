@@ -33,6 +33,8 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
                   SELECT new com.Xhibril.Dash.Dto.ChartDataResponse(
                                                          CAST(u.bucket AS LocalDate),
                                                          CAST(SUM(u.visits) AS Long)
+                                              
+                                          
                                                      )
                                                      FROM UrlStat u
                                                      WHERE u.urlId = :urlId
@@ -51,6 +53,8 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
                   SELECT new com.Xhibril.Dash.Dto.ChartDataResponse(
                                                          HOUR(u.bucket),
                                                          SUM(u.visits)
+                                              
+                                                            
                                                      )
                                                      FROM UrlStat u
                                                      WHERE u.urlId = :urlId

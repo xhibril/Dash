@@ -39,7 +39,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
     
-        <Route element={<Layout/>}>
+        <Route element={<Layout notify = {notify}/>}>
           <Route path="/" element={<Home notify = {notify}/>} />
           <Route path="/dashboard" element={<Dashboard notify = {notify}/>} />
           <Route path="/support" element={<Support notify = {notify}/>} />

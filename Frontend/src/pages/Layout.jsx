@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 import "../index.css";
 
-export default function Layout() {
+export default function Layout({notify}) {
   const [active, setActive] = useState(true);
 
 
@@ -15,7 +15,7 @@ export default function Layout() {
     <>
 
       <div className="layout">
-        <SideBar active={active} toggleSidebar={toggleSidebar} />
+        <SideBar active={active} toggleSidebar={toggleSidebar} notify={notify} />
         <div className="content">
           <Outlet/>
         </div>

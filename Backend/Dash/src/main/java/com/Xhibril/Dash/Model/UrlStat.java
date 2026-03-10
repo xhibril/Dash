@@ -16,6 +16,10 @@ public class UrlStat {
     @Column(name = "url_id")
     private Long urlId;
 
+    @Column(name = "short_url")
+    private String shortUrl;
+
+
     private Integer visits;
 
     private LocalDateTime bucket;
@@ -35,6 +39,8 @@ public class UrlStat {
 
     public Long getUrlId(){ return urlId; }
 
+    public void setShortUrl(String shortUrl){ this.shortUrl = shortUrl;}
+    public String getShortUrl(){ return shortUrl;}
 
 
 }

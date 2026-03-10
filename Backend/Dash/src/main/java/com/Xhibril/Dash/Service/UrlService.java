@@ -107,6 +107,7 @@ public class UrlService {
             urlStat.setUrlId(urlId);
             urlStat.setBucket(bucket);
             urlStat.setVisits(1);
+            urlStat.setShortUrl(shortUrl);
 
             urlStatRepo.save(urlStat);
         }
@@ -124,14 +125,6 @@ public class UrlService {
 
     public List<Url> getUrls(Long id){
         List<Url> urlList = urlRepo.findByUserId(id);
-
-
-
-        for(Url u : urlList){
-            System.out.println(u.getShortUrl() + "/n");
-            System.out.println(u.getOriginalUrl() + "/n");
-        }
-
         return urlList;
     }
 

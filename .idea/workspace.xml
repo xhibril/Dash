@@ -7,11 +7,19 @@
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/ChartDataResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/ChartDataResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/UrlStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/UrlStat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlStatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlStatRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/SimpleLayout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Notification.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Notification.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/SideBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/URLShortener.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/URLShortener.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +171,12 @@
       <workItem from="1773053087374" duration="3269000" />
       <workItem from="1773056415603" duration="46000" />
       <workItem from="1773056469200" duration="46000" />
-      <workItem from="1773056527466" duration="11433000" />
+      <workItem from="1773056527466" duration="11937000" />
+      <workItem from="1773126167795" duration="158000" />
+      <workItem from="1773126367357" duration="16000" />
+      <workItem from="1773126387838" duration="62000" />
+      <workItem from="1773126461381" duration="4358000" />
+      <workItem from="1773133436164" duration="3440000" />
     </task>
     <servers />
   </component>
