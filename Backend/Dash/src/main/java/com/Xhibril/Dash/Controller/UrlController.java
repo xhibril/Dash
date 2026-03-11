@@ -1,5 +1,7 @@
 package com.Xhibril.Dash.Controller;
 
+import com.Xhibril.Dash.Dto.GenerateUrlRequest;
+import com.Xhibril.Dash.Dto.GenerateUrlResponse;
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Service.UrlService;
 import com.Xhibril.Dash.Model.Url;
@@ -25,21 +27,13 @@ public class UrlController {
 
 
     @PostMapping("/generate/url")
-    private String generateUrl(@RequestBody Url url, HttpServletRequest req){
+    private ResponseEntity<GenerateUrlResponse> generateUrl(@RequestBody GenerateUrlRequest request, HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
 
-        return urlService.generateUrl(id, url.getOriginalUrl());
+        return urlService.addUrl(id, request.getOriginalUrl(), request.getAlias());
     }
 
 
-    @PostMapping("/url")
-    private ResponseEntity<Void> addUrl(@RequestBody Url url, HttpServletRequest req){
-        Long id = authService.getAuthenticatedId(req);
-
-            urlService.addUrl(id, url.getOriginalUrl(), url.getShortUrl());
-            return ResponseEntity.ok().build();
-
-    }
 
 
 

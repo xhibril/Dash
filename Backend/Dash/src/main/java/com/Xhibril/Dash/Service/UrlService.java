@@ -1,13 +1,17 @@
 package com.Xhibril.Dash.Service;
+import com.Xhibril.Dash.Dto.GenerateUrlResponse;
 import com.Xhibril.Dash.Model.UrlStat;
 import com.Xhibril.Dash.Repository.UrlRepository;
 import com.Xhibril.Dash.Model.Url;
 import com.Xhibril.Dash.Repository.UrlStatRepository;
 import jdk.jfr.Percentage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -23,40 +27,52 @@ public class UrlService {
     @Autowired
     UrlStatRepository urlStatRepo;
 
-    public boolean addUrl(Long userId, String originalUrl, String shortUrl){
+    public ResponseEntity<GenerateUrlResponse> addUrl(Long userId, String originalUrl, String alias){
 
-        if(!urlRepo.existsByShortUrl(shortUrl)) {
+        originalUrl = normalizeUrl(originalUrl);
+        // generate url if user didnt input alias
+        if(alias.isEmpty()){
+            alias = generateShortUrl(userId, originalUrl);
+        }
+
+        if(!urlRepo.existsByShortUrl(alias)) {
 
             Url url = new Url();
-
-
+            GenerateUrlResponse urlResponse = new GenerateUrlResponse();
             LocalDate createdDate = LocalDate.now();
 
             url.setUserId(userId);
             url.setOriginalUrl(originalUrl);
-            url.setShortUrl(shortUrl);
+            url.setShortUrl(alias);
             url.setCreatedDate(createdDate);
             url.setVisits(0);
 
-             urlRepo.save(url);
 
-            return true;
+            Url saved = urlRepo.save(url);
+
+            urlResponse.setId(saved.getId());
+            urlResponse.setShortUrl(saved.getShortUrl());
+            urlResponse.setOriginalUrl(originalUrl);
+            urlResponse.setMessage("URL Successfully created");
+
+            return ResponseEntity.ok().body(urlResponse);
         }
-        return false;
+        return ResponseEntity.badRequest().body(new GenerateUrlResponse("URL already exists"));
     }
 
 
-    public String redirect(String url){
-         Url u = urlRepo.findByShortUrl(url);
-         if (u != null){
-             return u.getOriginalUrl();
-         } else {
-             return null;
-         }
+    public String redirect(String shortUrl){
+         Optional<Url> url = urlRepo.findByShortUrl(shortUrl);
+
+       if(url.isPresent()){
+           Url u = url.get();
+           return u.getOriginalUrl();
+       }
+       return null;
     }
 
 
-    public String generateUrl(Long id, String originalUrl){
+    private String generateShortUrl(Long id, String originalUrl){
 
         int length = 5;
         StringBuilder shortUrl;
@@ -69,7 +85,12 @@ public class UrlService {
                 shortUrl.append(letters.charAt(index));
             }
 
-            if(addUrl(id, originalUrl, shortUrl.toString())) break;
+            // check to make sure url doesnt exist
+            Optional<Url> url = urlRepo.findByShortUrl(shortUrl.toString());
+
+            if(url.isEmpty()){
+                break;
+            }
 
         }
 
@@ -77,13 +98,33 @@ public class UrlService {
     }
 
 
+    private String normalizeUrl(String originalUrl){
+        originalUrl = originalUrl.trim();
+
+        try {
+            URI uri = new URI(originalUrl);
+
+            if(uri.getScheme() == null){
+                originalUrl = "http://" + originalUrl;
+                uri = new URI(originalUrl);
+            }
+
+            return uri.toString();
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Invalid URL");
+        }
+    }
 
     @Transactional
     public void incrementVist(String shortUrl){
         LocalDateTime now = LocalDateTime.now();
 
-        Url url = urlRepo.findByShortUrl(shortUrl);
-        Long urlId = url.getId();
+        Optional<Url> url = urlRepo.findByShortUrl(shortUrl);
+
+        if(url.isEmpty()) return;
+        Url u = url.get();
+
+        Long urlId = u.getId();
 
         LocalDateTime bucket = now
                 .withMinute(0)
@@ -114,10 +155,10 @@ public class UrlService {
 
         // update visits in main url table
 
-        if(url.getVisits() == null){
+        if(u.getVisits() == null){
             visits = 1;
         } else {
-            visits = url.getVisits() + 1;
+            visits = u.getVisits() + 1;
         }
         urlRepo.updateVisits(visits, shortUrl);
     }

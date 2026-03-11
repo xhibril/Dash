@@ -1,59 +1,57 @@
 import styles from "../css/URLShortener.module.css";
 import { useState } from "react";
 
-import { FiLink, FiPenTool } from "react-icons/fi";
+import { FiLink, FiPenTool, FiLoader } from "react-icons/fi";
 import { HandleError } from "./ErrorHandler.jsx";
 
 
-function URLShortener({notify}) {
 
-    const [originalUrl, url] = useState("");
-    const [alias, al] = useState("");
+export default function URLShortener({ notify, setUrls }) {
 
-    async function generateNewUrl( originalUrl, shortUrl ) {
+    const [originalUrl, setOriginalUrl] = useState("");
+    const [alias, setAlias] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    async function generateNewUrl(originalUrl, alias) {
 
 
-    notify("CREATED", "error");
+        setLoading(true);
 
-
-    // if user entered an alias
-    if (shortUrl?.length > 0) {
-
-        const res = await fetch("api/url", {
+        const res = await fetch("/api/generate/url", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ originalUrl, shortUrl })
+            body: JSON.stringify({ originalUrl, alias })
         })
 
-        
-        
+        const data = await res.json();
+
         if (!res.ok) {
-              HandleError(res.status);
-              notify("Something went wrong, please try again", "ERROR");
-              return;
+            HandleError(res.status);
+            setLoading(false);
+
+            if (data.message !== "") {
+                notify(data, "ERROR");
+                return;
             }
-      
-    } else {
+
+            notify("Unable to create URL. Please try again later", "ERROR");
+            return;
+        }
 
 
-        const res = await fetch("/api/generate/url",{
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({originalUrl})
-        })
 
-  
-      if (!res.ok) {
-              HandleError(res.status);
-              notify("Something went wrong, please try again", "ERROR");
-              return;
-            }
+setUrls(prev => [...prev, data]);
+
+
+        notify("URL Successfully created", "SUCCESS");
+
+        setLoading(false);
+        setOriginalUrl("");
+        setAlias("");
+
+
+
     }
-
-
-
-
-}
 
 
 
@@ -61,6 +59,7 @@ function URLShortener({notify}) {
 
 
     return (
+
         <div className={styles.inputContainer}>
 
             <label className={styles.inputTitle}>
@@ -69,8 +68,9 @@ function URLShortener({notify}) {
             </label>
 
             <input
-                onChange={(e) => url(e.target.value)}
+                onChange={(e) => setOriginalUrl(e.target.value)}
                 placeholder='Paste Long URL'
+                values={originalUrl}
             ></input>
 
 
@@ -80,23 +80,29 @@ function URLShortener({notify}) {
             </label>
 
             <input
-                onChange={(e) => al(e.target.value)}
+                onChange={(e) => setAlias(e.target.value)}
                 placeholder='Add Alias'
+                values={alias}
             ></input>
 
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>
 
             <button
-            onClick={()=> generateNewUrl(originalUrl, alias)}
-             className={styles.shortenBtn}
+                onClick={() => generateNewUrl(originalUrl, alias)}
+                className={`${styles.shortenBtn} ${loading ? styles.disabled : ""}`}
 
-            >Shorten</button>
+
+                disabled={loading}
+
+
+            >{loading ? "Generating..." : "Shorten"}</button>
+
         </div>
 
     );
 }
 
-export default URLShortener;
+
 
 
 

@@ -8,7 +8,7 @@ import Login from "./pages/Login.jsx";
 import AuthLayout from "./pages/AuthLayout.jsx";
 import ForgotPassword from "./pages/FrogotPassword.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Notification from "./components/Notification.jsx";
 
 
@@ -16,15 +16,26 @@ export default function App() {
 
   const [message, setMessage ] = useState("")
   const [type, setType] = useState("")
+  const [id, setId] = useState("")
+  let messageTimeout = useRef(null);
 
   function notify(msg, t){
+  
+    if(messageTimeout.current !== null){
+
+      clearTimeout(messageTimeout.current);
+    }
+
     setMessage(msg);
     setType(t);
+    setId(Date.now());
 
+    console.log("message:", message);
 
-    setTimeout(()=>{
-       
+   messageTimeout.current = setTimeout(()=>{
       setMessage("");
+    
+      messageTimeout.current  = null;
     
     },3000)
   }
@@ -33,7 +44,7 @@ export default function App() {
   return (
   <>
  
- <Notification message = {message} type = {type}/>
+ <Notification message = {message} type = {type} key = {id}/>
  
 
     <BrowserRouter>

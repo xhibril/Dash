@@ -1,3 +1,4 @@
+
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -11,11 +12,14 @@ background-color: white;
   box-shadow: 2px 2px 5px #bebebe,
              -2px -2px 5px #ffffff;
 
-    border-radius: 1rem;
+    border-radius: .5rem;
     height: 18rem;
     max-height: 100%;
+    position: relative;
+ 
 
 }
+
 
 
 .inputTitle {
@@ -49,11 +53,16 @@ background-color: white;
     color: white;
     transition: .2s;
     font-weight: bold;
+   
 }
 
 
 .shortenBtn:hover {
     background-color: rgb(46, 64, 46);
+}
+
+.shortenBtn.disabled{
+    background-color: rgb(79, 71, 71);
 }
 
 

@@ -18,13 +18,13 @@ public class Redirecter {
     @Autowired
     AuthService authService;
 
-    @GetMapping("/{alias}")
-    public String redirect(@PathVariable String alias){
+    @GetMapping("/{shortUrl}")
+    public String redirect(@PathVariable String shortUrl){
 
-        String originalUrl = urlService.redirect(alias);
+        String originalUrl = urlService.redirect(shortUrl);
 
         if (originalUrl != null){
-            urlService.incrementVist(alias);
+            urlService.incrementVist(shortUrl);
             return "redirect:" + originalUrl;
         }
         return "redirect:http://localhost:5173/dashboard";

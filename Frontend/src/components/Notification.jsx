@@ -1,13 +1,38 @@
 import "../css/Notification.css"
 
 import { FiBell } from "react-icons/fi";
-export default function Notification({ message, type }) {
+import { useEffect, useState } from "react";
+export default function Notification({ message, type, key }) {
 
-    const name = `notification ${message !== "" ? "show" : ""}`;
+
+    const [visible, setVisible] = useState(false);
+
+
+
+
+    useEffect(()=>{
+        if(message !== ""){
+            setVisible(false)
+
+
+            setTimeout(()=>{
+                setVisible(true);
+            }, 10)
+
+        } else {
+            setVisible(false);
+        }
+        
+    }, [message])
+
+
+
+    const name = `notification ${visible === true ? "show" : ""}`;
     const bellName = `notificationBell ${type === "SUCCESS" ? "success" : "error"}`;
 
 
     return (
+        
         <div className={name}>
         <FiBell className={bellName}/>
         {message}
