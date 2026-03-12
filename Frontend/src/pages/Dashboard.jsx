@@ -13,14 +13,14 @@ import URLShortener from "../components/URLShortener.jsx";
 
 export default function Dashboard({ notify }) {
 
-  const [visits, setVisits] = useState("");
+  const [visitsToday, setVisitsToday] = useState("");
   const [trend, setTrend] = useState("");
-  const [mostPopular, setMostPopular] = useState([]);
+  const [mostPopular, setMostPopular] = useState(null);
   const [chartData, setChartData] = useState([]);
 
 
-  const [id, setSelectedUrlId] = useState("");
-  const [period, setSelectedPeriod] = useState("DAILY");
+  const [selectedUrlId, setSelectedUrlId] = useState("");
+  const [selectedPeriod, setSelectedPeriod] = useState("DAILY");
   const [selectedUrl, setSelectedUrl] = useState("");
 
   const domain = "dash.com/"
@@ -28,24 +28,7 @@ export default function Dashboard({ notify }) {
   const [urls, setUrls] = useState([]);
   
 
-
-
-  useEffect(() => {
-
-    async function fetchUrls() {
-      const res = await fetch("/api/urls");
-
-      if (!res.ok) {
-        HandleError(res.status);
-        notify("Something went wrong, please try again", "ERROR");
-        return;
-      }
-
-      const data = await res.json();
-      setUrls(data);
-      console.log(data);
-    }
-
+  
  
     async function fetchVisits() {
       const res = await fetch("/api/visits");
@@ -58,10 +41,10 @@ export default function Dashboard({ notify }) {
       }
 
       const data = await res.json();
-      setVisits(data);
+      setVisitsToday(data);
     }
 
-
+    
     async function fetchTrend() {
      const res = await fetch("/api/trend");
 
@@ -75,7 +58,21 @@ export default function Dashboard({ notify }) {
       setTrend(data);
     }
 
+           async function fetchUrls() {
+      const res = await fetch("/api/urls");
 
+      if (!res.ok) {
+        HandleError(res.status);
+        notify("Something went wrong, please try again", "ERROR");
+        return;
+      }
+
+      const data = await res.json();
+      setUrls(data);
+    }
+
+
+    
     async function fetchMostPopular() {
       const res = await fetch("/api/popular");
 
@@ -92,6 +89,10 @@ export default function Dashboard({ notify }) {
       setMostPopular(data);
     }
 
+
+
+  useEffect(() => {
+
     fetchUrls();
     fetchVisits();
     fetchTrend();
@@ -104,7 +105,7 @@ export default function Dashboard({ notify }) {
   async function fetchChartData() {
 
     const res = await fetch(
-      `/api/chart?id=${id}&period=${period}`
+      `/api/chart?id=${selectedUrlId}&period=${selectedPeriod}`
     );
 
     const data = await res.json();
@@ -120,10 +121,10 @@ export default function Dashboard({ notify }) {
 
 
   useEffect(() => {
-    if (!id) return;
+    if (!selectedUrlId) return;
 
     fetchChartData();
-  }, [id, period])
+  }, [selectedUrlId, selectedPeriod])
 
 
 
@@ -135,14 +136,18 @@ export default function Dashboard({ notify }) {
 
           <div className={styles.widgetsPanel}>
             <Widgets
-              visits={visits}
+              visitsToday={visitsToday}
               trend={trend}
               mostPopular = {mostPopular}
               domain={domain}
+              setMostPopular={setMostPopular}
+              urls = {urls}
             />
             <URLShortener 
             notify={notify}
             setUrls = {setUrls}
+            setMostPopular = {setMostPopular}
+            mostPopular = {mostPopular}
              />
           </div>
 
@@ -150,16 +155,29 @@ export default function Dashboard({ notify }) {
           chartData={chartData} 
           selectedUrl = {selectedUrl} 
           domain = {domain}
-          period = {period}
+          period = {selectedPeriod}
           setSelectedPeriod = {setSelectedPeriod}/>
         </div>
 
         <div className={styles.rightContainer}>
           <Urls 
           urls={urls} 
+          mostPopular = {mostPopular}
+          setMostPopular = {setMostPopular}
+
+         
+          fetchVisits = {fetchVisits}
+
+    
+          setVisitsToday={setVisitsToday}
+          setChartData = {setChartData}
+
+fetchTrend = {fetchTrend}
+          setUrls={setUrls}
           domain={domain}
           setSelectedUrl={setSelectedUrl}
           setSelectedUrlId={setSelectedUrlId}
+          selectedUrlId = {selectedUrlId}
           notify={notify} />
         </div>
       </div>

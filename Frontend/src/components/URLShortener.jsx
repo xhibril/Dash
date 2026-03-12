@@ -3,16 +3,33 @@ import { useState } from "react";
 
 import { FiLink, FiPenTool, FiLoader } from "react-icons/fi";
 import { HandleError } from "./ErrorHandler.jsx";
+import { ValidateAlias, ValidateURL } from "./Validation.jsx";
 
 
 
-export default function URLShortener({ notify, setUrls }) {
+export default function URLShortener({ notify, setUrls, setMostPopular, mostPopular }) {
 
     const [originalUrl, setOriginalUrl] = useState("");
     const [alias, setAlias] = useState("");
     const [loading, setLoading] = useState(false);
 
     async function generateNewUrl(originalUrl, alias) {
+
+        setAlias("");
+        setOriginalUrl("");
+        const urlRes = ValidateURL(originalUrl);
+        if(urlRes !== "VALID"){
+            notify(urlRes, "ERROR");
+            return;
+        }
+
+
+        const aliasRes = ValidateAlias(alias);
+
+        if(aliasRes !== "VALID"){
+            notify(aliasRes, "ERROR");
+            return;
+        }
 
 
         setLoading(true);
@@ -30,7 +47,7 @@ export default function URLShortener({ notify, setUrls }) {
             setLoading(false);
 
             if (data.message !== "") {
-                notify(data, "ERROR");
+                notify(data.message, "ERROR");
                 return;
             }
 
@@ -38,19 +55,18 @@ export default function URLShortener({ notify, setUrls }) {
             return;
         }
 
+        setUrls(prev => [...prev, data]);
 
 
-setUrls(prev => [...prev, data]);
-
+        if(!mostPopular){
+            setMostPopular(data);
+        }
 
         notify("URL Successfully created", "SUCCESS");
 
         setLoading(false);
         setOriginalUrl("");
         setAlias("");
-
-
-
     }
 
 
@@ -70,7 +86,8 @@ setUrls(prev => [...prev, data]);
             <input
                 onChange={(e) => setOriginalUrl(e.target.value)}
                 placeholder='Paste Long URL'
-                values={originalUrl}
+                value = {originalUrl}
+               
             ></input>
 
 
@@ -81,8 +98,9 @@ setUrls(prev => [...prev, data]);
 
             <input
                 onChange={(e) => setAlias(e.target.value)}
+                value = {alias}
                 placeholder='Add Alias'
-                values={alias}
+              
             ></input>
 
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>

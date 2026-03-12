@@ -1,0 +1,147 @@
+
+.widgetsPanel {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-evenly;
+    border-radius: .5rem;
+    flex: 1;
+    margin-top: 0;
+    border-radius: .5rem;
+    padding-top: 1rem;
+}
+
+.widgetsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+
+.widgets {
+    height: 10rem;
+    display: flex;
+    width: 20rem;
+    max-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 3rem;
+}
+
+/* visits widget*/
+.visits {
+    width: 100%;
+    max-width: 17rem;
+    height: 100%;
+    max-height: 12rem;
+     background-color: white;
+    border-radius: 1rem;
+       background-color: white;
+    box-shadow: 2px 2px 5px #bebebe,
+        -2px -2px 5px #ffffff;
+
+    text-align: center;
+    color: black;
+    transition: transform 0.2s ease;
+}
+
+.visits p {
+    margin-top: 1rem;
+}
+
+.visits:hover,
+.popular:hover {
+    transform: scale(1.05);
+}
+
+.trend {
+    font-weight: bold;
+    font-size: .8rem;
+    opacity: .9;
+}
+
+.trend.up {
+    color: rgb(145, 192, 145);
+}
+
+.trend.down {
+    color: rgb(255, 52, 52);
+
+}
+
+
+/* most popular url widget */
+.popular {
+    display: flex;
+    max-width: 17rem;
+    height: 100%;
+    max-height: 12rem;
+    width: 100%;
+    background-color: white;
+    box-shadow: 2px 2px 5px #bebebe,
+        -2px -2px 5px #ffffff;
+
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+    justify-content: center;
+    flex-direction: column;
+    color: #000000;
+ 
+}
+
+.mostPopular {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0.3rem 0;
+}
+
+.mostPopularVisits{
+    color:green;
+    font-weight: bold;
+
+}
+.zapIcon, .eyeIcon{
+    color:#fbbf24;
+
+    height: 1.5rem;
+    opacity: .7;
+    width: 1.5rem;
+}
+
+
+.eyeIcon{
+color:#22c55e;
+}
+
+.popularText, .visitsText{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap:.5rem;
+    font-size: 1rem;
+  
+
+}
+
+.popularContainer .mostVisits {
+    color: rgb(145, 192, 145);
+    font-weight: bold;
+}
+
+
+.visitsWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+
+
+.mostPopularVisits, .visitsToday{
+       color: #685AFF;
+}

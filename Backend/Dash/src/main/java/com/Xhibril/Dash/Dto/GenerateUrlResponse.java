@@ -6,6 +6,7 @@ public class GenerateUrlResponse {
     private String shortUrl;
     private String originalUrl;
     private String message;
+    private Integer visits;
 
 
     public GenerateUrlResponse(){}
@@ -44,5 +45,13 @@ public class GenerateUrlResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setVisits(Integer visits){
+        this.visits = visits;
+    }
+
+    public Integer getVisits(){
+        return visits;
     }
 }

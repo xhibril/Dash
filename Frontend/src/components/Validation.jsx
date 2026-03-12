@@ -51,12 +51,38 @@ export function ValidateCode(code, maxDigitsAllowed) {
 
 
 
+export function ValidateURL(url){
+
+    if(!url) return "URL is required";
+
+    const regex = /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}/;
+
+
+    if(!regex.test(url)) return "Please enter a valid URL";
+    return "VALID";
+
+}
+
+
+export function ValidateAlias(alias){
+
+    if(alias.length < 4) return "Alias must be at least 5 characters";
+
+    if(alias.length > 10) return "Alias must be less than 10 characters";
+    
+    if(ValidateInput(alias, "ALIAS") !== "VALID") return "Invalid alias";
+
+    return "VALID";
+}
+
+
 function ValidateInput(input, type) {
     const allowedMap = {
         NAME: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ",
         EMAIL: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-+@",
         PASSWORD: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!.@#$%^&*",
-        MESSAGE: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?;:'\"()[]{}-_/@#$%^&*+=|~`"
+        MESSAGE: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?;:'\"()[]{}-_/@#$%^&*+=|~`",
+        ALIAS: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     };
 
     for (let c of input) {

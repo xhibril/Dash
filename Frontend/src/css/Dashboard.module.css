@@ -115,6 +115,23 @@
     margin: 0.3rem 0;
 }
 
+.zapIcon{
+    color:rgb(255, 153, 0);
+
+    height: 1.5rem;
+    width: 1.5rem;
+
+}
+
+.popularText{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap:.3rem;
+
+}
+
 .popularContainer .mostVisits {
     color: rgb(145, 192, 145);
     font-weight: bold;
@@ -248,9 +265,9 @@
 }
 
 
-.urlWrapper p {
+.newUrlWrapper p {
     width: 100%;
-    text-align: center;
+
     margin: .5rem;
     padding-bottom: .5rem;
 }
@@ -263,30 +280,26 @@
 
 .newUrlWrapper {
     display: flex;
-    width: 100%;
     flex-direction: column;
+    flex: 1;
 }
 
 .original {
     opacity: .5;
     font-size: .8rem;
     margin: 0;
-    width: 100%;
-    display: block;
+
     word-break: break-word;
-    margin-left: 1rem;
- 
-    padding: 0;
-    text-align: left;
 }
 
 /* wrapper for dyna created urls */
 .created {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-    border-bottom: 1px solid rgb(51, 48, 48, 0.3);
+    border-bottom: 1px solid rgba(51,48,48,0.3);
 }
-
 
 
 .url {
@@ -302,9 +315,7 @@
 
 
 .urlVisits {
-
     color: #685AFF;
     font-weight: bold;
-
-    width: 100%;
+    margin-left: 1rem;
 }

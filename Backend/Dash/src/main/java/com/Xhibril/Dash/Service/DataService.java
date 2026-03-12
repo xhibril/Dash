@@ -101,14 +101,19 @@ public class DataService {
 
                     } else {
                         ChartDataResponse finalData = getFinalData(prev, sum);
-                        transformedData.add(finalData);
+
+                        if(finalData != null){
+                            transformedData.add(finalData);
+                        }
                         sum = 0L;
                     }
                     prev = bucketIndex;
                 }
 
                 ChartDataResponse finalData = getFinalData(bucketIndex, sum);
-                transformedData.add(finalData);
+                if(finalData != null){
+                    transformedData.add(finalData);
+                }
                 break;
         }
         return transformedData;
@@ -116,6 +121,8 @@ public class DataService {
 
 
     private ChartDataResponse getFinalData(int bucketIndex, Long sum) {
+
+        if(sum == 0) return null;
 
         LocalDate date = LocalDate.now().withDayOfMonth(1);
         int lastDay = date.lengthOfMonth();

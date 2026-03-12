@@ -53,6 +53,7 @@ public class UrlService {
             urlResponse.setId(saved.getId());
             urlResponse.setShortUrl(saved.getShortUrl());
             urlResponse.setOriginalUrl(originalUrl);
+            urlResponse.setVisits(0);
             urlResponse.setMessage("URL Successfully created");
 
             return ResponseEntity.ok().body(urlResponse);

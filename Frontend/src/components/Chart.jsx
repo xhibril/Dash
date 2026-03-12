@@ -20,7 +20,7 @@ export default function Chart({chartData, selectedUrl, domain, period, setSelect
       <div className={styles.chartSettings}>
 
 
-{selectedUrl && 
+{selectedUrl && chartData.length !== 0 &&
 (
      <p className={styles.viewing}>Currently viewing: {domain}{selectedUrl}</p>
 )}
