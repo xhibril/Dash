@@ -53,7 +53,6 @@ export default function App() {
 
 
           <Route element={<Layout notify={notify} />}>
-
             <Route path="/dashboard" element={<Dashboard notify={notify} />} />
             <Route path="/support" element={<Support notify={notify} />} />
           </Route>

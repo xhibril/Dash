@@ -1,5 +1,5 @@
 import styles from "./Urls.module.css";
-import { FiTrash, FiInfo } from "react-icons/fi";
+import { FiTrash } from "react-icons/fi";
 import { useState } from "react";
 import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
 
@@ -36,7 +36,6 @@ export default function Urls({
     }
     return successor;
   }
-
 
 
   async function deleteUrl(urlId) {

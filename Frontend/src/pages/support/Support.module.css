@@ -28,8 +28,11 @@
     border-bottom: 1px solid rgb(0, 0, 0, 0.3);
     width: 50%;
     max-width: 30rem;
+    transition: 0.15s all ease;
 
 }
+
+
 
 .arrowDown, .arrowUp {
     margin-left: auto;
@@ -43,51 +46,59 @@
     cursor: pointer;
 }
 
+.question h2:hover{
+    color:rgb(55, 55, 55);
+}
+
 .answer {
     display: none;
     font-size: .8rem;
 }
 
-.arrowUp{
-    display: none;
+.answer.show{
+    display: flex;
 }
-
 
 
 
 
 .inputContainer {
     width: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap:1rem;
     flex-direction: column;
 
-
 }
 
 .inputWrapper {
     width: fit-content;
-    padding: 2rem;
+padding: 2rem 3rem;
     border-radius: .5rem;
-     background: #F8FAFF;
-       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+     background-color: white;
+    box-shadow: 2px 2px 5px #bebebe,
+        -2px -2px 5px #ffffff;
+        display: flex;
+        flex-direction: column;
+           
+
 }
 
 
 .supportInput {
     display: flex;
     flex-direction: column;
-
-
+    width: 100%;
 }
 
 
 .input {
     border: 1px solid rgb(0, 0, 0, 0.2);
-    height: 2rem;
+    height: 2.5rem;
+    border-radius: .5rem;
+    text-align: start;
+    padding-left: 0.75rem; 
 }
 
 .supportInput p {
@@ -96,6 +107,7 @@
     padding: 0;
     font-weight: bold;
     opacity: .8;
+    width: 100%;
 
 }
 
@@ -121,6 +133,8 @@
     transition: transform 0.2s ease;
     cursor: pointer;
     font-weight: bold;
+    align-self: center;
+    margin-top:1rem;
 }
 
 .submit:hover {

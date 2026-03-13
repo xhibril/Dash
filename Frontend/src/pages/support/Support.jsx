@@ -2,24 +2,48 @@ import styles from "./Support.module.css"
 
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 
-import {useState } from "react";
+import { useState } from "react";
+import { HandleError } from "../../components/Utils/ErrorHandler.jsx";
+import { ValidateEmail, ValidateInput } from "../../components/Utils/Validation.jsx";
 
 
-export default function Support() {
 
+export default function Support({ notify }) {
+    const faqs = [{
+        question: "What Is a URL Shortener?", answer: "A URL shortener turns a long link into a shorter one that’s easier to share." +
+            "When someone opens the short link, it redirects them to the original website."
+    },
+
+    {
+        question: "How Does a URL Shortener Work?", answer: "A URL shortener works by taking a long link, creating a short alias for it, and storing both in a database." +
+            "When someone visits the short link, the service looks up the alias and redirects the user to the original URL."
+    },
+
+    {
+        question: "Are Shortened Links Permanent?", answer: "Not always. Shortened links usually stay active as long as the service keeps them stored," +
+            "but they can be deleted, expire, or stop working if the service shuts down."
+    },
+
+    {
+        question: "Are Shortened Links Safe?", answer: "Shortened links are generally safe, but you can’t see the full" +
+            "destination before clicking, so they can sometimes hide malicious websites."
+    }]
 
     return (
 
         <div className={styles.supportContainer}>
-            <FAQ />
-            <TicketSubmit />
+            <FAQ faqs={faqs} />
+            <TicketSubmit notify={notify} />
         </div>
 
     );
 }
 
 
-function FAQ() {
+function FAQ({ faqs }) {
+
+    const [activeIndex, setActiveIndex] = useState(null);
+
     return (
 
         <div className={styles.faqContainer}>
@@ -28,46 +52,32 @@ function FAQ() {
                 <p>Find answers to common questions or contact us directly.</p>
             </div>
 
-            <span className={styles.question}>
-                <h2>What Is a URL Shortener?
-                    <FiArrowDown className={styles.arrowDown} />
-                    <FiArrowUp className={styles.arrowUp} />
-                </h2>
-                <p className={styles.answer}>Shortens links</p>
-            </span>
+            {faqs.map((faq, index) => (
+                <div className={styles.question} key={index}>
 
-            <span className={styles.question}>
-                <h2>How Does a URL Shortener Work?
-                    <FiArrowDown className={styles.arrowDown} />
-                    <FiArrowUp className={styles.arrowUp} />
-                </h2>
-                <p className={styles.answer}>Shortens links</p>
-            </span>
+                    <h2
+                        onClick={() => setActiveIndex(activeIndex === index ? null : index)}>
+                        {faq.question}
 
 
-            <span className={styles.question}>
-                <h2>Are Shortened Links Permanent?
-                    <FiArrowDown className={styles.arrowDown} />
-                    <FiArrowUp className={styles.arrowUp} />
-                </h2>
-                <p className={styles.answer}>Shortens links</p>
+                        {activeIndex === index ? (
+                            <FiArrowUp className={styles.arrowUp} />
+                        ) :
+                            <FiArrowDown className={styles.arrowDown}
+                            />}
+                    </h2>
 
-            </span>
-
-            <span className={styles.question}>
-                <h2>Are Shortened Links Safe?
-                    <FiArrowDown className={styles.arrowDown} />
-                    <FiArrowUp className={styles.arrowUp} />
-                </h2>
-                <p className={styles.answer}>Shortens links</p>
-            </span>
-
+                    {activeIndex === index && (
+                        <p className={`${styles.answer} ${styles.show}`}>{faq.answer}</p>
+                    )
+                    }
+                </div>
+            ))}
         </div>
-
     );
 }
 
-function TicketSubmit() {
+function TicketSubmit({ notify }) {
 
     const [email, setEmail] = useState("")
     const [subject, setSubject] = useState("")
@@ -75,15 +85,51 @@ function TicketSubmit() {
 
     async function submitTicket() {
 
+
+    if(!email || !subject || !message) {
+        notify("All fields are required", "ERROR");
+        return;
+    }
+
+        const emailRes = ValidateEmail(email);
+
+        if(emailRes !== "VALID"){
+            notify(emailRes, "ERROR"); 
+            return;
+        }
+
+
+        const subjectRes =  ValidateInput(subject, "GENERAL");
+
+        if(subjectRes !== "VALID"){
+            notify(subjectRes, "ERROR");
+            return;
+        }
+
+        const messageRes = ValidateInput(message, "MESSAGE");
+        if(messageRes !== "VALID"){
+            notify(messageRes, "ERROR");
+            return;
+        }
+
         const res = await fetch("/api/support", {
-            method: "GET",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, subject, message })
         })
 
         if (!res.ok) {
-            console.log("error submitting ticket")
+            HandleError(res.status);
+            notify("Something went wrong, please try again", "ERROR");
+            return;
         }
+
+
+        notify("Message sent successfully", "SUCCESS");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        return;
     }
 
     return (
@@ -98,6 +144,7 @@ function TicketSubmit() {
                         type="email"
                         className={styles.input}
                         placeholder="Example@email.com"
+                        value = {email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </label>
@@ -107,6 +154,7 @@ function TicketSubmit() {
                     <input
                         className={styles.input}
                         placeholder="URL not working"
+                        value = {subject}
                         onChange={(e) => setSubject(e.target.value)}
                     />
                 </label>
@@ -115,16 +163,16 @@ function TicketSubmit() {
                     <p>Message:</p>
                     <textarea
                         className={styles.textArea}
+                        value = {message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
                 </label>
 
+                <button className={styles.submit} onClick={submitTicket}>
+                    Submit
+                </button>
+
             </div>
-
-            <button className={styles.submit} onClick={submitTicket}>
-                Submit
-            </button>
-
         </div>
     )
 }
