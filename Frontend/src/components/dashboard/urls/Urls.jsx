@@ -1,9 +1,10 @@
-import { useSearchParams } from "react-router-dom";
-import styles from "../css/Dashboard.module.css";
+import styles from "./Urls.module.css";
 import { FiTrash, FiInfo } from "react-icons/fi";
 import { useState } from "react";
+import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
 
-export default function Urls({ urls,
+export default function Urls({
+  urls,
   domain,
   setSelectedUrl,
   setSelectedUrlId,
@@ -13,78 +14,45 @@ export default function Urls({ urls,
   mostPopular,
   setMostPopular,
   fetchVisits,
-  setVisitsToday,
   fetchTrend,
-  
+  fetchChartData,
   setChartData,
 }) {
 
 
+  const [deleting, setDeleting] = useState(false);
 
-  function refreshComponents(){
 
-      if(!mostPopular){
-
+  // find successor url if deleted url was displayed in mostPopular n chart
+  function successorUrl(filteredUrls){
     let max = -1;
-    let successorUrl;
+    let successor;
 
-
-    for (const url of urls){
-      if(url.visits >= max){
+    for (const url of filteredUrls) {
+      if (url.visits >= max) {
         max = url.visits;
-        successorUrl = url;
+        successor = url;
       }
     }
-
-    console.log("SUCCESSOR URL " + successorUrl.shortUrl);
-
-    setMostPopular(successorUrl);
+    return successor;
   }
-    
-  }
+
+
 
   async function deleteUrl(urlId) {
+    if(deleting) return;
+    
+    setDeleting(true);
 
     urlId = Number(urlId);
 
     const oldUrls = urls;
 
-    console.log("URL ID " + urlId);
-    console.log("MOST POPULAR ID " + mostPopular.id);
-    console.log("SELECTED URL ID " + selectedUrlId);
+    const filteredUrls = urls.filter(url => url.id !== urlId);
 
- 
+    const succUrl = successorUrl(filteredUrls);
 
-    if(selectedUrlId === urlId){
-      setChartData([]);
-    }
-
-
-    const newUrls = urls.filter(url => url.id !== urlId);
-
-       if(mostPopular.id === urlId){
-      setMostPopular(null);
-
-          let max = -1;
-    let successorUrl;
-
-
-    for (const url of newUrls){
-      if(url.visits >= max){
-        max = url.visits;
-        successorUrl = url;
-      }
-    }
-
-    setMostPopular(successorUrl);
-    }
-
-
-
-
-
-
-    setUrls(newUrls)
+    setUrls(filteredUrls)
 
     const res = await fetch(`/api/delete/url?urlId=${urlId}`, { method: "POST" })
 
@@ -92,20 +60,36 @@ export default function Urls({ urls,
       HandleError(res.status);
       notify("Could not delete URL, please try again", "ERROR");
       setUrls(oldUrls);
+      setDeleting(false);
       return;
     }
 
     notify("URL Successfully deleted", "SUCCESS");
+
+    if (succUrl) {
+      if (mostPopular?.id === urlId) setMostPopular(succUrl);
+
+      if (selectedUrlId === urlId) {
+        setSelectedUrlId(succUrl.id);
+        setSelectedUrl(succUrl.shortUrl);
+        fetchChartData();
+      }
+
+    } else {
+
+      if (mostPopular?.id === urlId) setMostPopular(null);
+      if (selectedUrlId === urlId) setChartData([]);
+    }
+
     fetchVisits();
     fetchTrend();
-    refreshComponents();
+    setDeleting(false);
     return;
   }
 
 
   return (
     <div className={styles.urlContainer}>
-
       <FiTrash className={styles.deleteUrl}
 
         onDragOver={(e) => e.preventDefault()}
@@ -116,22 +100,16 @@ export default function Urls({ urls,
         }}
       />
 
-      <div className={styles.urlWrapper}>
+      <div className={styles.urlList}>
 
         {urls.length === 0 ? (
-
-          <div className={styles.empty}>
-
-            <FiInfo className={styles.explinationIcon} />
-            <p>No links created yet</p>
-          </div>
-
+          <NoDataAvailable/>
         ) : (
 
           urls.map(item => (
-            <div key={item.id} className={styles.created}>
+            <div key={item.id} className={styles.urlItem}>
 
-              <div data-id={item.id} className={styles.newUrlWrapper}>
+              <div data-id={item.id} className={styles.urlRow}>
 
                 <p className={styles.url} draggable
 
@@ -153,7 +131,6 @@ export default function Urls({ urls,
               </div>
               <p className={styles.urlVisits}>{item.visits}</p>
             </div>
-
           ))
         )}
       </div>

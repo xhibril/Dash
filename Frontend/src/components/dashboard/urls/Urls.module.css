@@ -1,0 +1,89 @@
+
+.urlContainer,
+.urlList {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+.urlContainer{
+    gap:1rem;
+}
+
+.deleteUrl {
+    color: red;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+
+.urlList {
+    position: relative;
+    height: 18rem;
+    height: 90%;
+    width: 80%;
+    padding: 2rem 2.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    background: #F8FAFF;
+
+    border-radius: 1rem;
+    justify-content: flex-start;
+    gap: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.urlItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    border-bottom: 1px solid rgba(51,48,48,0.3);
+}
+
+
+.urlRow {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.urlRow p {
+    width: 100%;
+
+    margin: .5rem;
+    padding-bottom: .5rem;
+}
+
+.original {
+    opacity: .5;
+    font-size: .8rem;
+    margin: 0;
+
+    word-break: break-word;
+}
+
+
+.url {
+    display: flex;
+    transition: transform 0.2s ease;
+}
+
+
+.url:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.urlVisits {
+    color: #685AFF;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+

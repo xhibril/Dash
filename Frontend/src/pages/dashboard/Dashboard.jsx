@@ -1,12 +1,12 @@
-import styles from "../css/Dashboard.module.css";
+import styles from "./Dashboard.module.css";
 
 import { useEffect, useState } from "react";
-import { HandleError } from "../components/ErrorHandler.jsx";
+import { HandleError } from "../../components/Utils/ErrorHandler.jsx";
 
-import Chart from "../components/Chart.jsx";
-import Urls from "../components/Urls.jsx";
-import Widgets from "../components/Widgets.jsx";
-import URLShortener from "../components/URLShortener.jsx";
+import Chart from "../../components/dashboard/chart/Chart.jsx";
+import Urls from "../../components/dashboard/urls/Urls.jsx";
+import Widgets from "../../components/dashboard/widgets/Widgets.jsx";
+import URLShortener from "../../components/dashboard/url-shortener/URLShortener.jsx";
 
 
 
@@ -134,7 +134,7 @@ export default function Dashboard({ notify }) {
       <div className={styles.mainContainer}>
         <div className={styles.leftContainer}>
 
-          <div className={styles.widgetsPanel}>
+          <div className={styles.dashboardTop}>
             <Widgets
               visitsToday={visitsToday}
               trend={trend}
@@ -170,12 +170,15 @@ export default function Dashboard({ notify }) {
 
     
           setVisitsToday={setVisitsToday}
-          setChartData = {setChartData}
-
+ 
+          setChartData={setChartData}
+          fetchChartData = {fetchChartData}
+          setSelectedPeriod = {setSelectedPeriod}
+          setSelectedUrl = {setSelectedUrl}
 fetchTrend = {fetchTrend}
           setUrls={setUrls}
           domain={domain}
-          setSelectedUrl={setSelectedUrl}
+         
           setSelectedUrlId={setSelectedUrlId}
           selectedUrlId = {selectedUrlId}
           notify={notify} />

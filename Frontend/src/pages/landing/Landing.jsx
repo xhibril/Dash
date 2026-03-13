@@ -1,6 +1,6 @@
-import Header from "../components/Header.jsx";
-import FeatureSection from "../components/FeatureSection.jsx";
-import Footer from "../components/Footer.jsx";
+import Header from "../../components/Header.jsx";
+import FeatureSection from "../../components/FeatureSection.jsx";
+import Footer from "../../components/Footer.jsx";
 
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
 }
 
 
-import URLShortener from '../components/URLShortener.jsx';
+import URLShortener from '../../components/dashboard/url-shortener/URLShortener.jsx';
 
 function PublicDashboard() {
     return (

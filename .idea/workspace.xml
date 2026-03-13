@@ -5,20 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/UrlRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/UrlResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/GenerateUrlResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/GenerateUrlResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UrlRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/UrlService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Chart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Chart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Urls.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Urls.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Validation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Widgets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Widgets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Auth.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Chart.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ErrorHandler.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Notification.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/SideBar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/URLShortener.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Urls.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Validation.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Widgets.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Auth.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Dashboard.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Notification.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/SideBar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Support.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/URLShortener.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Verify.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Widgets.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/AuthLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/AuthLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Dashboard.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/FrogotPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Landing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Support.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/VerifyEmail.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +199,9 @@
       <workItem from="1773218392087" duration="864000" />
       <workItem from="1773219303649" duration="2522000" />
       <workItem from="1773244036575" duration="3557000" />
-      <workItem from="1773324432942" duration="8176000" />
+      <workItem from="1773324432942" duration="8773000" />
+      <workItem from="1773387172624" duration="2000" />
+      <workItem from="1773402119999" duration="2999000" />
     </task>
     <servers />
   </component>

@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-import SideBar from "../components/SideBar";
-import "../index.css";
+import { useEffect } from "react";
+
+import "../../index.css";
 
 
 export default function Layout() {
 
+  // if user is auth redirect to dashboard
   useEffect(() => {
     AuthStatus();
     async function AuthStatus() {

@@ -1,4 +1,4 @@
-import styles from "../css/Support.module.css"
+import styles from "./Support.module.css"
 
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 

@@ -24,3 +24,16 @@ html, body, #root {
   padding: 2rem;
 }
 
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+.explinationIcon{
+    width:1.5rem;
+    height: 1.5rem;
+}
+

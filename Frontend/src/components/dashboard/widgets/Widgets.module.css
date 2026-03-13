@@ -1,16 +1,4 @@
 
-.widgetsPanel {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    justify-content: space-evenly;
-    border-radius: .5rem;
-    flex: 1;
-    margin-top: 0;
-    border-radius: .5rem;
-    padding-top: 1rem;
-}
-
 .widgetsContainer {
     display: flex;
     justify-content: center;
@@ -19,7 +7,7 @@
 }
 
 
-.widgets {
+.widgetsRow {
     height: 10rem;
     display: flex;
     width: 20rem;
@@ -30,8 +18,8 @@
     gap: 3rem;
 }
 
-/* visits widget*/
-.visits {
+
+.visitsWidget {
     width: 100%;
     max-width: 17rem;
     height: 100%;
@@ -47,12 +35,12 @@
     transition: transform 0.2s ease;
 }
 
-.visits p {
+.visitsWidget p {
     margin-top: 1rem;
 }
 
-.visits:hover,
-.popular:hover {
+.visitsWidget:hover,
+.popularWidget:hover {
     transform: scale(1.05);
 }
 
@@ -73,7 +61,7 @@
 
 
 /* most popular url widget */
-.popular {
+.popularWidget {
     display: flex;
     max-width: 17rem;
     height: 100%;
@@ -133,7 +121,7 @@ color:#22c55e;
 }
 
 
-.visitsWrapper {
+.visitsRow {
     display: flex;
     width: 100%;
     justify-content: center;

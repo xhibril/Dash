@@ -1,9 +1,9 @@
 
 import { useState } from "react";
-import SideBar from "../components/SideBar";
+import SideBar from "./SideBar.jsx";
 import { Outlet } from "react-router-dom";
 
-import "../index.css";
+import "../../index.css";
 
 export default function Layout({notify}) {
   const [active, setActive] = useState(true);

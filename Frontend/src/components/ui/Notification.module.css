@@ -29,15 +29,15 @@ gap:1rem;
 
 
 
-.notificationBell {
+.bellIcon {
   width:2rem;
   height: 1.5rem;
 }
 
-.notificationBell.success{
+.bellIcon.success{
  color:lightgreen;
 }
 
-.notificationBell.error{
+.bellIcon.error{
  color:red;
 }

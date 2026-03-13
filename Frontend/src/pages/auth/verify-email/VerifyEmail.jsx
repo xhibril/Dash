@@ -1,7 +1,7 @@
-import styles from "../css/Verify.module.css";
-import { FiEdit, FiMail } from 'react-icons/fi';
+import styles from "./VerifyEmail.module.css";
+import { FiMail } from 'react-icons/fi';
 
-export default function VerifyEmail(){
+export default function VerifyEmail({notify}){
 
     const email = localStorage.getItem("email");
 
@@ -16,10 +16,11 @@ export default function VerifyEmail(){
 
 
         if(!res.ok){
-            console.log("sum went wrong resending verification email");
-            return;
+           notify("Failed to send verification email. Please try again", "ERROR");
+           return;
         }
 
+        notify("Verification email sent", "SUCCESS");
     }
 
     return (
@@ -36,14 +37,9 @@ export default function VerifyEmail(){
             
             onClick = {() => resendEmail()}
             
-            
             >Send it again</a>
-
             </div>
         </div>
 
     );
-
-
-
 }

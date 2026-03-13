@@ -1,7 +1,7 @@
-import "../css/SideBar.css";
+import "./SideBar.css";
 import { FiHome, FiMail, FiLogOut, FiMenu } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { HandleError } from "./ErrorHandler.jsx";
+import { HandleError } from "../Utils/ErrorHandler.jsx";
 
 function SideBar({ active, toggleSidebar, notify }) {
 

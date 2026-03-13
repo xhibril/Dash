@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../css/Auth.module.css";
+import styles from "./Auth.module.css";
 
-import { useParams } from "react-router-dom";
-
-import { ValidateEmail, ValidatePassword, ValidateCode } from "./Validation.jsx";
-import { HandleError } from "./ErrorHandler.jsx";
+import { ValidateEmail, ValidatePassword, ValidateCode } from "../Utils/Validation.jsx";
+import { HandleError } from "../Utils/ErrorHandler.jsx";
 import { FiEye } from "react-icons/fi";
 
 export default function Auth({ mode, notify }) {

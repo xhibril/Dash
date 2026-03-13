@@ -1,36 +1,33 @@
-import styles from "../css/URLShortener.module.css";
+import styles from "./URLShortener.module.css";
 import { useState } from "react";
 
-import { FiLink, FiPenTool, FiLoader } from "react-icons/fi";
-import { HandleError } from "./ErrorHandler.jsx";
-import { ValidateAlias, ValidateURL } from "./Validation.jsx";
+import { FiLink, FiPenTool } from "react-icons/fi";
+import { HandleError } from "../../Utils/ErrorHandler.jsx";
+import { ValidateAlias, ValidateURL } from "../../Utils/Validation.jsx";
 
 
 
-export default function URLShortener({ notify, setUrls, setMostPopular, mostPopular }) {
+export default function URLShortener({notify, setUrls, setMostPopular, mostPopular }) {
 
     const [originalUrl, setOriginalUrl] = useState("");
     const [alias, setAlias] = useState("");
     const [loading, setLoading] = useState(false);
 
-    async function generateNewUrl(originalUrl, alias) {
+    async function generateNewUrl() {
+        if (loading) return;
 
-        setAlias("");
-        setOriginalUrl("");
         const urlRes = ValidateURL(originalUrl);
-        if(urlRes !== "VALID"){
+        if (urlRes !== "VALID") {
             notify(urlRes, "ERROR");
             return;
         }
 
-
         const aliasRes = ValidateAlias(alias);
 
-        if(aliasRes !== "VALID"){
+        if (aliasRes !== "VALID") {
             notify(aliasRes, "ERROR");
             return;
         }
-
 
         setLoading(true);
 
@@ -46,31 +43,22 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             HandleError(res.status);
             setLoading(false);
 
-            if (data.message !== "") {
-                notify(data.message, "ERROR");
-                return;
-            }
-
-            notify("Unable to create URL. Please try again later", "ERROR");
+            notify(data.message || "Unable to create URL. Please try again later", "ERROR");
             return;
         }
 
         setUrls(prev => [...prev, data]);
 
-
-        if(!mostPopular){
+        if (!mostPopular) {
             setMostPopular(data);
         }
 
-        notify("URL Successfully created", "SUCCESS");
-
-        setLoading(false);
-        setOriginalUrl("");
         setAlias("");
+        setOriginalUrl("");
+
+        notify("URL Successfully created", "SUCCESS");
+        setLoading(false);
     }
-
-
-
 
 
 
@@ -83,11 +71,11 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
                 <p>Long URL</p>
             </label>
 
-            <input
+            <input className={styles.inputField}
                 onChange={(e) => setOriginalUrl(e.target.value)}
                 placeholder='Paste Long URL'
-                value = {originalUrl}
-               
+                value={originalUrl}
+
             ></input>
 
 
@@ -96,22 +84,19 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
                 <p>Alias</p>
             </label>
 
-            <input
+            <input className={styles.inputField}
                 onChange={(e) => setAlias(e.target.value)}
-                value = {alias}
+                value={alias}
                 placeholder='Add Alias'
-              
+
             ></input>
 
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>
 
             <button
-                onClick={() => generateNewUrl(originalUrl, alias)}
+                onClick={() => generateNewUrl()}
                 className={`${styles.shortenBtn} ${loading ? styles.disabled : ""}`}
-
-
                 disabled={loading}
-
 
             >{loading ? "Generating..." : "Shorten"}</button>
 
@@ -119,13 +104,3 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
 
     );
 }
-
-
-
-
-
-
-
-
-
-
