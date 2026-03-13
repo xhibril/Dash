@@ -5,6 +5,7 @@ import styles from "./Auth.module.css";
 import { ValidateEmail, ValidatePassword, ValidateCode } from "../Utils/Validation.jsx";
 import { HandleError } from "../Utils/ErrorHandler.jsx";
 import { FiEye } from "react-icons/fi";
+import icon from "../../../public/favicon.png";
 
 export default function Auth({ mode, notify }) {
 
@@ -248,7 +249,11 @@ export default function Auth({ mode, notify }) {
 
             <div className={styles.inputContainer}>
 
-                <h1 className={styles.siteName}>DASH</h1>
+<div className = {styles.titleAndIcon}>
+    <img src = {icon}></img>
+      <h1 className={styles.siteName}>DASH</h1>
+</div>
+          
 
 
 
