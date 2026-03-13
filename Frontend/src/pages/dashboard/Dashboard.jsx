@@ -1,14 +1,10 @@
 import styles from "./Dashboard.module.css";
-
 import { useEffect, useState } from "react";
-import { HandleError } from "../../components/Utils/ErrorHandler.jsx";
-
-import Chart from "../../components/dashboard/chart/Chart.jsx";
-import Urls from "../../components/dashboard/urls/Urls.jsx";
+import { HandleError } from "../../components/utils/ErrorHandler.jsx"
+import Chart from "../../components/dashboard/chart/Chart";
 import Widgets from "../../components/dashboard/widgets/Widgets.jsx";
 import URLShortener from "../../components/dashboard/url-shortener/URLShortener.jsx";
-
-
+import Urls from "../../components/dashboard/urls/Urls.jsx";
 
 
 export default function Dashboard({ notify }) {

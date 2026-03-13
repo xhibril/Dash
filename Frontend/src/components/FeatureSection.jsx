@@ -1,6 +1,4 @@
 import "../css/FeatureSection.css"
-import activity from "../assets/stats.png"
-import manage from "../assets/manage.png"
 
 function FeatureSection() {
     return (
