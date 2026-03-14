@@ -12,6 +12,8 @@ import java.util.Optional;
 
 public interface UrlRepository  extends JpaRepository<Url, Long> {
 
+    @Modifying
+    void deleteAllByUserId(Long userId);
 
     boolean existsByShortUrl(String shortUrl);
 

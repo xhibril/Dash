@@ -2,22 +2,22 @@
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+
 }
 
 
 .faqContainer {
     display: flex;
-    width: 100%;
-
+    width:100%;
     flex-direction: column;
     gap: 2rem;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items:center;
+    justify-content: center;
 }
 
-.title{
+.title {
     width: 50%;
     max-width: 30rem;
 }
@@ -29,12 +29,11 @@
     width: 50%;
     max-width: 30rem;
     transition: 0.15s all ease;
-
 }
 
 
-
-.arrowDown, .arrowUp {
+.arrowDown,
+.arrowUp {
     margin-left: auto;
 }
 
@@ -46,59 +45,68 @@
     cursor: pointer;
 }
 
-.question h2:hover{
-    color:rgb(55, 55, 55);
-}
-
 .answer {
     display: none;
     font-size: .8rem;
 }
 
-.answer.show{
+.answer.show {
     display: flex;
 }
 
 
-
+/* ticket submit */
 
 .inputContainer {
-    width: 100%;
+    width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     flex-direction: column;
-
 }
 
 .inputWrapper {
     width: fit-content;
-padding: 2rem 3rem;
+    padding: 2rem 3rem;
     border-radius: .5rem;
-     background-color: white;
+    background-color: white;
     box-shadow: 2px 2px 5px #bebebe,
         -2px -2px 5px #ffffff;
-        display: flex;
-        flex-direction: column;
-           
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+}
 
+.supportText{
+    font-size: .9rem;
+    margin: 0;
+    margin-bottom: 1rem;
 }
 
 
-.supportInput {
+.supportTop{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+}
+
+.supportInput{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+.input, .textArea{
+    border: transparent;
+    background-color: rgb(0, 0, 0,0.05);
+}
 
 .input {
-    border: 1px solid rgb(0, 0, 0, 0.2);
     height: 2.5rem;
     border-radius: .5rem;
     text-align: start;
-    padding-left: 0.75rem; 
+    padding-left: 0.75rem;
 }
 
 .supportInput p {
@@ -108,16 +116,16 @@ padding: 2rem 3rem;
     font-weight: bold;
     opacity: .8;
     width: 100%;
-
 }
 
 
 .textArea {
-    border: transparent;
-    width: 20rem;
-    height: 18rem;
+    width: 100%;
+    height: 5rem;
+    padding-left: 0.75rem;
+    padding-top:.5rem;
     border-radius: .5rem;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    font-family: sans-serif;
 }
 
 
@@ -125,7 +133,6 @@ padding: 2rem 3rem;
     border: none;
     width: 5rem;
     height: 2.2rem;
-
     border-radius: .5rem;
     align-self: center;
     background-color: #5B23FF;
@@ -133,8 +140,8 @@ padding: 2rem 3rem;
     transition: transform 0.2s ease;
     cursor: pointer;
     font-weight: bold;
-    align-self: center;
-    margin-top:1rem;
+    align-self: flex-start;
+    margin-top: 1rem;
 }
 
 .submit:hover {

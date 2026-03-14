@@ -15,6 +15,8 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
 
 
 
+    @Modifying
+    void deleteByUrlId(Long urlId);
 
     List<UrlStat> findByUrlId(Long urlId);
 
@@ -68,6 +70,15 @@ public interface UrlStatRepository extends JpaRepository<UrlStat, Long> {
             LocalDateTime end
     );
 
+
+
+    @Modifying
+    @Query("""
+DELETE FROM UrlStat s WHERE s.urlId in (
+SELECT u.id FROM Url u WHERE u.userId = :userId
+)
+""")
+    void deleteAllByUserUrls(Long userId);
 
     @Modifying
     void deleteAllByUrlId(Long urlId);

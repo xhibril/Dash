@@ -33,10 +33,8 @@ export default function Widgets({ visitsToday, trend, mostPopular, domain }) {
               <FiZap className={styles.zapIcon} />Most popular</p>
 
             {mostPopular === null ? (
-              <div className={styles.empty}>
-                <FiInfo className={styles.explinationIcon} />
-                <p >No data available</p>
-              </div>
+             <NoDataAvailable/>
+         
             ) :
               <>
                 <p className={styles.mostPopular}>{domain}{mostPopular?.shortUrl}</p>

@@ -74,8 +74,8 @@ padding:0;
     width:100%;
 
      box-sizing: border-box; 
-    height: 2.2rem; /* Matches your .submit button height */
-    border-radius: .3rem; /* Softens the edges */
+    height: 2.2rem; 
+    border-radius: .3rem; 
       
 }
 

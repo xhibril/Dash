@@ -10,6 +10,7 @@ import ForgotPassword from "./pages/auth/FrogotPassword.jsx";
 import VerifyEmail from "./pages/auth/verify-email/VerifyEmail.jsx";
 import { useState, useRef } from "react";
 import Notification from "./components/UI/Notification.jsx";
+import DeleteAccount from "./pages/account-settings/DeleteAccount.jsx";
 
 
 export default function App() {
@@ -50,6 +51,7 @@ export default function App() {
         <Routes>
 
           <Route path="/" element={<Home notify={notify} />} />
+           <Route path="/delete-account" element={<DeleteAccount/>} />
 
 
           <Route element={<Layout notify={notify} />}>

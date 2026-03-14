@@ -8,22 +8,18 @@
 
 
 .widgetsRow {
-    height: 10rem;
     display: flex;
     width: 20rem;
-    max-height: 100%;
     flex-direction: column;
     justify-content: center;
     align-self: center;
     gap: 3rem;
 }
 
-
-.visitsWidget {
-    width: 100%;
+.visitsWidget, .popularWidget {
     max-width: 17rem;
     height: 100%;
-    max-height: 12rem;
+ 
      background-color: white;
     border-radius: 1rem;
        background-color: white;
@@ -33,11 +29,14 @@
     text-align: center;
     color: black;
     transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.visitsWidget p {
-    margin-top: 1rem;
+.visitsToday{
+    margin:0;
 }
+
 
 .visitsWidget:hover,
 .popularWidget:hover {
@@ -61,24 +60,7 @@
 
 
 /* most popular url widget */
-.popularWidget {
-    display: flex;
-    max-width: 17rem;
-    height: 100%;
-    max-height: 12rem;
-    width: 100%;
-    background-color: white;
-    box-shadow: 2px 2px 5px #bebebe,
-        -2px -2px 5px #ffffff;
 
-    border-radius: 1rem;
-    text-align: center;
-    transition: transform 0.2s ease;
-    justify-content: center;
-    flex-direction: column;
-    color: #000000;
- 
-}
 
 .mostPopular {
     font-size: 1.4rem;

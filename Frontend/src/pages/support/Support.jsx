@@ -138,19 +138,23 @@ function TicketSubmit({ notify }) {
 
             <div className={styles.inputWrapper}>
 
+                <h2>Get in Touch</h2>
+                <p className = {styles.supportText}>Leave your message and we'll get back to you shortly.</p>
+
+<div className = {styles.supportTop}>
                 <label className={styles.supportInput}>
-                    <p>Email:</p>
+                    <p>Email</p>
                     <input
                         type="email"
                         className={styles.input}
-                        placeholder="Example@email.com"
+                        placeholder="you@email.com"
                         value = {email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </label>
 
                 <label className={styles.supportInput}>
-                    <p>Subject:</p>
+                    <p>Subject</p>
                     <input
                         className={styles.input}
                         placeholder="URL not working"
@@ -158,11 +162,12 @@ function TicketSubmit({ notify }) {
                         onChange={(e) => setSubject(e.target.value)}
                     />
                 </label>
-
+</div>
                 <label className={styles.supportInput}>
-                    <p>Message:</p>
+                    <p>Message</p>
                     <textarea
                         className={styles.textArea}
+                        placeholder="Tell us briefly about your needs"
                         value = {message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
