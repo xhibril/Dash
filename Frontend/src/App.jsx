@@ -51,7 +51,7 @@ export default function App() {
         <Routes>
 
           <Route path="/" element={<Home notify={notify} />} />
-           <Route path="/delete-account" element={<DeleteAccount/>} />
+           <Route path="/delete-account" element={<DeleteAccount notify = {notify}/>} />
 
 
           <Route element={<Layout notify={notify} />}>

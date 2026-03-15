@@ -32,12 +32,18 @@ public class AccountService {
     @Autowired AuthService authService;
 
     @Transactional
-    public ResponseEntity<Void> deleteAccount(Long id, HttpServletResponse res){
-
-        // delete support tickets
+    public ResponseEntity<String> deleteAccount(Long id, String password, HttpServletResponse res){
         Optional<User> user = userRepo.findById(id);
+
         if(user.isPresent()){
             User u = user.get();
+            if(!(password.equals(u.getPass()))){
+                System.out.println("USER ENTERED PASSWORD: " + password);
+                System.out.println("\nSTORED PASSWORD: " + u.getPass());
+                return ResponseEntity.badRequest().body("Incorrect password.");
+            }
+
+            // delete support tickets
             supportRepo.deleteAllByEmail(u.getEmail());
         }
 

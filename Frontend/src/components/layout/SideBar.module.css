@@ -167,13 +167,14 @@
 }
 
 .deleteAccount {
-  background: #FEE2E2;
-  color: #EF4444;
+background-color: red;
+  color:white;
+
 }
 
 
 .deleteAccount:hover{
-    background: rgb(255, 206, 206);
+    background-color: rgb(203, 0, 0);
 }
 
 
