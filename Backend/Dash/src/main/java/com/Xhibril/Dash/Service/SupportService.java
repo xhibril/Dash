@@ -15,7 +15,7 @@ public class SupportService {
     @Autowired
     SupportRepository supportRepo;
 
-    public void saveSupportMessage(@RequestBody SupportRequest sq) {
+    public void saveSupportMessage(Long userId, @RequestBody SupportRequest sq) {
         Support support = new Support();
 
         support.setEmail(sq.getEmail());
@@ -23,6 +23,7 @@ public class SupportService {
         support.setMessage(sq.getMessage());
         support.setCreatedAt(LocalDate.now());
         support.setStatus("OPEN");
+        support.setUserId(userId);
 
         supportRepo.save(support);
     }

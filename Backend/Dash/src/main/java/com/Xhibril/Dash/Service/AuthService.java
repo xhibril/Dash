@@ -1,4 +1,6 @@
 package com.Xhibril.Dash.Service;
+import com.Xhibril.Dash.Dto.UpdatePasswordRequest;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.jsonwebtoken.JwtBuilder;
 import jakarta.mail.internet.MimeMessage;
 import org.apache.coyote.Response;
@@ -10,6 +12,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
+import javax.xml.stream.events.EndElement;
 
 import com.Xhibril.Dash.Repository.UserRepository;
 import com.Xhibril.Dash.Model.User;
@@ -20,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.URLEncoder;
@@ -141,6 +145,27 @@ public class AuthService {
         res.addCookie(cookie);
 
         return ResponseEntity.ok().build();
+    }
+
+
+    @Transactional
+    public ResponseEntity<String> updatePassword(Long id, @RequestBody UpdatePasswordRequest request){
+
+        Optional<User> user = userRepo.findById(id);
+
+        if(user.isPresent()){
+            User u = user.get();
+
+            if(!request.getOldPassword().equals(u.getPass())){
+                return ResponseEntity.badRequest().body("Incorrect password");
+            }
+
+            userRepo.updatePassword(request.getNewPassword(), u.getEmail());
+            return ResponseEntity.ok().build();
+
+        }
+
+        return ResponseEntity.badRequest().body("Something went wrong, please try again");
     }
 
 

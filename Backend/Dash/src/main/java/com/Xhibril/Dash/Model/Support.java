@@ -12,6 +12,9 @@ public class Support {
 
     private String email;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     private String subject;
 
     @Column(name = "created_at")
@@ -37,4 +40,7 @@ public class Support {
 
     public void setStatus(String status){ this.status = status;}
     public String getStatus(){ return status;}
+
+    public void setUserId(Long userId){ this.userId = userId;}
+    public Long getUserId(){ return userId; }
 }

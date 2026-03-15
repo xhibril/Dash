@@ -1,7 +1,7 @@
 import styles from "./DeleteAccount.module.css"
 import { FiAlertTriangle, FiEye } from "react-icons/fi";
 
-import { ValidatePassword } from "../../components/utils/Validation.jsx"
+import { ValidatePassword } from "../../../components/utils/Validation.jsx"
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,8 @@ export default function DeleteAccount({ notify }) {
             <form className={styles.deleteAccountContainer}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    deleteAccount()}}>
+                    deleteAccount()
+                }}>
                 <FiAlertTriangle className={styles.deleteAccountIcon} />
 
                 <p className={styles.warningTop}>This action cannot be undone</p>
@@ -69,18 +70,17 @@ export default function DeleteAccount({ notify }) {
                         onClick={() => setShowPassword(!showPassword)} />
                 </label>
 
-                <button className = {styles.deleteAccount}
-                    onClick={() => deleteAccount()}>Delete account
+                <button className={styles.deleteAccount}
+                    type="submit">Delete account
                 </button>
 
                 <button className={styles.cancelDeletion}
-                onClick={() => nav("/dashboard")}>
+                    type="button"
+                    onClick={() => nav("/dashboard")}>
                     Cancel
                 </button>
 
-
             </form>
-
         </div>
     );
 

@@ -5,12 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Dto/UpdatePasswordRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/SupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Controller/SupportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/Support.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Model/Support.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/SupportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/SupportRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/SupportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/SupportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/DeleteAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/DeleteAccount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/DeleteAccount.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/DeleteAccount.module.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +191,7 @@
       <workItem from="1773387172624" duration="2000" />
       <workItem from="1773402119999" duration="4766000" />
       <workItem from="1773485477080" duration="8850000" />
-      <workItem from="1773565983666" duration="2002000" />
+      <workItem from="1773565983666" duration="7759000" />
     </task>
     <servers />
   </component>

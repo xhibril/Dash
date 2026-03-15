@@ -29,32 +29,31 @@ public class AccountService {
     @Autowired
     UserRepository userRepo;
 
-    @Autowired AuthService authService;
+    @Autowired
+    AuthService authService;
 
     @Transactional
-    public ResponseEntity<String> deleteAccount(Long id, String password, HttpServletResponse res){
+    public ResponseEntity<String> deleteAccount(Long id, String password, HttpServletResponse res) {
         Optional<User> user = userRepo.findById(id);
 
-        if(user.isPresent()){
+        if (user.isPresent()) {
             User u = user.get();
-            if(!(password.equals(u.getPass()))){
-                System.out.println("USER ENTERED PASSWORD: " + password);
-                System.out.println("\nSTORED PASSWORD: " + u.getPass());
-                return ResponseEntity.badRequest().body("Incorrect password.");
+            if (!(password.equals(u.getPass()))) {
+                return ResponseEntity.badRequest().body("Incorrect password");
             }
 
             // delete support tickets
-            supportRepo.deleteAllByEmail(u.getEmail());
+            supportRepo.deleteAllTickets(id);
+
+            // delete urls / urls stats
+            urlStatRepo.deleteAllByUserUrls(id);
+            urlRepo.deleteAllByUserId(id);
+
+            // delete account
+            userRepo.deleteById(id);
+
+            authService.logout(res);
         }
-
-        // delete urls / urls stats
-        urlStatRepo.deleteAllByUserUrls(id);
-        urlRepo.deleteAllByUserId(id);
-
-        // delete account
-        userRepo.deleteById(id);
-
-        authService.logout(res);
 
         return ResponseEntity.ok().build();
     }

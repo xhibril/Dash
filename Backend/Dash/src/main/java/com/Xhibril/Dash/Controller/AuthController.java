@@ -1,6 +1,7 @@
 package com.Xhibril.Dash.Controller;
 
 import com.Xhibril.Dash.Dto.LoginRequest;
+import com.Xhibril.Dash.Dto.UpdatePasswordRequest;
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Model.User;
 import com.Xhibril.Dash.Service.EmailService;
@@ -44,5 +45,12 @@ public class AuthController {
     @GetMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletResponse res){
         return authService.logout(res);
+    }
+
+
+    @PostMapping("/update/password")
+    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest, HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+        return authService.updatePassword(id, updatePasswordRequest);
     }
 }

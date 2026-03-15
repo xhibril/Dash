@@ -84,6 +84,9 @@
   cursor: pointer;
   transition: transform 0.2s ease;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profileIcon:hover {
@@ -125,7 +128,7 @@
 .profileSettings.active{
 
 
-  transform: translate(50%, -50%);
+  transform: translate(80%, -50%);
    opacity: 1;
    pointer-events: auto;
 }
@@ -147,9 +150,9 @@
   border-radius: .5rem;
   cursor: pointer;
 
-  background: #F3F4F6;
-  color: #111827;
-  border: 1px solid #E5E7EB;
+      background-color: white;
+    border:1px solid rgb(0, 0, 0,0.1);
+    cursor: pointer;
 }
 
 .changePasswordIcon,
@@ -163,7 +166,7 @@
 
 
 .changePassword:hover, .changeEmail:hover{
-  background: #E5E7EB;
+  background-color: rgb(241, 241, 241);
 }
 
 .deleteAccount {

@@ -3,14 +3,17 @@ export function ValidatePassword(password) {
     const minLength = 8;
     const maxLength = 32;
 
-    if (password.length < minLength) return "Password must be longer than 8 characters.";
+ 
+
+
+    
+       if (password.length < minLength) return "Password must be longer than 8 characters.";
     if (password.length > maxLength) return "Password must be shorter than 32 characters.";
 
-
-    if(ValidateInput(password, "PASSWORD") !== "VALID"){
+        if(ValidateInput(password, "PASSWORD") !== "VALID"){
         return "Invalid Input";
     }
-    
+
     const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).+$/;
 
     if (!regex.test(password)) {
@@ -77,6 +80,7 @@ export function ValidateAlias(alias){
 
 
 export function ValidateInput(input, type) {
+
     const allowedMap = {
         GENERAL: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.!? ",
         NAME: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ",

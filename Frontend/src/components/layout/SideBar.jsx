@@ -54,7 +54,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
 
         <div className={styles.sideBarBottom}>
 
-          <button className={styles.profile}
+          <div className={styles.profile}
           onClick= {() => setProfileActive(!profileActive)}>
 
             <FiUser className = {styles.profileIcon}/> 
@@ -82,7 +82,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
                     />Delete Account</button>
               </div>
 
-          </button>
+          </div>
 
           <button className={styles.sideBarIcon} 
           
