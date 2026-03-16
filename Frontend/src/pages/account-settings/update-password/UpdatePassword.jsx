@@ -2,6 +2,7 @@ import styles from "./UpdatePassword.module.css";
 import icon from "../../../../public/favicon.png"
 import { PasswordField } from "../../../components/UI/SmallComponents.jsx";
 import { ValidatePassword } from "../../../components/utils/Validation.jsx";
+import { HandleError } from "../../../components/Utils/ErrorHandler.jsx";
 
 import { useState } from "react";
 
@@ -51,6 +52,7 @@ export default function UpdatePassword({ notify }) {
 
 
         if (!res.ok) {
+            HandleError(res.status);
             const data = await res.text();
             notify(data || "Could not update password", "ERROR");
             return;
@@ -100,7 +102,7 @@ export default function UpdatePassword({ notify }) {
                     title={"Confirm Password"} />
 
 
-                <button type="submit"
+                <button type="button"
                     className={styles.submit}>
                     Continue
                 </button>

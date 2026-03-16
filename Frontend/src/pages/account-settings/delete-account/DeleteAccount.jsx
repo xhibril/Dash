@@ -3,6 +3,7 @@ import { FiAlertTriangle, FiEye } from "react-icons/fi";
 
 import { ValidatePassword } from "../../../components/utils/Validation.jsx"
 
+import { HandleError } from "../../../components/Utils/ErrorHandler.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -30,6 +31,7 @@ export default function DeleteAccount({ notify }) {
 
 
         if (!res.ok) {
+            HandleError(res.status);
             const data = await res.text();
             notify(data || "Something went wrong, please try again", "ERROR");
             return;

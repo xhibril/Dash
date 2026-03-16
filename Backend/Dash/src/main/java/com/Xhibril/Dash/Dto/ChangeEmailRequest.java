@@ -1,0 +1,37 @@
+package com.Xhibril.Dash.Dto;
+
+public class ChangeEmailRequest {
+
+    private String pendingEmail;
+    private String code;
+    private String password;
+    private String resetToken;
+
+    public String getPendingEmail() {
+        return pendingEmail;
+    }
+
+    public void setPendingEmail(String pendingEmail) {
+        this.pendingEmail = pendingEmail;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public void setResetToken(String resetToken){ this.resetToken = resetToken;}
+    public String getResetToken(){ return resetToken;}
+}

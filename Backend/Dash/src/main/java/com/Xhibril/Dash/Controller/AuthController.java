@@ -1,10 +1,14 @@
 package com.Xhibril.Dash.Controller;
 
+import com.Xhibril.Dash.Dto.ChangeEmailRequest;
+import com.Xhibril.Dash.Dto.ChangeEmailResponse;
 import com.Xhibril.Dash.Dto.LoginRequest;
 import com.Xhibril.Dash.Dto.UpdatePasswordRequest;
 import com.Xhibril.Dash.Service.AuthService;
 import com.Xhibril.Dash.Model.User;
+import com.Xhibril.Dash.Service.ChangeEmailService;
 import com.Xhibril.Dash.Service.EmailService;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,9 @@ public class AuthController {
     AuthService authService;
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    ChangeEmailService changeEmailService;
 
     @PostMapping("/signup")
     private ResponseEntity<String> Signup(@RequestBody User user) throws Exception {
@@ -53,4 +60,24 @@ public class AuthController {
         Long id = authService.getAuthenticatedId(req);
         return authService.updatePassword(id, updatePasswordRequest);
     }
-}
+
+
+    @PostMapping("/update-email/request")
+    public ResponseEntity<ChangeEmailResponse> initEmailUpdate(@RequestBody ChangeEmailRequest updateEmailRequest, HttpServletRequest req) throws MessagingException {
+        Long id = authService.getAuthenticatedId(req);
+        return changeEmailService.initEmailChange(id, updateEmailRequest);
+    }
+
+
+    @PostMapping("/update-email/verify")
+    public ResponseEntity<ChangeEmailResponse> verifyUpdateEmailRequest(@RequestBody ChangeEmailRequest updateEmailRequest, HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+        return changeEmailService.verifyChangeEmailRequest(id, updateEmailRequest);
+    }
+
+    @PostMapping("/update-email/change")
+    public ResponseEntity<ChangeEmailResponse> updateEmail(@RequestBody ChangeEmailRequest changeEmailRequest, HttpServletRequest req){
+        Long id = authService.getAuthenticatedId(req);
+        return changeEmailService.changeEmail(id, changeEmailRequest);
+    }
+ }

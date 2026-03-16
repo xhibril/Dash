@@ -12,6 +12,7 @@ import { useState, useRef } from "react";
 import Notification from "./components/UI/Notification.jsx";
 import DeleteAccount from "./pages/account-settings//delete-account/DeleteAccount.jsx";
 import UpdatePassword from "./pages/account-settings/update-password/UpdatePassword.jsx";
+import UpdateEmail from "./pages/account-settings/update-email/UpdateEmail.jsx";
 
 
 export default function App() {
@@ -54,6 +55,7 @@ export default function App() {
           <Route path="/" element={<Home notify={notify} />} />
            <Route path="/delete-account" element={<DeleteAccount notify = {notify}/>} />
            <Route path = "/update-password" element = {<UpdatePassword notify={notify}/>}/>
+           <Route path = "/update-email" element={<UpdateEmail notify = {notify}/>}/>
 
 
           <Route element={<Layout notify={notify} />}>

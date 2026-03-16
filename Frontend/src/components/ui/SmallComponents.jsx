@@ -12,10 +12,9 @@ export function NoDataAvailable() {
 }
 
 
-export function PasswordField({ password, setPassword, title}) {
+export function PasswordField({ password, setPassword, title }) {
 
     const [showPass, setShowPass] = useState(false);
-
 
     return (
 
@@ -23,25 +22,53 @@ export function PasswordField({ password, setPassword, title}) {
         <label className={styles.label} > {title}
             <input className={styles.input}
                 value={password}
+
                 type={showPass ? "text" : "password"}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="•••••"
 
             ></input>
-        
-                <FiEye className={styles.eye}
-                    onClick={() => setShowPass(!showPass)} />
-     
+
+            <FiEye className={styles.eye}
+                onClick={() => setShowPass(!showPass)} />
 
         </label>
 
 
 
     )
+}
+
+
+export function EmailField({ email, setEmail, title }) {
 
 
 
+    return (
+        <label className={styles.label}> {title}
+            <input className={styles.input}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@email.com"
+            ></input>
+        </label>
+    )
 
+}
+
+
+export function CodeField({ code, setCode, title }) {
+
+    return (
+        <label className={styles.label}> {title}
+            <input className={styles.input}
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                placeholder="123456"
+            ></input>
+        </label>
+    )
 
 
 }

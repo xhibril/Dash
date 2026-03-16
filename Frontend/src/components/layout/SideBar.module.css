@@ -126,8 +126,6 @@
 
 
 .profileSettings.active{
-
-
   transform: translate(80%, -50%);
    opacity: 1;
    pointer-events: auto;
