@@ -1,0 +1,169 @@
+import global from "../../../css/Global.module.css";
+import { useState } from "react";
+import { ValidateEmail, ValidateCode, ValidatePassword } from "../../../components/Utils/Validation.jsx";
+import { PasswordField, EmailField, CodeField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
+
+export default function ForgotPassword({ notify }) {
+
+    const jsonHeaders = { "Content-Type": "application/json" };
+
+    const [step, setStep] = useState("EMAIL")
+    const [code, setCode] = useState("")
+    const [email, setEmail] = useState("")
+    const [resetToken, setResetToken] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    async function forgotPassword() {
+
+        if (step === "EMAIL") {
+            const emailRes = ValidateEmail(email)
+
+            if (emailRes !== "VALID") {
+                notify(emailRes, "ERROR");
+                return;
+            }
+
+
+            setIsLoading(true);
+            try {
+                const res = await fetch("/api/password/reset", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ email })
+                })
+
+
+                if (!res.ok) {
+                    const data = await res.json();
+                    notify(data.message || "Something went wrong, please try again", "ERROR")
+                    return;
+                }
+
+                notify("Verification code sent", "SUCCESS");
+                setStep("VERIFY");
+                return;
+
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+
+        if (step === "VERIFY") {
+
+            const codeRes = ValidateCode(code, 6);
+
+            if (codeRes !== "VALID") {
+                notify(codeRes, "ERROR");
+                return;
+            }
+
+            setIsLoading(true);
+
+            try {
+                const res = await fetch("/api/password/reset/verify", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ email, code })
+                })
+
+
+                if (!res.ok) {
+                    const data = await res.json();
+                    notify(data.message || "Something went wrong, please try again", "ERROR");
+                    return;
+                }
+
+                const data = await res.json();
+                setResetToken(data.resetToken);
+                setCode("");
+                notify("Verification successful", "SUCCESS");
+                setStep("RESET");
+                return;
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+
+        if (step === "RESET") {
+            if (newPassword !== confirmPassword) {
+                notify("Passwords do not match", "ERROR");
+                return;
+            }
+
+            const passRes = ValidatePassword(confirmPassword);
+
+            if (passRes !== "VALID") {
+                notify(passRes, "ERROR");
+                return;
+            }
+
+            setIsLoading(true);
+
+            try {
+                const res = await fetch("/api/password/reset/new", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ email, newPassword, resetToken })
+                })
+
+
+                if (!res.ok) {
+                    const data = await res.json();
+                    notify(data.message || "Something went wrong, please try again", "ERROR");
+                    return;
+                }
+
+                setNewPassword("")
+                setConfirmPassword("")
+                notify("Password changed successfully", "SUCCESS");
+                return;
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    }
+
+
+
+    return (
+        <div className={global.mainContainer}>
+            <form className={global.inputContainer}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    forgotPassword();
+                }}>
+
+                <BrandHeader title="Forgot Password"></BrandHeader>
+
+                {step === "EMAIL" && (
+                    <EmailField title="Email" email={email} setEmail={setEmail} />
+                )}
+
+                {step === "VERIFY" && (
+                    <CodeField title="6-digit code" code={code} setCode={setCode} />
+                )}
+
+
+                {step === "RESET" && (
+                    <>
+                        <PasswordField title="New Password" password={newPassword} setPassword={setNewPassword} />
+                        <PasswordField title="Confirm New Password" password={confirmPassword} setPassword={setConfirmPassword} />
+                    </>
+                )}
+
+                <button className={global.submit}
+                    type="submit"
+                    disabled={isLoading}>
+                    {isLoading ? "Loading..." : "Continue"}
+                </button>
+            </form>
+        </div>
+    );
+
+}
+

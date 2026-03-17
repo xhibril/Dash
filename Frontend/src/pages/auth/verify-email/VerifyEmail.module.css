@@ -1,12 +1,3 @@
-.mainContainer{
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .verifyContainer{
     display: flex;
     flex-direction: column;

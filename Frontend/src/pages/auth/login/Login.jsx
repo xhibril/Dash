@@ -1,4 +1,4 @@
-import Auth from "../../components/auth/Auth.jsx";
+import Auth from "../../../components/auth/auth.jsx"
 
 export default function Login({notify}) {
 

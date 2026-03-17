@@ -1,9 +1,7 @@
-import styles from "./UpdatePassword.module.css";
-import icon from "../../../../public/favicon.png"
-import { PasswordField } from "../../../components/UI/SmallComponents.jsx";
+import global from "../../../css/Global.module.css";
+import { PasswordField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
 import { ValidatePassword } from "../../../components/utils/Validation.jsx";
-import { HandleError } from "../../../components/Utils/ErrorHandler.jsx";
-
+import { HandleError } from "../../../components/utils/ErrorHandler.jsx";
 import { useState } from "react";
 
 
@@ -12,79 +10,82 @@ export default function UpdatePassword({ notify }) {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
 
     async function update() {
+        const validateOldPass = ValidatePassword(oldPassword);
 
-
-        const oldPassRes = ValidatePassword(oldPassword);
-
-        if (oldPassRes !== "VALID") {
-            notify(oldPassRes, "ERROR"); return;
+        if (validateOldPass !== "VALID") {
+            notify(validateOldPass, "ERROR"); return;
         }
 
-        const newPassRes = ValidatePassword(newPassword);
+        const validateNewPass = ValidatePassword(newPassword);
 
-        if (newPassRes !== "VALID") {
-            notify(newPassRes, "ERROR"); return;
-        }
-
-
-        const confirmPassRes = ValidatePassword(confirmPassword)
-
-        if (confirmPassRes !== "VALID") {
-            notify(newPassRes, "ERROR"); return;
+        if (validateNewPass !== "VALID") {
+            notify(validateNewPass, "ERROR"); return;
         }
 
 
-   if (newPassword !== confirmPassword) {
-    notify("Passwords do not match", "ERROR");
-    return;
-}
+        const validateConfirmPass = ValidatePassword(confirmPassword)
+
+        if (validateConfirmPass !== "VALID") {
+            notify(validateConfirmPass, "ERROR"); return;
+        }
 
 
-
-        const res = await fetch("/api/update/password", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
-        })
-
-
-        if (!res.ok) {
-            HandleError(res.status);
-            const data = await res.text();
-            notify(data || "Could not update password", "ERROR");
+        if (newPassword !== confirmPassword) {
+            notify("Passwords do not match", "ERROR");
             return;
         }
 
-        notify("Password updated successfully", "SUCCESS");
-        setOldPassword("")
-        setNewPassword("")
-        setConfirmPassword("")
+
+        if(oldPassword === newPassword){
+            notify("New password must be different from the old password", "ERROR");
+            return;
+        }
+
+
+        setIsLoading(true);
+
+        try {
+            const res = await fetch("/api/update/password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
+            })
+
+
+            if (!res.ok) {
+                HandleError(res.status);
+                const data = await res.text();
+                notify(data || "Could not update password", "ERROR");
+                return;
+            }
+
+            notify("Password updated successfully", "SUCCESS");
+            setOldPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+        } finally {
+            setIsLoading(false);
+        }
     }
 
 
 
 
     return (
+        <div className={global.mainContainer}>
 
-
-        <div className={styles.mainContainer}>
-
-            <form className={styles.inputContainer}
+            <form className={global.inputContainer}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    update()}}>
+                    update()
+                }}>
 
-                <div className={styles.titleAndIcon}>
-                    <img src={icon}></img>
-                    <h1 className={styles.siteName}>DASH</h1>
-                </div>
-
-                <h1 className={styles.pageTitle}>
-                    Update Password
-                </h1>
+              
+              <BrandHeader title = "Update Password"/>
 
                 <PasswordField
                     password={oldPassword}
@@ -102,19 +103,13 @@ export default function UpdatePassword({ notify }) {
                     title={"Confirm Password"} />
 
 
-                <button type="button"
-                    className={styles.submit}>
-                    Continue
-                </button>
+                <button type="submit"
+                    className={global.submit}
+                    disabled={isLoading}>
 
+                    {isLoading ? "Loading..." : "Continue"}
+                </button>
             </form>
         </div>
-
-
-
     )
-
-
-
-
 }

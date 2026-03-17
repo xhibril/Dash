@@ -35,3 +35,29 @@
 }
 
 
+
+
+/* brand header function */
+
+.titleAndIcon{
+    display: flex;
+    flex-direction: row;
+    gap:.5rem;
+}
+
+.titleAndIcon img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin:0;
+}
+.siteName{
+
+    font-size:1rem;
+    letter-spacing: -1px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;
+        margin:0;
+        padding:0;
+
+
+}

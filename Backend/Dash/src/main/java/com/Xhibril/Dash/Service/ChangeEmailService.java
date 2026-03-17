@@ -65,7 +65,7 @@ public class ChangeEmailService {
         changeEmail.setExpiresAt(Instant.now().plusSeconds(600));
         changeEmailRepo.save(changeEmail);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(new ChangeEmailResponse("Verification code sent"));
     }
 
 
@@ -102,7 +102,7 @@ public class ChangeEmailService {
             response.setResetToken(resetToken);
             return ResponseEntity.ok().body(response);
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(new ChangeEmailResponse("Something went wrong, please try again"));
     }
 
 
@@ -125,12 +125,12 @@ public class ChangeEmailService {
             }
 
             if(!changeEmailRequest.getResetToken().equals(saved.getResetToken())){
-                return ResponseEntity.badRequest().build();
+                return ResponseEntity.badRequest().body(new ChangeEmailResponse("Something went wrong, please try again"));
             }
 
 
 
-            String oldEmail = userRepo.findEmailById(id);
+            User savedUser = userRepo.findEmailById(id);
 
             userRepo.updateEmail(changeEmailRequest.getPendingEmail(), id);
 
@@ -138,12 +138,12 @@ public class ChangeEmailService {
             changeEmailRepo.deleteAllByUserId(id);
 
             ChangeEmailResponse response = new ChangeEmailResponse();
-            response.setOldEmail(oldEmail);
+            response.setOldEmail(savedUser.getEmail());
 
             return ResponseEntity.ok().body(response);
 
 
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(new ChangeEmailResponse("Something went wrong, please try again"));
     }
 }

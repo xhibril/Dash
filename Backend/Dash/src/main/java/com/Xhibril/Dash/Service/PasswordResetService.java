@@ -44,6 +44,13 @@ private final static SecureRandom random = new SecureRandom();
             passwordResetRepo.deleteByEmail(email);
         }
 
+        Optional<User> user = userRepo.findByEmail(email);
+
+        // return early if user is not found
+        if(user.isEmpty()){
+            return ResponseEntity.ok(new PasswordResetResponse("Code sent"));
+        }
+
         String code = String.valueOf(100000 + random.nextInt(900000));
 
         passwordReset.setEmail(email);

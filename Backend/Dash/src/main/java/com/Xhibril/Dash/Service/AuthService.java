@@ -161,7 +161,7 @@ public class AuthService {
             }
 
             userRepo.updatePassword(request.getNewPassword(), u.getEmail());
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body("Password successfully changed");
 
         }
 

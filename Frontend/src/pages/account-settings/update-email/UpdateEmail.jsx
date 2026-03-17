@@ -1,14 +1,12 @@
 import styles from "./UpdateEmail.module.css"
-
-import { EmailField, PasswordField, CodeField } from "../../../components/UI/SmallComponents.jsx"
-import { ValidateEmail } from "../../../components/Utils/Validation.jsx"
-import { ValidatePassword } from "../../../components/Utils/Validation.jsx"
-import { ValidateCode } from "../../../components/Utils/Validation.jsx"
+import global from "../../../css/Global.module.css"
+import { EmailField, PasswordField, CodeField, BrandHeader } from "../../../components/uI/SmallComponents.jsx"
+import { ValidateEmail, ValidatePassword, ValidateCode } from "../../../components/utils/Validation.jsx"
 import { HandleError } from "../../../components/Utils/ErrorHandler.jsx"
-
-import icon from "../../../../public/favicon.png"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+
+
 export default function UpdateEmail({ notify }) {
 
     const [pendingEmail, setPendingEmail] = useState("")
@@ -16,149 +14,117 @@ export default function UpdateEmail({ notify }) {
     const [code, setCode] = useState("")
     const [step, setStep] = useState("INIT")
     const [oldEmail, setOldEmail] = useState("");
-
+    const [isLoading, setIsLoading] = useState(false);
+    const jsonHeaders = { "Content-Type": "application/json" };
 
     const nav = useNavigate();
 
 
     async function update() {
-
-
-
         if (step === "INIT") {
 
-            const validateEmail = ValidateEmail(pendingEmail);
+            const emailValidation = ValidateEmail(pendingEmail);
 
-            if (validateEmail !== "VALID") {
-                notify(validateEmail, "ERROR"); return;
+            if (emailValidation !== "VALID") {
+                notify(emailValidation, "ERROR"); return;
             }
 
-            const passwordRes = ValidatePassword(password);
+            const passwordValidation = ValidatePassword(password);
 
-            if (passwordRes !== "VALID") {
-                notify(passwordRes, "ERROR"); return;
+            if (passwordValidation !== "VALID") {
+                notify(passwordValidation, "ERROR"); return;
             }
 
-            const emailRes = await fetch("/api/update-email/request", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pendingEmail, password })
-            })
+            setIsLoading(true);
 
+            try {
+                const emailRes = await fetch("/api/update-email/request", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ pendingEmail, password })
+                })
 
-       
+                if (!emailRes.ok) {
+                    HandleError(emailRes.status);
+                    const data = await emailRes.json();
+                    notify(data.message || "Something went wrong, please try again", "ERROR");
+                    return;
+                }
 
-
-            if (!emailRes.ok) {
-              
-                HandleError(emailRes.status);
-                  const data = await emailRes.json().catch(()=> ({}));
-                notify(data.message || "Something went wrong, please try again", "ERROR");
-                return;
+                notify("Verification code sent", "SUCCESS");
+                setStep("VERIFY");
+            } finally {
+                setIsLoading(false);
             }
-
-
-            notify("Verification code sent", "SUCCESS");
-            setStep("VERIFY");
-
+            return;
         }
 
 
 
         if (step === "VERIFY") {
+            const codeValidation = ValidateCode(code);
 
-            const validateCode = ValidateCode(code);
-
-
-            if (validateCode !== "VALID") {
-                notify(validateCode, "ERROR"); return;
+            if (codeValidation !== "VALID") {
+                notify(codeValidation, "ERROR"); return;
             }
 
+            setIsLoading(true);
 
-            const codeRes = await fetch("/api/update-email/verify", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code })
-            })
+            try {
+                const codeRes = await fetch("/api/update-email/verify", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ code })
+                })
 
+                const codeResData = await codeRes.json();
 
-
-            if (!codeRes.ok) {
-                
+                if (!codeRes.ok) {
                     HandleError(codeRes.status);
-                      const codeResData = await codeRes.json().catch(()=> ({}));
                     notify(codeResData.message || "Something went wrong, please try again", "ERROR");
                     return;
-                
+                }
+                const token = codeResData.resetToken;
+
+                // change password if code is correct
+                const changeRes = await fetch("/api/update-email/change", {
+                    method: "POST",
+                    headers: jsonHeaders,
+                    body: JSON.stringify({ pendingEmail, resetToken: token })
+                })
+
+                const changeResData = await changeRes.json();
+
+                if (!changeRes.ok) {
+                    HandleError(changeRes.status);
+                    notify(changeResData.message || "Something went wrong, please try again", "ERROR");
+                    return;
+                }
+
+                setOldEmail(changeResData.oldEmail);
+                setPassword("")
+                setCode("");
+                notify("Email updated successfully", "SUCCESS");
+                setStep("CHANGED");
+
+            } finally {
+                setIsLoading(false);
             }
-
-
-           const codeResData = await codeRes.json();
-         const token = codeResData.resetToken;
-setResetToken(token);
-
-
-            // change password if code is correct
-            const changeRes = await fetch("/api/update-email/change", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pendingEmail, resetToken: token })
-            })
-
-        
-
-
-            if (!changeRes.ok) {
-                HandleError(changeRes.status);
-                const changeResData = await changeRes.json().catch(()=> ({}));
-                notify(changeResData.message || "Something went wrong, please try again", "ERROR");
-                return;
-            }
-
-
-           const changeResData = await changeRes.json();
-
-            setOldEmail(changeResData.oldEmail);
-            setStep("CHANGED");
             return;
         }
-
-
-
-        if (step === "CHANGED") {
-            notify("Email updated successfully", "SUCCESS");
-            return;
-        }
-
-
-
     }
-
-
 
 
     return (
 
-        <div className={styles.mainContainer}>
-
-
-
-            <form className={styles.inputContainer}
+        <div className={global.mainContainer}>
+            <form className={global.inputContainer}
                 onSubmit={(e) => {
                     e.preventDefault();
                     update();
                 }}>
 
-
-                <div className={styles.titleAndIcon}>
-                    <img src={icon}></img>
-                    <h1 className={styles.siteName}>DASH</h1>
-                </div>
-                <h1 className={styles.pageTitle}>
-                    Change Email
-                </h1>
-
-
+                <BrandHeader title="Update Email" />
 
 
                 {step === "INIT" &&
@@ -168,13 +134,11 @@ setResetToken(token);
                     </>
                 }
 
-
                 {step === "VERIFY" &&
                     <>
                         <CodeField code={code} setCode={setCode} title="6-digit code" />
                     </>
                 }
-
 
                 {step === "CHANGED" &&
 
@@ -194,26 +158,22 @@ setResetToken(token);
                 }
 
 
-
                 {
                     step === "CHANGED" ? (
                         <button type="button"
+                            disabled={isLoading}
                             onClick={() => nav("/dashboard")}
-                            className={styles.submit}>
+                            className={global.submit}>
                             Back
                         </button>
                     ) :
-
-
-
                         <button type="submit"
-                            className={styles.submit}>
-                            Continue
+                            disabled={isLoading}
+                            className={global.submit}>
+                            {isLoading ? "Loading..." : "Continue"}
                         </button>
 
                 }
-
-
 
             </form>
         </div>

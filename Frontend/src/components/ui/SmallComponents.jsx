@@ -1,7 +1,8 @@
-import { FiInfo } from "react-icons/fi";
+import { FiInfo,FiEye } from "react-icons/fi";
 import styles from "./SmallComponents.module.css"
 import { useState } from "react";
-import { FiEye } from "react-icons/fi";
+import icon from "../../../public/favicon.png"
+
 export function NoDataAvailable() {
     return (
         <div className="empty">
@@ -69,6 +70,19 @@ export function CodeField({ code, setCode, title }) {
             ></input>
         </label>
     )
+}
 
 
+export function BrandHeader({ title}) {
+    return (
+        <>
+            <div className={styles.titleAndIcon}>
+                <img src={icon} />
+                <h1 className={styles.siteName}>DASH</h1>
+            </div>
+            <h1 className={styles.pageTitle}>
+                {title}
+            </h1>
+        </>
+    )
 }
