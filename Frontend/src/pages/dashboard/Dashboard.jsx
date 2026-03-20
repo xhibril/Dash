@@ -23,7 +23,7 @@ export default function Dashboard({ notify }) {
 
   async function fetchVisits() {
     try {
-      const res = await apiFetch("/api/visits", {}, nav);
+      const res = await apiFetch("/api/analytics/visits", {}, nav);
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -40,7 +40,7 @@ export default function Dashboard({ notify }) {
 
   async function fetchTrend() {
     try {
-      const res = await apiFetch("/api/trend", {}, nav);
+      const res = await apiFetch("/api/analytics/trend", {}, nav);
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -72,7 +72,7 @@ export default function Dashboard({ notify }) {
 
   async function fetchMostPopular() {
     try {
-      const res = await apiFetch("/api/popular", {}, nav);
+      const res = await apiFetch("/api/analytics/popular", {}, nav);
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -95,7 +95,7 @@ export default function Dashboard({ notify }) {
   async function fetchChartData() {
     try {
       const res = await apiFetch(
-        `/api/chart?id=${selectedUrlId}&period=${selectedPeriod}`,
+        `/api/analytics/chart?id=${selectedUrlId}&period=${selectedPeriod}`,
         {},
         nav
       );

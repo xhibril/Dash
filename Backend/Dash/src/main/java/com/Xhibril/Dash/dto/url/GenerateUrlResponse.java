@@ -1,0 +1,57 @@
+package com.Xhibril.Dash.dto.url;
+
+public class GenerateUrlResponse {
+
+    private Long id;
+    private String shortUrl;
+    private String originalUrl;
+    private String message;
+    private Integer visits;
+
+
+    public GenerateUrlResponse(){}
+
+    public GenerateUrlResponse(String message){
+        this.message = message;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getShortUrl() {
+        return this.shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public String getOriginalUrl() {
+        return originalUrl;
+    }
+
+    public void setOriginalUrl(String originalUrl) {
+        this.originalUrl = originalUrl;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setVisits(Integer visits){
+        this.visits = visits;
+    }
+
+    public Integer getVisits(){
+        return visits;
+    }
+}

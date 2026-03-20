@@ -2,6 +2,7 @@ import styles from "./SideBar.module.css";
 import { FiHome, FiMail, FiLogOut, FiMenu, FiUser, FiLock, FiAlertTriangle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import apiFetch from "../utils/Api.jsx";
 
 export default function SideBar({ active, toggleSidebar, notify }) {
 
@@ -22,7 +23,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
         return;
       }
 
-      nav("/login");
+      window.location.href = "/login"
 
     } catch (err) {
       notify("Something went wrong, please try again", "ERROR");

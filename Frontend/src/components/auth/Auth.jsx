@@ -7,7 +7,7 @@ import { ValidateEmail, ValidatePassword } from "../Utils/Validation.jsx";
 import { PasswordField, EmailField, BrandHeader } from "../UI/SmallComponents.jsx";
 import apiFetch from "../utils/Api.jsx";
 
-export default function Auth({ mode, notify, setIsAuth, isAuth }) {
+export default function Auth({ mode, notify, setIsAuth}) {
 
     const nav = useNavigate();
 
@@ -41,7 +41,7 @@ export default function Auth({ mode, notify, setIsAuth, isAuth }) {
 
 
 
-    async function submitCredentials(email, pass, rememberMe, path) {
+    async function submitCredentials(path) {
 
         // save email incase user is not verified n we have to send verification email
         localStorage.setItem("email", email);
@@ -53,13 +53,12 @@ export default function Auth({ mode, notify, setIsAuth, isAuth }) {
             return;
         }
 
-        const passwordRes = ValidatePassword(pass);
+        const passwordRes = ValidatePassword(password);
 
         if (passwordRes !== "VALID") {
             notify(passwordRes, "ERROR");
             return;
         }
-
 
 
         setIsLoading(true);
@@ -70,13 +69,16 @@ export default function Auth({ mode, notify, setIsAuth, isAuth }) {
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, pass, rememberMe })
+                    body: JSON.stringify({ email, password, rememberMe})
                 },
                 nav
             );
 
 
             if (!res) return;
+
+            if(res.status === 403) return;
+
             if (!res.ok) {
                 const data = await res.text();
                 notify(data || "Something went wrong, please try again", "ERROR");
@@ -108,7 +110,7 @@ export default function Auth({ mode, notify, setIsAuth, isAuth }) {
             <form className={global.inputContainer}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    submitCredentials(email, password, rememberMe, isLogin ? "/api/login" : "/api/signup");
+                    submitCredentials(isLogin ? "/api/login" : "/api/signup");
                 }}>
 
                 <BrandHeader title={isLogin ? "Login" : "Sign up"} />

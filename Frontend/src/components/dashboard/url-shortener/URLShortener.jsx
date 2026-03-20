@@ -33,7 +33,7 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
         setIsLoading(true);
 
         try {
-            const res = await apiFetch("/api/generate/url", {
+            const res = await apiFetch("/api/urls", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ originalUrl, alias })

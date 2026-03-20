@@ -58,8 +58,8 @@ export default function Urls({
 
     try {
       const res = await apiFetch(
-        `/api/delete/url?urlId=${urlId}`,
-        { method: "POST" },
+        `/api/urls/${urlId}`,
+        { method: "DELETE" },
         nav
       )
 

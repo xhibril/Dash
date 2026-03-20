@@ -112,7 +112,7 @@ function TicketSubmit({ notify }) {
         }
 
         try {
-            const res = await apiFetch("/api/support", {
+            const res = await apiFetch("/api/support/tickets", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, subject, message })

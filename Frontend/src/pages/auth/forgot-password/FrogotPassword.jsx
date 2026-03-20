@@ -32,7 +32,7 @@ export default function ForgotPassword({ notify }) {
             setIsLoading(true);
             try {
                 const res = await apiFetch(
-                    "/api/password/reset", {
+                    "/api/password/reset-request", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email })
@@ -67,7 +67,8 @@ export default function ForgotPassword({ notify }) {
 
             setIsLoading(true);
             try {
-                const res = await apiFetch("/api/password/reset/verify", {
+                const res = await apiFetch(
+                    "/api/password/reset/verify", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, code })
@@ -111,7 +112,7 @@ export default function ForgotPassword({ notify }) {
 
             try {
                 const res = await apiFetch(
-                    "/api/password/reset/new", {
+                    "/api/password/reset/reset", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, newPassword, resetToken })
