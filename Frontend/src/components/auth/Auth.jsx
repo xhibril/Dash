@@ -4,10 +4,10 @@ import styles from "./Auth.module.css";
 import global from "../../css/Global.module.css"
 
 import { ValidateEmail, ValidatePassword } from "../Utils/Validation.jsx";
-import { HandleError } from "../Utils/ErrorHandler.jsx";
 import { PasswordField, EmailField, BrandHeader } from "../UI/SmallComponents.jsx";
+import apiFetch from "../utils/Api.jsx";
 
-export default function Auth({ mode, notify }) {
+export default function Auth({ mode, notify, setIsAuth, isAuth }) {
 
     const nav = useNavigate();
 
@@ -65,15 +65,19 @@ export default function Auth({ mode, notify }) {
         setIsLoading(true);
 
         try {
-            const res = await fetch(path, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, pass, rememberMe })
-            })
+            const res = await apiFetch(
+                path,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, pass, rememberMe })
+                },
+                nav
+            );
 
 
+            if (!res) return;
             if (!res.ok) {
-                HandleError(res.status);
                 const data = await res.text();
                 notify(data || "Something went wrong, please try again", "ERROR");
                 return;
@@ -81,21 +85,21 @@ export default function Auth({ mode, notify }) {
 
 
             if (isLogin) {
-                window.location.href = "/dashboard";
                 localStorage.removeItem("email");
-
+                setIsAuth(true);
+                nav("/dashboard");
             } else {
                 setEmail("");
                 setPassword("");
-                window.location.href = "/verify/email"
+                nav("/verify/email");
             }
-
+        }
+        catch (err) {
+            notify("Something went wrong. Please try again.", "ERROR");
         } finally {
             setIsLoading(false);
         }
     }
-
-
 
 
     return (
@@ -113,15 +117,15 @@ export default function Auth({ mode, notify }) {
 
 
                 {isLogin ? (
-                        <div className={styles.remember}>
-                            <input
-                                type="checkbox"
-                                onChange={(e) => setRememberMe(e.target.checked)}
-                            />
-                            <p>Remember me</p>
+                    <div className={styles.remember}>
+                        <input
+                            type="checkbox"
+                            onChange={(e) => setRememberMe(e.target.checked)}
+                        />
+                        <p>Remember me</p>
 
-                        </div>
-                    ) : null
+                    </div>
+                ) : null
                 }
 
 
@@ -133,10 +137,10 @@ export default function Auth({ mode, notify }) {
 
 
                 {isLogin ? (
-                        <span className={styles.forgot} onClick={() => nav("/forget")}>
-                            Forgot your password?
-                        </span>
-                    ) : null
+                    <span className={styles.forgot} onClick={() => nav("/forget")}>
+                        Forgot your password?
+                    </span>
+                ) : null
                 }
 
                 {isLogin ? (

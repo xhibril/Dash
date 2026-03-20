@@ -1,6 +1,6 @@
 import styles from "./Widgets.module.css";
 import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
-import { FiInfo, FiZap, FiEye } from "react-icons/fi";
+import { FiZap, FiEye } from "react-icons/fi";
 
 export default function Widgets({ visitsToday, trend, mostPopular, domain }) {
 

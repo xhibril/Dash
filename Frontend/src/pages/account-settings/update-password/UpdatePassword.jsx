@@ -1,8 +1,9 @@
 import global from "../../../css/Global.module.css";
 import { PasswordField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
 import { ValidatePassword } from "../../../components/utils/Validation.jsx";
-import { HandleError } from "../../../components/utils/ErrorHandler.jsx";
+import apiFetch from "../../../components/utils/Api.jsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function UpdatePassword({ notify }) {
@@ -11,6 +12,7 @@ export default function UpdatePassword({ notify }) {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const nav = useNavigate();
 
 
     async function update() {
@@ -25,7 +27,6 @@ export default function UpdatePassword({ notify }) {
         if (validateNewPass !== "VALID") {
             notify(validateNewPass, "ERROR"); return;
         }
-
 
         const validateConfirmPass = ValidatePassword(confirmPassword)
 
@@ -49,15 +50,15 @@ export default function UpdatePassword({ notify }) {
         setIsLoading(true);
 
         try {
-            const res = await fetch("/api/update/password", {
+            const res = await apiFetch(
+                "/api/update/password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
-            })
+            }, nav)
 
 
             if (!res.ok) {
-                HandleError(res.status);
                 const data = await res.text();
                 notify(data || "Could not update password", "ERROR");
                 return;
@@ -67,6 +68,9 @@ export default function UpdatePassword({ notify }) {
             setOldPassword("");
             setNewPassword("");
             setConfirmPassword("");
+
+        }catch (err){
+            notify("Something went wrong, please try again", "ERROR");
         } finally {
             setIsLoading(false);
         }

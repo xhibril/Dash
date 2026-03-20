@@ -2,19 +2,20 @@ import styles from "./URLShortener.module.css";
 import { useState } from "react";
 
 import { FiLink, FiPenTool } from "react-icons/fi";
-import { HandleError } from "../../Utils/ErrorHandler.jsx";
 import { ValidateAlias, ValidateURL } from "../../Utils/Validation.jsx";
+import apiFetch from "../../utils/Api.jsx";
+import { useNavigate } from "react-router-dom";
 
 
-
-export default function URLShortener({notify, setUrls, setMostPopular, mostPopular }) {
+export default function URLShortener({ notify, setUrls, setMostPopular, mostPopular }) {
 
     const [originalUrl, setOriginalUrl] = useState("");
     const [alias, setAlias] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const nav = useNavigate();
 
     async function generateNewUrl() {
-        if (loading) return;
+        if (isLoading) return;
 
         const urlRes = ValidateURL(originalUrl);
         if (urlRes !== "VALID") {
@@ -29,35 +30,38 @@ export default function URLShortener({notify, setUrls, setMostPopular, mostPopul
             return;
         }
 
-        setLoading(true);
+        setIsLoading(true);
 
-        const res = await fetch("/api/generate/url", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ originalUrl, alias })
-        })
+        try {
+            const res = await apiFetch("/api/generate/url", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ originalUrl, alias })
+            },
+                nav
+            )
 
-        const data = await res.json();
+            const data = await res.json();
+            if (!res.ok) {
+                notify(data.message || "Unable to create URL. Please try again later", "ERROR");
+                return;
+            }
 
-        if (!res.ok) {
-            HandleError(res.status);
-            setLoading(false);
+            setUrls(prev => [...prev, data]);
 
-            notify(data.message || "Unable to create URL. Please try again later", "ERROR");
-            return;
+            if (!mostPopular) {
+                setMostPopular(data);
+            }
+
+            setAlias("");
+            setOriginalUrl("");
+            notify("URL Successfully created", "SUCCESS");
+            setIsLoading(false);
+        } catch (err) {
+            notify("Something went wrong, please try again", "ERROR");
+        } finally {
+            setIsLoading(false);
         }
-
-        setUrls(prev => [...prev, data]);
-
-        if (!mostPopular) {
-            setMostPopular(data);
-        }
-
-        setAlias("");
-        setOriginalUrl("");
-
-        notify("URL Successfully created", "SUCCESS");
-        setLoading(false);
     }
 
 
@@ -95,12 +99,11 @@ export default function URLShortener({notify, setUrls, setMostPopular, mostPopul
 
             <button
                 onClick={() => generateNewUrl()}
-                className={`${styles.shortenBtn} ${loading ? styles.disabled : ""}`}
-                disabled={loading}
+                className={`${styles.shortenBtn} ${isLoading ? styles.disabled : ""}`}
+                disabled={isLoading}
 
-            >{loading ? "Generating..." : "Shorten"}</button>
+            >{isLoading ? "Generating..." : "Shorten"}</button>
 
         </div>
-
     );
 }

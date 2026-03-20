@@ -2,11 +2,14 @@ import styles from "./VerifyEmail.module.css";
 import global from "../../../css/Global.module.css";
 import { FiMail } from 'react-icons/fi';
 import { useState } from "react";
+import apiFetch from "../../../components/utils/Api";
+import { useNavigate } from "react-router-dom";
 
 export default function VerifyEmail({ notify }) {
 
     const [isLoading, setIsLoading] = useState(false)
     const email = localStorage.getItem("email");
+    const nav = useNavigate();
 
     async function resendEmail() {
 
@@ -17,12 +20,12 @@ export default function VerifyEmail({ notify }) {
 
         setIsLoading(true)
         try {
-
-            const res = await fetch("/api/email/resend", {
+            const res = await apiFetch(
+                "/api/email/resend", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })
-            });
+            }, nav);
 
 
             if (!res.ok) {
@@ -31,9 +34,11 @@ export default function VerifyEmail({ notify }) {
             }
 
             notify("Verification email sent", "SUCCESS");
-            return
-        }
-        finally {
+            return;
+
+        } catch (err) {
+            notify("Something went wrong, please try again", "ERROR");
+        } finally {
             setIsLoading(false);
         }
     }

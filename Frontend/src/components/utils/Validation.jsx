@@ -5,9 +5,7 @@ export function ValidatePassword(password) {
 
  
 
-
-    
-       if (password.length < minLength) return "Password must be longer than 8 characters.";
+    if (password.length < minLength) return "Password must be longer than 8 characters.";
     if (password.length > maxLength) return "Password must be shorter than 32 characters.";
 
         if(ValidateInput(password, "PASSWORD") !== "VALID"){

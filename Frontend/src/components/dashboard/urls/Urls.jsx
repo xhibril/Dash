@@ -2,6 +2,8 @@ import styles from "./Urls.module.css";
 import { FiTrash } from "react-icons/fi";
 import { useState } from "react";
 import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
+import apiFetch from "../../utils/Api.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Urls({
   urls,
@@ -20,11 +22,12 @@ export default function Urls({
 }) {
 
 
-  const [deleting, setDeleting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const nav = useNavigate();
 
 
   // find successor url if deleted url was displayed in mostPopular n chart
-  function successorUrl(filteredUrls){
+  function successorUrl(filteredUrls) {
     let max = -1;
     let successor;
 
@@ -39,9 +42,9 @@ export default function Urls({
 
 
   async function deleteUrl(urlId) {
-    if(deleting) return;
-    
-    setDeleting(true);
+    if (isLoading) return;
+
+    setIsLoading(true);
 
     urlId = Number(urlId);
 
@@ -53,36 +56,47 @@ export default function Urls({
 
     setUrls(filteredUrls)
 
-    const res = await fetch(`/api/delete/url?urlId=${urlId}`, { method: "POST" })
+    try {
+      const res = await apiFetch(
+        `/api/delete/url?urlId=${urlId}`,
+        { method: "POST" },
+        nav
+      )
 
-    if (!res.ok) {
-      HandleError(res.status);
-      notify("Could not delete URL, please try again", "ERROR");
-      setUrls(oldUrls);
-      setDeleting(false);
-      return;
-    }
-
-    notify("URL Successfully deleted", "SUCCESS");
-
-    if (succUrl) {
-      if (mostPopular?.id === urlId) setMostPopular(succUrl);
-
-      if (selectedUrlId === urlId) {
-        setSelectedUrlId(succUrl.id);
-        setSelectedUrl(succUrl.shortUrl);
-        fetchChartData();
+      if (!res.ok) {
+        notify("Could not delete URL, please try again", "ERROR");
+        setUrls(oldUrls);
+        return;
       }
 
-    } else {
+      notify("URL Successfully deleted", "SUCCESS");
 
-      if (mostPopular?.id === urlId) setMostPopular(null);
-      if (selectedUrlId === urlId) setChartData([]);
+      if (succUrl) {
+        // if deleted url was in most popular widget / chart data, update it if succ url is found
+        if (mostPopular?.id === urlId) setMostPopular(succUrl);
+
+        if (selectedUrlId === urlId) {
+          setSelectedUrlId(succUrl.id);
+          setSelectedUrl(succUrl.shortUrl);
+          fetchChartData();
+        }
+
+      } else {
+
+        if (mostPopular?.id === urlId) setMostPopular(null);
+        if (selectedUrlId === urlId) setChartData([]);
+      }
+
+      // refetch visits and trend
+      fetchVisits();
+      fetchTrend();
     }
-
-    fetchVisits();
-    fetchTrend();
-    setDeleting(false);
+    catch (err) {
+      notify("Something went wrong, please try again", "ERROR");
+    }
+    finally {
+      setIsLoading(false);
+    }
     return;
   }
 
@@ -102,7 +116,7 @@ export default function Urls({
       <div className={styles.urlList}>
 
         {urls.length === 0 ? (
-          <NoDataAvailable/>
+          <NoDataAvailable />
         ) : (
 
           urls.map(item => (

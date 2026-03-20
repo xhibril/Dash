@@ -6,22 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/ChangeEmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/ChangeEmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/PasswordResetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/Service/PasswordResetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/URLShortener/URLShortener.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/AuthLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/AuthLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/Layout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/Notification.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/Notification.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/ErrorHandler.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/FrogotPassword.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/login/Login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +203,10 @@
       <workItem from="1773666155386" duration="25000" />
       <workItem from="1773666198750" duration="5933000" />
       <workItem from="1773678043655" duration="3779000" />
-      <workItem from="1773731144636" duration="5263000" />
+      <workItem from="1773731144636" duration="5972000" />
+      <workItem from="1773821353582" duration="8000" />
+      <workItem from="1773824386326" duration="3000" />
+      <workItem from="1773994141279" duration="7360000" />
     </task>
     <servers />
   </component>

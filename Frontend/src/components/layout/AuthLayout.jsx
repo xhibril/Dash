@@ -1,38 +1,18 @@
-import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
-
+import { Outlet, Navigate } from "react-router-dom";
 import "../../index.css";
 
 
-export default function Layout() {
-
+export default function AuthLayout({ isAuth }) {
   // if user is auth redirect to dashboard
-  useEffect(() => {
-    AuthStatus();
-    async function AuthStatus() {
-      const res = await fetch("/api/auth/status");
 
-      if (!res.ok) {
+      if(isAuth === null) {
         return;
-      }
-
-      const data = await res.json();
-
-      if (data) {
-        window.location.href = "/dashboard"
-      }
-
     }
 
+  if (isAuth === true) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
-  })
 
-
-  return (
-    <>
-
-      <Outlet />
-
-    </>
-  );
+  return <Outlet />;
 }

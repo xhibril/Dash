@@ -1,18 +1,13 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-
- background:  #F5F6FA;
-
-
-  
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background: #F5F6FA;
   font-size: clamp(14px, 1vw, 18px);
-
-
 }
-
 
 .layout {
   display: flex;
@@ -24,17 +19,19 @@ html, body, #root {
   padding: 2rem;
 }
 
+
+/* for no data available*/
 .empty {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-}
-.explinationIcon{
-    width:1.5rem;
-    height: 1.5rem;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 }
 
+.explinationIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+
+}

@@ -3,7 +3,7 @@ import global from "../../../css/Global.module.css"
 import { PasswordField } from "../../../components/UI/SmallComponents.jsx"
 import { FiAlertTriangle } from "react-icons/fi"
 import { ValidatePassword } from "../../../components/utils/Validation.jsx"
-import { HandleError } from "../../../components/Utils/ErrorHandler.jsx"
+import apiFetch from "../../../components/utils/Api.jsx"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,22 +24,27 @@ export default function DeleteAccount({ notify }) {
 
         setIsLoading(true);
         try {
-            const res = await fetch("/api/delete/account", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ password })
-            });
+            const res = await apiFetch(
+                "/api/delete/account",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ password })
+                },
+                nav
+            );
 
 
             if (!res.ok) {
-                HandleError(res.status);
                 const data = await res.text();
                 notify(data || "Something went wrong, please try again", "ERROR");
                 return;
             }
 
-
-            window.location.href = "/";
+            nav("/");
+        }catch (err){
+            notify("Something went wrong, please try again", "ERROR");
+        
         } finally {
             setIsLoading(false);
         }

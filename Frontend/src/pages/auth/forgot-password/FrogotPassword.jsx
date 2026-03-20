@@ -2,6 +2,8 @@ import global from "../../../css/Global.module.css";
 import { useState } from "react";
 import { ValidateEmail, ValidateCode, ValidatePassword } from "../../../components/Utils/Validation.jsx";
 import { PasswordField, EmailField, CodeField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
+import apiFetch from "../../../components/utils/Api.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword({ notify }) {
 
@@ -14,6 +16,7 @@ export default function ForgotPassword({ notify }) {
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [isLoading, setIsLoading] = useState(false);
+    const nav = useNavigate();
 
 
     async function forgotPassword() {
@@ -26,14 +29,14 @@ export default function ForgotPassword({ notify }) {
                 return;
             }
 
-
             setIsLoading(true);
             try {
-                const res = await fetch("/api/password/reset", {
+                const res = await apiFetch(
+                    "/api/password/reset", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email })
-                })
+                }, nav)
 
 
                 if (!res.ok) {
@@ -46,6 +49,8 @@ export default function ForgotPassword({ notify }) {
                 setStep("VERIFY");
                 return;
 
+            }catch (err){
+            notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }
@@ -53,7 +58,6 @@ export default function ForgotPassword({ notify }) {
 
 
         if (step === "VERIFY") {
-
             const codeRes = ValidateCode(code, 6);
 
             if (codeRes !== "VALID") {
@@ -62,13 +66,12 @@ export default function ForgotPassword({ notify }) {
             }
 
             setIsLoading(true);
-
             try {
-                const res = await fetch("/api/password/reset/verify", {
+                const res = await apiFetch("/api/password/reset/verify", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, code })
-                })
+                }, nav)
 
 
                 if (!res.ok) {
@@ -83,6 +86,8 @@ export default function ForgotPassword({ notify }) {
                 notify("Verification successful", "SUCCESS");
                 setStep("RESET");
                 return;
+            } catch (err){
+                notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }
@@ -105,11 +110,12 @@ export default function ForgotPassword({ notify }) {
             setIsLoading(true);
 
             try {
-                const res = await fetch("/api/password/reset/new", {
+                const res = await apiFetch(
+                    "/api/password/reset/new", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, newPassword, resetToken })
-                })
+                }, nav)
 
 
                 if (!res.ok) {
@@ -122,6 +128,8 @@ export default function ForgotPassword({ notify }) {
                 setConfirmPassword("")
                 notify("Password changed successfully", "SUCCESS");
                 return;
+            } catch(err) {
+                notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }

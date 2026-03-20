@@ -6,93 +6,93 @@ import { useState } from "react";
 export default function SideBar({ active, toggleSidebar, notify }) {
 
   const [profileActive, setProfileActive] = useState(false);
+  const nav = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-    async function logout(){
-    const res = await fetch("/api/logout");
-    
-    if(!res.ok){
+  async function logout() {
 
-      HandleError(res.status);
-      notify("Logout failed. Please try again", "ERROR");
-      return;
+    if (isLoading) return;
+
+    setIsLoading(true);
+    const res = await apiFetch("/api/logout", {}, nav);
+
+    try {
+      if (!res.ok) {
+        notify("Logout failed. Please try again", "ERROR");
+        return;
+      }
+
+      nav("/login");
+
+    } catch (err) {
+      notify("Something went wrong, please try again", "ERROR");
+
+    } finally {
+      setIsLoading(true);
     }
-
-    window.location.href = "/login";
   }
 
 
-
- const navigate = useNavigate();
-
-  function go(route){
-    navigate(route);
+  function go(route) {
+    nav(route);
     setProfileActive(false);
   }
 
- 
+
   return (
     <>
-    <div className = {styles.sideBarContainer}>
-      <button onClick={toggleSidebar} className={`${styles.sideBarBtn} ${active ? styles.active : ""}`}>
-        <FiMenu />
-      </button>
+      <div className={styles.sideBarContainer}>
+        <button onClick={toggleSidebar} className={`${styles.sideBarBtn} ${active ? styles.active : ""}`}>
+          <FiMenu />
+        </button>
 
-      <div className={`${styles.sideBar} ${active ? styles.active : ""}`}>
-     
-        <div className={styles.sideBarTop}>
-            <h1 className = {styles.siteTitle}>DASH</h1>
+        <div className={`${styles.sideBar} ${active ? styles.active : ""}`}>
+          <div className={styles.sideBarTop}>
+            <h1 className={styles.siteTitle}>DASH</h1>
 
-          <button className={styles.sideBarIcon} 
-          onClick ={() => go("/dashboard")}><FiHome />
-          </button>
+            <button className={styles.sideBarIcon}
+              onClick={() => go("/dashboard")}><FiHome />
+            </button>
 
-            <button className={styles.sideBarIcon} 
-          onClick = {() => go("/support")}
-          ><FiMail />
-          </button>
-        </div>
-
-        <div className={styles.sideBarBottom}>
-
-          <div className={styles.profile}
-          onClick= {() => setProfileActive(!profileActive)}>
-
-            <FiUser className = {styles.profileIcon}/> 
-
-            <div className = {`${styles.profileSettings} ${profileActive ? styles.active : ""}`}>
-              
-              <button className = {styles.changePassword}
-              onClick={() => navigate("/update-password")}
-              >
-                <FiLock className = {styles.changePasswordIcon}/>
-                Change Password
-                </button>
-
-
-                <button className = {styles.changeEmail}
-                onClick={() => navigate("/update-email")}>
-                  <FiMail className = {styles.changeEmailIcon}/>
-                  Change Email</button>
-
-
-
-                  <button className = {styles.deleteAccount}
-                  onClick ={() => navigate("/delete-account")}>
-                    <FiAlertTriangle className = {styles.deleteAccountIcon}
-                    />Delete Account</button>
-              </div>
-
+            <button className={styles.sideBarIcon}
+              onClick={() => go("/support")}
+            ><FiMail />
+            </button>
           </div>
 
-          <button className={styles.sideBarIcon} 
-          
-          onClick={()=> logout()}
-          
-          ><FiLogOut /></button>
+          <div className={styles.sideBarBottom}>
 
+            <div className={styles.profile}
+              onClick={() => setProfileActive(!profileActive)}>
+
+              <FiUser className={styles.profileIcon} />
+
+              <div className={`${styles.profileSettings} ${profileActive ? styles.active : ""}`}>
+
+                <button className={styles.changePassword}
+                  onClick={() => nav("/update-password")}
+                >
+                  <FiLock className={styles.changePasswordIcon} />
+                  Change Password
+                </button>
+
+                <button className={styles.changeEmail}
+                  onClick={() => nav("/update-email")}>
+                  <FiMail className={styles.changeEmailIcon} />
+                  Change Email</button>
+
+                <button className={styles.deleteAccount}
+                  onClick={() => nav("/delete-account")}>
+                  <FiAlertTriangle className={styles.deleteAccountIcon}
+                  />Delete Account</button>
+              </div>
+            </div>
+
+            <button className={styles.sideBarIcon}
+              onClick={() => logout()}
+            ><FiLogOut /></button>
+          </div>
         </div>
-
-      </div>
       </div>
     </>
   );

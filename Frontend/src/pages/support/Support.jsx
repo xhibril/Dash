@@ -1,10 +1,9 @@
 import styles from "./Support.module.css"
-
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
-
 import { useState } from "react";
-import { HandleError } from "../../components/Utils/ErrorHandler.jsx";
 import { ValidateEmail, ValidateInput } from "../../components/Utils/Validation.jsx";
+import { useNavigate } from "react-router-dom";
+import apiFetch from "../../components/utils/Api.jsx";
 
 
 
@@ -82,93 +81,95 @@ function TicketSubmit({ notify }) {
     const [email, setEmail] = useState("")
     const [subject, setSubject] = useState("")
     const [message, setMessage] = useState("")
+    const nav = useNavigate();
 
     async function submitTicket() {
 
-
-    if(!email || !subject || !message) {
-        notify("All fields are required", "ERROR");
-        return;
-    }
+        if (!email || !subject || !message) {
+            notify("All fields are required", "ERROR");
+            return;
+        }
 
         const emailRes = ValidateEmail(email);
 
-        if(emailRes !== "VALID"){
-            notify(emailRes, "ERROR"); 
+        if (emailRes !== "VALID") {
+            notify(emailRes, "ERROR");
             return;
         }
 
 
-        const subjectRes =  ValidateInput(subject, "GENERAL");
+        const subjectRes = ValidateInput(subject, "GENERAL");
 
-        if(subjectRes !== "VALID"){
+        if (subjectRes !== "VALID") {
             notify(subjectRes, "ERROR");
             return;
         }
 
         const messageRes = ValidateInput(message, "MESSAGE");
-        if(messageRes !== "VALID"){
+        if (messageRes !== "VALID") {
             notify(messageRes, "ERROR");
             return;
         }
 
-        const res = await fetch("/api/support", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, subject, message })
-        })
+        try {
+            const res = await apiFetch("/api/support", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, subject, message })
+            }, nav)
 
-        if (!res.ok) {
-            HandleError(res.status);
+            if (!res.ok) {
+                notify("Something went wrong, please try again", "ERROR");
+                return;
+            }
+
+
+            notify("Message sent successfully", "SUCCESS");
+            setEmail("");
+            setSubject("");
+            setMessage("");
+        } catch (err) {
             notify("Something went wrong, please try again", "ERROR");
-            return;
         }
-
-
-        notify("Message sent successfully", "SUCCESS");
-        setEmail("");
-        setSubject("");
-        setMessage("");
         return;
     }
 
     return (
 
         <div className={styles.inputContainer}>
-
             <div className={styles.inputWrapper}>
 
                 <h2>Get in Touch</h2>
-                <p className = {styles.supportText}>Leave your message and we'll get back to you shortly.</p>
+                <p className={styles.supportText}>Leave your message and we'll get back to you shortly.</p>
 
-<div className = {styles.supportTop}>
-                <label className={styles.supportInput}>
-                    <p>Email</p>
-                    <input
-                        type="email"
-                        className={styles.input}
-                        placeholder="you@email.com"
-                        value = {email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+                <div className={styles.supportTop}>
+                    <label className={styles.supportInput}>
+                        <p>Email</p>
+                        <input
+                            type="email"
+                            className={styles.input}
+                            placeholder="you@email.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
 
-                <label className={styles.supportInput}>
-                    <p>Subject</p>
-                    <input
-                        className={styles.input}
-                        placeholder="URL not working"
-                        value = {subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                    />
-                </label>
-</div>
+                    <label className={styles.supportInput}>
+                        <p>Subject</p>
+                        <input
+                            className={styles.input}
+                            placeholder="URL not working"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                        />
+                    </label>
+                </div>
                 <label className={styles.supportInput}>
                     <p>Message</p>
                     <textarea
                         className={styles.textArea}
                         placeholder="Tell us briefly about your needs"
-                        value = {message}
+                        value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
                 </label>

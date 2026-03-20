@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import SideBar from "./SideBar.jsx";
 import { Outlet } from "react-router-dom";

@@ -2,7 +2,7 @@ import styles from "./UpdateEmail.module.css"
 import global from "../../../css/Global.module.css"
 import { EmailField, PasswordField, CodeField, BrandHeader } from "../../../components/uI/SmallComponents.jsx"
 import { ValidateEmail, ValidatePassword, ValidateCode } from "../../../components/utils/Validation.jsx"
-import { HandleError } from "../../../components/Utils/ErrorHandler.jsx"
+import apiFetch from "../../../components/utils/Api.jsx"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -16,13 +16,11 @@ export default function UpdateEmail({ notify }) {
     const [oldEmail, setOldEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const jsonHeaders = { "Content-Type": "application/json" };
-
     const nav = useNavigate();
 
 
     async function update() {
         if (step === "INIT") {
-
             const emailValidation = ValidateEmail(pendingEmail);
 
             if (emailValidation !== "VALID") {
@@ -38,14 +36,15 @@ export default function UpdateEmail({ notify }) {
             setIsLoading(true);
 
             try {
-                const emailRes = await fetch("/api/update-email/request", {
+                const emailRes = await apiFetch(
+                    "/api/update-email/request", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ pendingEmail, password })
-                })
+                }, nav
+                )
 
                 if (!emailRes.ok) {
-                    HandleError(emailRes.status);
                     const data = await emailRes.json();
                     notify(data.message || "Something went wrong, please try again", "ERROR");
                     return;
@@ -53,6 +52,8 @@ export default function UpdateEmail({ notify }) {
 
                 notify("Verification code sent", "SUCCESS");
                 setStep("VERIFY");
+            } catch (err){
+                notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }
@@ -71,32 +72,35 @@ export default function UpdateEmail({ notify }) {
             setIsLoading(true);
 
             try {
-                const codeRes = await fetch("/api/update-email/verify", {
-                    method: "POST",
-                    headers: jsonHeaders,
-                    body: JSON.stringify({ code })
-                })
+                const codeRes = await apiFetch(
+                    "/api/update-email/verify",
+                    {
+                        method: "POST",
+                        headers: jsonHeaders,
+                        body: JSON.stringify({ code })
+                    },
+                    nav
+                )
 
                 const codeResData = await codeRes.json();
 
                 if (!codeRes.ok) {
-                    HandleError(codeRes.status);
                     notify(codeResData.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
                 const token = codeResData.resetToken;
 
                 // change password if code is correct
-                const changeRes = await fetch("/api/update-email/change", {
+                const changeRes = await apiFetch(
+                    "/api/update-email/change", {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ pendingEmail, resetToken: token })
-                })
+                }, nav)
 
                 const changeResData = await changeRes.json();
 
                 if (!changeRes.ok) {
-                    HandleError(changeRes.status);
                     notify(changeResData.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
@@ -106,7 +110,8 @@ export default function UpdateEmail({ notify }) {
                 setCode("");
                 notify("Email updated successfully", "SUCCESS");
                 setStep("CHANGED");
-
+            } catch {
+                notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }
@@ -172,9 +177,7 @@ export default function UpdateEmail({ notify }) {
                             className={global.submit}>
                             {isLoading ? "Loading..." : "Continue"}
                         </button>
-
                 }
-
             </form>
         </div>
     )
