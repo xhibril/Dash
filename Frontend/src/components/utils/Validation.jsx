@@ -1,9 +1,12 @@
 export function ValidatePassword(password) {
 
+    if(!password){
+        return "Input cannot be empty";
+    }
+
     const minLength = 8;
     const maxLength = 32;
 
- 
 
     if (password.length < minLength) return "Password must be longer than 8 characters.";
     if (password.length > maxLength) return "Password must be shorter than 32 characters.";
@@ -25,6 +28,11 @@ export function ValidatePassword(password) {
 
 
 export function ValidateEmail(email) {
+
+    if(!email){
+        return "Input cannot be empty"
+    }
+    
     email = email.trim();
 
       if(ValidateInput(email, "EMAIL") !== "VALID"){
@@ -41,6 +49,10 @@ export function ValidateEmail(email) {
 
 export function ValidateCode(code, maxDigitsAllowed) {
 
+    if(!code){
+        return "Input cannot be empty";
+    }
+
     const regex = /^[0-9]+$/;
 
     if (code.length > maxDigitsAllowed) return "Digit limit exceeded";
@@ -55,6 +67,9 @@ export function ValidateCode(code, maxDigitsAllowed) {
 export function ValidateURL(url){
 
     if(!url) return "URL is required";
+
+    if(url.length < 10) return "URL must be between 10 and 1024 characters";
+    if(url.length > 1024) return "URL must be between 10 and 1024 characters";
 
     const regex = /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}/;
 

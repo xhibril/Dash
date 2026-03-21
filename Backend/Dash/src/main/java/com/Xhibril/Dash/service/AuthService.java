@@ -5,6 +5,7 @@ import com.Xhibril.Dash.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Cookie;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
@@ -17,6 +18,17 @@ public class AuthService {
     private final UserRepository userRepo;
     private final JwtService jwtService;
     private final EmailService emailService;
+    private final PasswordEncoder encoder;
+
+    public AuthService(UserRepository userRepo,
+                       JwtService jwtService,
+                       EmailService emailService,
+                       PasswordEncoder encoder){
+        this.userRepo = userRepo;
+        this.jwtService = jwtService;
+        this.emailService = emailService;
+        this.encoder = encoder;
+    }
 
     enum TIME {
         WEEK(604800),
@@ -33,20 +45,12 @@ public class AuthService {
         }
     }
 
-    public AuthService(UserRepository userRepo,
-                       JwtService jwtService,
-                       EmailService emailService){
-        this.userRepo = userRepo;
-        this.jwtService = jwtService;
-        this.emailService = emailService;
-    }
-
 
     public ResponseEntity<String> registerUser(String email, String password){
         if(userRepo.findByEmail(email).isEmpty()){
             User user = new User();
             user.setEmail(email);
-            user.setPassword(password);
+            user.setPassword(encoder.encode(password));
             user.setVerified(false);
 
             userRepo.save(user);
@@ -64,7 +68,7 @@ public class AuthService {
         if(userOpt.isPresent()){
             User user = userOpt.get();
 
-            if(password.equals(user.getPassword())){
+            if(encoder.matches(password, user.getPassword())){
                 // user is not verified
                 if(!user.getVerified()){
                     emailService.sendVerificationEmail(email);
@@ -88,6 +92,7 @@ public class AuthService {
     }
 
 
+    // email hardcoded cuz we verify user through it
     @Transactional
     public boolean verifyUser(String token){
         String email = jwtService.extractFromToken(token, "email", String.class);

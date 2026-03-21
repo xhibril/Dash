@@ -6,6 +6,7 @@ import com.Xhibril.Dash.repository.ChangeEmailRepository;
 import com.Xhibril.Dash.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.security.SecureRandom;
@@ -20,18 +21,21 @@ public class UpdateEmailService {
     private final EmailService emailService;
     private final UserRepository userRepo;
     private final ChangeEmailRepository changeEmailRepo;
+    private final PasswordEncoder encoder;
 
     public UpdateEmailService(EmailService emailService,
                               UserRepository userRepo,
-                              ChangeEmailRepository changeEmailRepo){
+                              ChangeEmailRepository changeEmailRepo,
+                              PasswordEncoder encoder){
         this.emailService = emailService;
         this.userRepo = userRepo;
         this.changeEmailRepo = changeEmailRepo;
+        this.encoder = encoder;
     }
 
     @Transactional
     public ResponseEntity<UpdateEmailResponse> initEmailChange(Long id, String pendingEmail, String password) throws MessagingException {
-        Optional<User> user = userRepo.findByEmail(pendingEmail);
+        Optional<User> userOpt = userRepo.findByEmail(pendingEmail);
 
         // check if user already has made a req
        boolean hasPendingRequest = changeEmailRepo.existsByUserId(id);
@@ -40,14 +44,19 @@ public class UpdateEmailService {
         }
 
         // check if email already exists
-        if(user.isPresent()){
+        if(userOpt.isPresent()){
             return ResponseEntity.badRequest().body(new UpdateEmailResponse("Email is already registered"));
         }
 
-        user = userRepo.findById(id);
-        User u = user.get();
-        if(!password.equals(u.getPassword())){
-            return ResponseEntity.badRequest().body(new UpdateEmailResponse("Incorrect password"));
+        userOpt = userRepo.findById(id);
+
+        if(userOpt.isPresent()){
+            User user = userOpt.get();
+            if(!(encoder.matches(password, user.getPassword()))){
+                return ResponseEntity.badRequest().body(new UpdateEmailResponse("Incorrect password"));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(new UpdateEmailResponse("Something went wrong, please try again"));
         }
 
         UpdateEmail changeEmail = new UpdateEmail();
@@ -56,7 +65,7 @@ public class UpdateEmailService {
         emailService.sendVerificationCode(pendingEmail, code);
 
 
-        changeEmail.setVerificationCode(code);
+        changeEmail.setVerificationCode(encoder.encode(code));
         changeEmail.setUserId(id);
         changeEmail.setPendingEmail(pendingEmail);
         changeEmail.setExpiresAt(Instant.now().plusSeconds(600));
@@ -81,8 +90,7 @@ public class UpdateEmailService {
                 return ResponseEntity.badRequest().body(new UpdateEmailResponse("Code has expired"));
             }
 
-
-            if(!code.equals(changeEmail.getVerificationCode())){
+            if(!encoder.matches(code, changeEmail.getVerificationCode())){
                 return ResponseEntity.badRequest().body(new UpdateEmailResponse("Incorrect code"));
             }
 

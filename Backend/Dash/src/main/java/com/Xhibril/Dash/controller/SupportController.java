@@ -19,8 +19,8 @@ public class SupportController {
     }
 
     @PostMapping("/support/tickets")
-    public void sendSupportMessage(@RequestBody SupportRequest supportRequest, HttpServletRequest req){
+    public void sendSupportMessage(@RequestBody SupportRequest request, HttpServletRequest req){
         Long id = authService.getAuthenticatedId(req);
-        supportService.saveSupportMessage(id, supportRequest);
+        supportService.saveSupportMessage(id, request.getEmail(), request.getSubject(), request.getMessage());
     }
 }

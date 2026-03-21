@@ -96,15 +96,15 @@ export default function ForgotPassword({ notify }) {
 
 
         if (step === "RESET") {
-            if (newPassword !== confirmPassword) {
-                notify("Passwords do not match", "ERROR");
-                return;
-            }
-
             const passRes = ValidatePassword(confirmPassword);
 
             if (passRes !== "VALID") {
                 notify(passRes, "ERROR");
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                notify("Passwords do not match", "ERROR");
                 return;
             }
 

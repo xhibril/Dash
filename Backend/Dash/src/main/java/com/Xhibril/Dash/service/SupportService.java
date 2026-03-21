@@ -15,12 +15,12 @@ public class SupportService {
         this.supportRepo = supportRepo;
     }
 
-    public void saveSupportMessage(Long userId, @RequestBody SupportRequest sq) {
+    public void saveSupportMessage(Long userId, String email, String subject, String message) {
         Support support = new Support();
 
-        support.setEmail(sq.getEmail());
-        support.setSubject(sq.getSubject());
-        support.setMessage(sq.getMessage());
+        support.setEmail(email);
+        support.setSubject(subject);
+        support.setMessage(message);
         support.setCreatedAt(LocalDate.now());
         support.setStatus("OPEN");
         support.setUserId(userId);

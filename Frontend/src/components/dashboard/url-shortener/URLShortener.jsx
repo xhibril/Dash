@@ -68,7 +68,11 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
 
     return (
 
-        <div className={styles.inputContainer}>
+        <form className={styles.inputContainer}
+        onSubmit={(e) =>{
+            e.preventDefault();
+            generateNewUrl();
+        }}>
 
             <label className={styles.inputTitle}>
                 <FiLink />
@@ -98,12 +102,12 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>
 
             <button
-                onClick={() => generateNewUrl()}
+                type = "submit"
                 className={`${styles.shortenBtn} ${isLoading ? styles.disabled : ""}`}
                 disabled={isLoading}
 
             >{isLoading ? "Generating..." : "Shorten"}</button>
 
-        </div>
+        </form>
     );
 }

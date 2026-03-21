@@ -6,6 +6,7 @@ import com.Xhibril.Dash.repository.UrlStatRepository;
 import com.Xhibril.Dash.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,27 +20,30 @@ public class AccountService {
     private final UrlStatRepository urlStatRepo;
     private final UserRepository userRepo;
     private final AuthService authService;
+    private final PasswordEncoder encoder;
 
     public AccountService(UrlRepository urlRepo,
                           SupportRepository supportRepo,
                           UrlStatRepository urlStatRepo,
                           UserRepository userRepo,
-                          AuthService authService){
+                          AuthService authService,
+                          PasswordEncoder encoder){
         this.urlRepo = urlRepo;
         this.supportRepo= supportRepo;
         this.urlStatRepo = urlStatRepo;
         this.userRepo = userRepo;
         this.authService = authService;
+        this.encoder = encoder;
     }
 
 
     @Transactional
     public ResponseEntity<String> deleteAccount(Long id, String password, HttpServletResponse res) {
-        Optional<User> user = userRepo.findById(id);
+        Optional<User> userOpt = userRepo.findById(id);
 
-        if (user.isPresent()) {
-            User u = user.get();
-            if (!(password.equals(u.getPassword()))) {
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            if (!(encoder.matches(password, user.getPassword()))){
                 return ResponseEntity.badRequest().body("Incorrect password");
             }
 
@@ -63,16 +67,16 @@ public class AccountService {
 
     @Transactional
     public ResponseEntity<String> updatePassword(Long id, String oldPassword, String newPassword){
-        Optional<User> user = userRepo.findById(id);
+        Optional<User> userOpt = userRepo.findById(id);
 
-        if(user.isPresent()){
-            User u = user.get();
+        if(userOpt.isPresent()){
+            User user = userOpt.get();
 
-            if(!oldPassword.equals(u.getPassword())){
+            if(!encoder.matches(oldPassword, user.getPassword())){
                 return ResponseEntity.badRequest().body("Incorrect password");
             }
 
-            userRepo.updatePassword(newPassword, u.getEmail());
+            userRepo.updatePassword(encoder.encode(newPassword), user.getEmail());
             return ResponseEntity.ok().body("Password successfully changed");
         }
         return ResponseEntity.badRequest().body("Something went wrong, please try again");

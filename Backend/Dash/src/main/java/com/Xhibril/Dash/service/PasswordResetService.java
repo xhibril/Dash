@@ -5,6 +5,7 @@ import com.Xhibril.Dash.model.User;
 import com.Xhibril.Dash.repository.PasswordResetRepository;
 import com.Xhibril.Dash.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.security.SecureRandom;
@@ -20,13 +21,16 @@ public class PasswordResetService {
     private final PasswordResetRepository passwordResetRepo;
     private final UserRepository userRepo;
     private final EmailService emailService;
+    private final PasswordEncoder encoder;
 
     public PasswordResetService(PasswordResetRepository passwordResetRepo,
                                 UserRepository userRepo,
-                                EmailService emailService){
+                                EmailService emailService,
+                                PasswordEncoder encoder){
         this.passwordResetRepo = passwordResetRepo;
         this.userRepo = userRepo;
         this.emailService = emailService;
+        this.encoder = encoder;
     }
 
 
@@ -52,7 +56,7 @@ public class PasswordResetService {
         String code = String.valueOf(100000 + random.nextInt(900000));
 
         passwordReset.setEmail(email);
-        passwordReset.setCode(code);
+        passwordReset.setCode(encoder.encode(code));
         passwordReset.setExpiresAt(Instant.now().plusSeconds(600));
         passwordReset.setAttempts(6);
 
@@ -92,7 +96,7 @@ public class PasswordResetService {
            }
 
            // check if valid
-           if(!passwordReset.getCode().equals(clientSideCode)){
+           if(!encoder.matches(clientSideCode, passwordReset.getCode())){
                int remainingAttempts = passwordReset.getAttempts();
                remainingAttempts -= 1;
                passwordResetRepo.updateRemainingAttempts(remainingAttempts, email);
@@ -119,7 +123,6 @@ public class PasswordResetService {
         Optional<PasswordReset> isFound = passwordResetRepo.findByEmail(email);
 
         if(isFound.isPresent()){
-
             PasswordReset passwordReset = isFound.get();
             Instant current = Instant.now();
 
@@ -134,7 +137,7 @@ public class PasswordResetService {
                 return ResponseEntity.badRequest().body(new PasswordResetResponse(("Invalid request")));
             }
 
-            userRepo.updatePassword(newPassword, email);
+            userRepo.updatePassword(encoder.encode(newPassword), email);
 
             passwordResetRepo.deleteByEmail(email);
             return ResponseEntity.ok(new PasswordResetResponse("Password successfully changed"));

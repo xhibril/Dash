@@ -143,10 +143,8 @@ public class AnalyticsService {
 
     public Integer getVisits(Long id){
         LocalDate date = LocalDate.now();
-
         LocalDateTime start = date.atStartOfDay();
         LocalDateTime end = date.atTime(LocalTime.MAX);
-
         return visitsHelper(start, end, id);
     }
 
@@ -160,10 +158,6 @@ public class AnalyticsService {
         Integer yesterdayVisits = visitsHelper(start.minusDays(1), end.minusDays(1), id);
 
         Integer diff = todayVisits - yesterdayVisits;
-        System.out.println("today: " + todayVisits);
-        System.out.println("yesterday: " + yesterdayVisits);
-        System.out.println("diff: " + diff);
-
         Float percentage;
 
         if (yesterdayVisits != 0) {
@@ -171,30 +165,21 @@ public class AnalyticsService {
         } else {
             percentage = (float) diff / 1 * 100;
         }
-
         return Math.round(percentage);
     }
 
 
 
     public Integer visitsHelper(LocalDateTime start,LocalDateTime end, Long id){
-
         List<Url> urls = urlRepo.findByUserId(id);
         Integer visits = 0;
 
         for(Url u : urls){
             List<UrlStat> stats = urlStatRepo.findByBucketBetweenAndUrlId(start,end, u.getId());
-
-
             visits += stats.stream()
                     .mapToInt(UrlStat::getVisits)
                     .sum();
-
-
-            System.out.println("VISITS: "+ u.getVisits());
         }
-
-        System.out.println("FINAL SUM: "+ visits);
         return visits;
     }
 
