@@ -1,7 +1,7 @@
 import { FiInfo,FiEye } from "react-icons/fi";
 import styles from "./SmallComponents.module.css"
 import { useState } from "react";
-import icon from "../../../public/favicon.png"
+import icon from "../../../public/favicon.svg"
 
 export function NoDataAvailable() {
     return (

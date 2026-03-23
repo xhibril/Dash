@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/landing/Landing.jsx";
+import Landing from "./pages/landing/Landing.jsx";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Support from "./pages/support/Support.jsx";
 import Layout from "./components/layout/AppLayout.jsx";
@@ -57,7 +57,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<Home notify={notify} />} />
+          <Route path="/" element={<Landing notify={notify} />} />
           <Route element={<ProtectedRoutes isAuth={isAuth} />}>
             <Route path="/delete-account" element={<DeleteAccount notify={notify} />} />
             <Route path="/update-password" element={<UpdatePassword notify={notify} />} />

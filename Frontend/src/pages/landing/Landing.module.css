@@ -1,0 +1,179 @@
+.mainContainer {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/landingBackground.svg");
+    background-size: 100% 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.leftContainer,
+.rightContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.topRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10%;
+
+}
+
+.brandHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.brandHeader img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.brandHeader h1 {
+    font-size: 3rem;
+    letter-spacing: -1px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.navBar {
+    justify-content: start;
+    display: flex;
+    align-self: center;
+    gap: 5rem;
+    align-items: center;
+}
+
+
+.navBar a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+}
+
+.navBar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+
+    opacity: 0;
+    transform: scaleX(0);
+    transition: all 0.25s ease;
+}
+
+.navBar a:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+
+.brandDesc {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.brandDesc h1 {
+
+    font-size: 3rem;
+    letter-spacing: -1px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+
+.tryNow {
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9 51%, #4776E6 100%);
+}
+
+.tryNow {
+    margin: 1rem;
+    padding: 1rem 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tryNow:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.authRow {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+.loginBtn {
+    background-color: whitesmoke;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
+}
+
+.signUpBtn {
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    color: white;
+}
+
+.loginBtn,
+.signUpBtn {
+    margin: .8rem;
+    padding: .8rem 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    border-radius: .5rem;
+    display: block;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s all ease;
+}
+
+.loginBtn:hover,
+.signUpBtn:hover {
+    transform: translateY(-3.5px);
+}

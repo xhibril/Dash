@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/ReactConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/ReactConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/SupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/SupportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AnalyticsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AnalyticsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/PasswordResetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/PasswordResetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/SupportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/SupportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/UpdateEmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/UpdateEmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/FeatureSection.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Footer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/FeatureSection.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Footer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +201,9 @@
       <workItem from="1774082484989" duration="54000" />
       <workItem from="1774082559230" duration="116000" />
       <workItem from="1774082732113" duration="114000" />
-      <workItem from="1774082916691" duration="1402000" />
+      <workItem from="1774082916691" duration="3160000" />
+      <workItem from="1774200888577" duration="2638000" />
+      <workItem from="1774275940283" duration="3991000" />
     </task>
     <servers />
   </component>
