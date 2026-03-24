@@ -58,6 +58,10 @@ export default function App() {
         <Routes>
 
           <Route path="/" element={<Landing notify={notify} />} />
+
+
+
+
           <Route element={<ProtectedRoutes isAuth={isAuth} />}>
             <Route path="/delete-account" element={<DeleteAccount notify={notify} />} />
             <Route path="/update-password" element={<UpdatePassword notify={notify} />} />
