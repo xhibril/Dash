@@ -7,7 +7,7 @@ import { ValidateEmail, ValidatePassword } from "../Utils/Validation.jsx";
 import { PasswordField, EmailField, BrandHeader } from "../UI/SmallComponents.jsx";
 import apiFetch from "../utils/Api.jsx";
 
-export default function Auth({ mode, notify, setIsAuth}) {
+export default function Auth({ mode, notify, setIsAuth }) {
 
     const nav = useNavigate();
 
@@ -69,21 +69,20 @@ export default function Auth({ mode, notify, setIsAuth}) {
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password, rememberMe})
+                    body: JSON.stringify({ email, password, rememberMe })
                 },
-                nav
+                nav, notify
             );
-
-
             if (!res) return;
 
-            if(res.status === 403) return;
+            if (res.status === 403) return;
 
             if (!res.ok) {
                 const data = await res.text();
                 notify(data || "Something went wrong, please try again", "ERROR");
                 return;
             }
+
 
 
             if (isLogin) {

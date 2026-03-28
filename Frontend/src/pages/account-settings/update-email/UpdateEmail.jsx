@@ -41,8 +41,10 @@ export default function UpdateEmail({ notify }) {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ pendingEmail, password })
-                }, nav
+                }, nav, notify
                 )
+
+                if(!emailRes) return;
 
                 if (!emailRes.ok) {
                     const data = await emailRes.json();
@@ -79,8 +81,10 @@ export default function UpdateEmail({ notify }) {
                         headers: jsonHeaders,
                         body: JSON.stringify({ code })
                     },
-                    nav
+                    nav, notify
                 )
+
+                     if(!codeRes) return;
 
                 const codeResData = await codeRes.json();
 
@@ -96,7 +100,9 @@ export default function UpdateEmail({ notify }) {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ pendingEmail, resetToken: token })
-                }, nav)
+                }, nav, notify)
+
+                     if(!changeRes) return;
 
                 const changeResData = await changeRes.json();
 

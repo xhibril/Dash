@@ -1,20 +1,16 @@
 .mainContainer {
-    width: 100%;
-    height: 105%;
-  background-image: 
-    linear-gradient(to bottom, rgba(255,255,255,0) 80%, #F5F6FA 100%),
-    url("../../assets/landingBackground.svg");
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, #F5F6FA 100%),
+        url("../../assets/landingBackground.svg");
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
 }
-
-
 
 
 .leftContainer,
@@ -24,14 +20,11 @@
     flex-direction: column;
 }
 
-
-
 .topRow {
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 10%;
-
+    gap: 5rem;
 }
 
 .brandHeader {
@@ -52,7 +45,6 @@
     font-weight: 800;
     margin: 0;
     padding: 0;
-
 }
 
 
@@ -94,23 +86,18 @@
 .brandDesc {
     display: flex;
     flex-direction: column;
-
     flex: 1;
     justify-content: center;
     align-items: center;
-
 }
 
 .brandDesc h1 {
-
     font-size: 3rem;
     letter-spacing: -1px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     margin: 0;
     padding: 0;
-
-
 }
 
 
@@ -141,7 +128,6 @@
     text-decoration: none;
 }
 
-
 .authRow {
     display: flex;
     width: 100%;
@@ -151,14 +137,18 @@
 
 
 .loginBtn {
-    background-color: whitesmoke;
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
+    background-color: white;
+        box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08),
+        inset 0 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .signUpBtn {
     background: linear-gradient(135deg, #7C3AED, #A855F7);
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
     color: white;
+        box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08),
+        inset 0 2px 2px rgba(255, 255, 255, 0.4);
 }
 
 .loginBtn,
@@ -182,142 +172,162 @@
     transform: translateY(-3.5px);
 }
 
-.beforeAfterContainer{
+.beforeAfterContainer {
     display: flex;
-    flex:1;
+    flex: 1;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.beforeAfterWrapper{
+.beforeAfterWrapper {
     background-color: rgb(255, 255, 255);
-    padding:2.5rem;
+    padding: 2.5rem;
     border-radius: 1rem;
-    margin-left:5rem;
+    margin-left: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
-     animation: float 3s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+    animation: float 3s ease-in-out infinite;
+
 }
 
-.before, .after{
-    color:rgb(224, 64, 64);
+.before,
+.after {
+    color: rgb(224, 64, 64);
     background-color: whitesmoke;
-    padding:.5rem;
+    padding: .5rem;
     border-radius: .3rem;
 
     box-shadow: 2px 2px 5px #bebebe,
         -2px -2px 5px #ffffff;
 
     font-weight: bold;
-
 }
 
-.after{
-    color:green;
+.after {
+    color: green;
 }
 
-.beforeAfterWrapper img{
-width:5rem;
+.beforeAfterWrapper img {
+    width: 5rem;
 }
 
-.miniOne, .miniTwo, .miniThree{
+.miniOne,
+.miniTwo,
+.miniThree {
     position: absolute;
-        color:white;
-      font-weight: bold;
-          opacity: .7;
+    color: white;
+    font-weight: bold;
+    opacity: .7;
 
 }
 
-.miniOne{
-    left:15%;
-      transform: rotate(5deg);
-      font-size:1.5rem;
+.miniOne {
+    left: 15%;
+    transform: rotate(5deg);
+    font-size: 1.5rem;
 }
 
-.miniTwo{
+.miniTwo {
     right: 20%;
-    bottom:25%;
+    bottom: 25%;
     transform: rotate(-5deg);
 }
 
-.miniThree{
+.miniThree {
     right: 30%;
-    top:25%;
+    top: 25%;
     transform: rotate(3deg);
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 
 
-.secondContainer{
-      background: #F5F6FA;
-  padding: 6rem 2rem;
-
-  flex:1;
-  display: flex;
-  flex-direction: column;
-   width: 100%;
-  align-items: center;
-  justify-self: center;
-  margin: 0;
-  padding:0;
-  margin-top:5rem;
-  height: 100%;
+.secondContainer {
+    background: #F5F6FA;
+    padding: 6rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+    min-height: 60vh;
 }
-
-
 
 
 .features {
     display: flex;
     flex-direction: row;
- 
     justify-content: space-evenly;
     align-self: center;
-    gap:1rem;
-
-       width: 100%;
-
+    gap: 1rem;
+    width: 70%;
 }
 
 
-.featuresText{
-        font-family: "Archivo Black", sans-serif;
+.featuresText {
+    font-family: "Archivo Black", sans-serif;
     font-weight: 800;
     font-style: normal;
-    font-size:3rem;
+    font-size: 3rem;
+    width: 30%;
+    text-align: center;
 }
 
 
 .card {
-  position: relative;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  width: 15rem;
-  height: 10rem;
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 2rem 0 2rem 2rem;
+    width: 17rem;
+    height: 10rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
+
+.card img {
+    width: 3rem;
+}
+
+
+.footerContainer {
+    min-height: 18vh;
+    background-color: #0f0f14;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footerContainer a {
+    text-decoration: none;
+    color: white;
+}
+

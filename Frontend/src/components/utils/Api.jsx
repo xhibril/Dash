@@ -1,4 +1,4 @@
-export default async function apiFetch(url, options = {}, nav){
+export default async function apiFetch(url, options = {}, nav, notify){
     const res = await fetch(url, {
         credentials: "include",
         ...options
@@ -13,6 +13,13 @@ export default async function apiFetch(url, options = {}, nav){
     if(res.status == 403){
         nav("/verify/email");
     }
+    
+
  
+        if (res.status == 429){
+        notify("Too many requests. Please try again later","ERROR");
+        return null; 
+    }
+
     return res;
 }

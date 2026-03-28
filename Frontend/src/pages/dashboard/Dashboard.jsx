@@ -23,7 +23,8 @@ export default function Dashboard({ notify }) {
 
   async function fetchVisits() {
     try {
-      const res = await apiFetch("/api/analytics/visits", {}, nav);
+      const res = await apiFetch("/api/analytics/visits", {}, nav, notify);
+    if(!res) return;
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -40,7 +41,8 @@ export default function Dashboard({ notify }) {
 
   async function fetchTrend() {
     try {
-      const res = await apiFetch("/api/analytics/trend", {}, nav);
+      const res = await apiFetch("/api/analytics/trend", {}, nav, notify);
+          if(!res) return;
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -56,7 +58,8 @@ export default function Dashboard({ notify }) {
 
   async function fetchUrls() {
     try {
-      const res = await apiFetch("/api/urls", {}, nav);
+      const res = await apiFetch("/api/urls", {}, nav, notify);
+          if(!res) return;
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -72,7 +75,8 @@ export default function Dashboard({ notify }) {
 
   async function fetchMostPopular() {
     try {
-      const res = await apiFetch("/api/analytics/popular", {}, nav);
+      const res = await apiFetch("/api/analytics/popular", {}, nav, notify);
+          if(!res) return;
 
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
@@ -97,9 +101,10 @@ export default function Dashboard({ notify }) {
       const res = await apiFetch(
         `/api/analytics/chart?id=${selectedUrlId}&period=${selectedPeriod}`,
         {},
-        nav
+        nav, notify
       );
 
+          if(!res) return;
       if (!res.ok) {
         notify("Something went wrong, please try again", "ERROR");
         return;
@@ -131,6 +136,7 @@ export default function Dashboard({ notify }) {
       <div className={styles.mainContainer}>
         <div className={styles.leftContainer}>
           <div className={styles.dashboardTop}>
+  
             <Widgets
               visitsToday={visitsToday}
               trend={trend}
@@ -146,6 +152,7 @@ export default function Dashboard({ notify }) {
               mostPopular={mostPopular}
             />
           </div>
+ 
 
           <Chart
             chartData={chartData}

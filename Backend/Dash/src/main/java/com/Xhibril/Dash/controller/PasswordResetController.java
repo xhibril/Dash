@@ -16,7 +16,7 @@ public class PasswordResetController {
     }
 
     @PostMapping("/password/reset-request")
-    public ResponseEntity<PasswordResetResponse> initResetRequest(@RequestBody PasswordResetRequest resetRequest) throws MessagingException {
+    public ResponseEntity<PasswordResetResponse> initResetRequest(@RequestBody PasswordResetRequest resetRequest) {
         return passwordResetService.initPasswordReset(resetRequest.getEmail());
     }
 

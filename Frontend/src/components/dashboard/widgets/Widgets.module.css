@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+flex:1;
 }
 
 
@@ -14,18 +14,16 @@
     justify-content: center;
     align-self: center;
     gap: 3rem;
+    height: 100%;
 }
 
 .visitsWidget, .popularWidget {
+    display: flex;
+    justify-content: center;
+    font-size:1.2rem;
     max-width: 17rem;
     height: 100%;
- 
-     background-color: white;
     border-radius: 1rem;
-       background-color: white;
-    box-shadow: 2px 2px 5px #bebebe,
-        -2px -2px 5px #ffffff;
-
     text-align: center;
     color: black;
     transition: transform 0.2s ease;

@@ -31,9 +31,10 @@ export default function DeleteAccount({ notify }) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ password })
                 },
-                nav
+                nav, notify
             );
 
+                     if(!res) return;
 
             if (!res.ok) {
                 const data = await res.text();

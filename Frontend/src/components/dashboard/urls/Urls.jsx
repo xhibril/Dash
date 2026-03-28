@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
 import apiFetch from "../../utils/Api.jsx";
 import { useNavigate } from "react-router-dom";
+import global from "../../../css/Global.module.css";
 
 export default function Urls({
   urls,
@@ -103,7 +104,9 @@ export default function Urls({
 
   return (
     <div className={styles.urlContainer}>
-      <FiTrash className={styles.deleteUrl}
+      <div className={`${styles.urlList} ${global.glassyBackground}`}>
+
+         <FiTrash className={styles.deleteUrl}
 
         onDragOver={(e) => e.preventDefault()}
 
@@ -112,8 +115,6 @@ export default function Urls({
           deleteUrl(id);
         }}
       />
-
-      <div className={styles.urlList}>
 
         {urls.length === 0 ? (
           <NoDataAvailable />

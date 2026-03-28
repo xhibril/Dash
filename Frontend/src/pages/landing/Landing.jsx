@@ -4,31 +4,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import arrowDown from "../../../src/assets/pointingDownArrow.svg"
 import statisticsIcon from "../../../src/assets/statisticsIcon.svg"
+import folderIcon from "../../../src/assets/folder.svg"
+import linkIcon from "../../../src/assets/link.svg"
+
 
 export default function Landing() {
 
-    const [text, setText] = useState("");
-    // two i's cuz reacts strict mode skips
-    const textToDisplay = "Liinks, but smarter.";
-
     const nav = useNavigate();
-
-
-
-
-    useEffect(() => {
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i >= textToDisplay.length - 1) {
-                clearInterval(interval);
-                return;
-            }
-            setText(prev => prev + textToDisplay[i]);
-            i++;
-        }, 100);
-
-        return () => clearInterval(interval);
-    }, []);
 
 
     return (
@@ -45,7 +27,7 @@ export default function Landing() {
 
                         <nav className={styles.navBar}>
                             <Link to="/">Home</Link>
-                            <Link to="/">Features</Link>
+                            <a href = "#features">Features</a>
                             <a href="https://github.com/xhibril" target="_blank">GitHub</a>
 
                         </nav>
@@ -53,9 +35,10 @@ export default function Landing() {
 
 
                     <div className={styles.brandDesc}>
-                        <h1>{text}</h1>
+                        <h1>Links, but smarter.</h1>
                         <p> Shorten, share, and track how your links are doing with clean, easy to read stats.</p>
-                        <button className={styles.tryNow}>Try now</button>
+                        <button className={styles.tryNow}
+                        onClick={() => nav("/dashboard")}>Try now</button>
                     </div>
 
 
@@ -85,7 +68,7 @@ export default function Landing() {
 
                         <p className={styles.miniOne}>+1.2k clicks</p>
                         <p className={styles.miniTwo}>38% CTR</p>
-                        <p className={styles.miniThree}>Active now</p>
+                        <p className={styles.miniThree}>Stats</p>
                     </div>
 
                 </div>
@@ -93,14 +76,37 @@ export default function Landing() {
 
 
             <div className={styles.secondContainer}>
-                <h1 className = {styles.featuresText}>FEATURES</h1>
+                <h1 id = "features" className = {styles.featuresText}>FEATURES</h1>
                 <div className={styles.features}>
 
 
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
+                    <div className={styles.card}>
+                        <img src = {statisticsIcon}/>
+                        <h3>Track clicks</h3>
+                        <p>See what’s working instantly.</p>
+                    </div>
+                    <div className={styles.card}>
+                         <img src = {linkIcon}/>
+                            <h3>Create short links fast</h3>
+                         <p>Paste, customize, done.</p>
+                    </div>
+                    <div className={styles.card}>
+                         <img src = {folderIcon}/>
+                    
+                         <h3>Keep everything in one place</h3>
+                         <p>All your links, clean and organized.</p>
+                    </div>
                 </div>
+            </div>
+
+
+            <div className = {styles.footerContainer}>
+
+            <footer> © 2026 Xhibril </footer>
+            <a href = "https://github.com/xhibril" target = "_blank">GitHub</a>
+            <a href = "https://www.linkedin.com/in/xhibril-lleshi/" target = "_blank">LinkedIn </a>
+            <a href="mailto:xhibril.dev@gmail.com" target = "_blank">Email</a>
+
             </div>
         </>
     )

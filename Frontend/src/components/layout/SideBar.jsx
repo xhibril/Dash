@@ -15,7 +15,8 @@ export default function SideBar({ active, toggleSidebar, notify }) {
     if (isLoading) return;
 
     setIsLoading(true);
-    const res = await apiFetch("/api/logout", {}, nav);
+    const res = await apiFetch("/api/logout", {}, nav, notify);
+             if(!res) return;
 
     try {
       if (!res.ok) {

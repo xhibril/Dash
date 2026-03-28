@@ -5,16 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/RateLimiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/FeatureSection.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Footer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Header.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/FeatureSection.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Footer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/DashApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/DashApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/rightArrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Global.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Global.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/support/Support.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/support/Support.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +223,36 @@
       <workItem from="1774082916691" duration="3160000" />
       <workItem from="1774200888577" duration="2638000" />
       <workItem from="1774275940283" duration="3991000" />
+      <workItem from="1774343280582" duration="8000" />
+      <workItem from="1774343343439" duration="1155000" />
+      <workItem from="1774354230783" duration="156000" />
+      <workItem from="1774365100270" duration="3722000" />
+      <workItem from="1774379391919" duration="27000" />
+      <workItem from="1774429467361" duration="23000" />
+      <workItem from="1774430026602" duration="4000" />
+      <workItem from="1774430765159" duration="2000" />
+      <workItem from="1774684849452" duration="1239000" />
+      <workItem from="1774688166967" duration="81000" />
+      <workItem from="1774688312817" duration="68000" />
+      <workItem from="1774688386999" duration="51000" />
+      <workItem from="1774688516084" duration="46000" />
+      <workItem from="1774688574529" duration="22000" />
+      <workItem from="1774688625831" duration="35000" />
+      <workItem from="1774688703463" duration="9000" />
+      <workItem from="1774688736723" duration="46000" />
+      <workItem from="1774688793285" duration="32000" />
+      <workItem from="1774688833197" duration="98000" />
+      <workItem from="1774688999755" duration="10000" />
+      <workItem from="1774689015914" duration="516000" />
+      <workItem from="1774689547170" duration="44000" />
+      <workItem from="1774689617597" duration="8000" />
+      <workItem from="1774689650958" duration="69000" />
+      <workItem from="1774689805178" duration="11000" />
+      <workItem from="1774689826026" duration="42000" />
+      <workItem from="1774689881913" duration="15000" />
+      <workItem from="1774689906809" duration="354000" />
+      <workItem from="1774690275950" duration="1350000" />
+      <workItem from="1774691648108" duration="1371000" />
     </task>
     <servers />
   </component>

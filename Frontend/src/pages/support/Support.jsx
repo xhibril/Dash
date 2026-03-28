@@ -1,9 +1,11 @@
 import styles from "./Support.module.css"
+import global from "../../css/Global.module.css"
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import { useState } from "react";
 import { ValidateEmail, ValidateInput } from "../../components/Utils/Validation.jsx";
 import { useNavigate } from "react-router-dom";
 import apiFetch from "../../components/utils/Api.jsx";
+
 
 
 
@@ -116,7 +118,9 @@ function TicketSubmit({ notify }) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, subject, message })
-            }, nav)
+            }, nav, notify)
+
+            if(!res) return;
 
             if (!res.ok) {
                 notify("Something went wrong, please try again", "ERROR");
@@ -137,7 +141,7 @@ function TicketSubmit({ notify }) {
     return (
 
         <div className={styles.inputContainer}>
-            <div className={styles.inputWrapper}>
+            <div className={`${styles.inputWrapper} ${global.glassyBackground}`}>
 
                 <h2>Get in Touch</h2>
                 <p className={styles.supportText}>Leave your message and we'll get back to you shortly.</p>

@@ -36,7 +36,8 @@ export default function ForgotPassword({ notify }) {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email })
-                }, nav)
+                }, nav, notify)
+                    if(!res) return;
 
 
                 if (!res.ok) {
@@ -72,7 +73,8 @@ export default function ForgotPassword({ notify }) {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, code })
-                }, nav)
+                }, nav, notify)
+                    if(!res) return;
 
 
                 if (!res.ok) {
@@ -116,7 +118,8 @@ export default function ForgotPassword({ notify }) {
                     method: "POST",
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, newPassword, resetToken })
-                }, nav)
+                }, nav, notify)
+                    if(!res) return;
 
 
                 if (!res.ok) {

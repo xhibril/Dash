@@ -55,8 +55,9 @@ export default function UpdatePassword({ notify }) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
-            }, nav)
+            }, nav, notify)
 
+                if(!res) return;
 
             if (!res.ok) {
                 const data = await res.text();

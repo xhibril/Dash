@@ -18,36 +18,23 @@ export default function Chart({ chartData, selectedUrl, domain, period, setSelec
       <div className={styles.chartSettings}>
 
         {selectedUrl && chartData.length !== 0 && (
-            <p className={styles.viewing}>Currently viewing: {domain}{selectedUrl}</p>
-          )}
+          <p className={styles.viewing}>Currently viewing: {domain}{selectedUrl}</p>
+        )}
 
         <button className={`${styles.period} ${period === "DAILY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("DAILY")}>Daily</button>
         <button className={`${styles.period} ${period === "WEEKLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("WEEKLY")}>Weekly</button>
         <button className={`${styles.period} ${period === "MONTHLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("MONTHLY")}>Monthly</button>
       </div>
 
-      {chartData.length === 0 ? (
-        <NoDataAvailable />
-      ) :
-
-        <div className={styles.chartCard}>
-          <ResponsiveContainer padding="2rem" width="100%" height="100%">
+      <div className={styles.chartCard}>
+        {chartData.length === 0 ? (
+          <NoDataAvailable />
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
-
-              <XAxis
-                dataKey="period"
-                axisLine={true}
-                tickLine={false}
-              />
-
-              <YAxis
-                dataKey="visits"
-                axisLine={true}
-                tickLine={false}
-              />
-
+              <XAxis dataKey="period" axisLine tickLine={false} />
+              <YAxis dataKey="visits" axisLine tickLine={false} />
               <Tooltip />
-
               <Line
                 type="monotone"
                 dataKey="visits"
@@ -56,12 +43,12 @@ export default function Chart({ chartData, selectedUrl, domain, period, setSelec
                 dot={{ r: 4 }}
                 activeDot={{ r: 8 }}
               />
-
             </LineChart>
           </ResponsiveContainer>
-        </div>
+        )}
+      </div>
 
-      }
+
 
     </div>
   );
