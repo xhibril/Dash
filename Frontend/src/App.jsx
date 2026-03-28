@@ -9,7 +9,7 @@ import AuthLayout from "./components/layout/AuthLayout.jsx";
 import ForgotPassword from "./pages/auth/forgot-password/FrogotPassword.jsx";
 import VerifyEmail from "./pages/auth/verify-email/VerifyEmail.jsx";
 import { useState, useRef, useEffect } from "react";
-import Notification from "./components/UI/Notification.jsx";
+import Notification from "./components/ui/Notification.jsx";
 import DeleteAccount from "./pages/account-settings//delete-account/DeleteAccount.jsx";
 import UpdatePassword from "./pages/account-settings/update-password/UpdatePassword.jsx";
 import UpdateEmail from "./pages/account-settings/update-email/UpdateEmail.jsx";
