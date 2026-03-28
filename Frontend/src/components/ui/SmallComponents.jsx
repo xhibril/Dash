@@ -1,4 +1,4 @@
-import { FiInfo,FiEye } from "react-icons/fi";
+import { FiInfo, FiEye } from "react-icons/fi";
 import styles from "./SmallComponents.module.css"
 import { useState } from "react";
 import icon from "../../../public/favicon.svg"
@@ -14,12 +14,9 @@ export function NoDataAvailable() {
 
 
 export function PasswordField({ password, setPassword, title }) {
-
     const [showPass, setShowPass] = useState(false);
 
     return (
-
-
         <label className={styles.label} > {title}
             <input className={styles.input}
                 value={password}
@@ -34,17 +31,11 @@ export function PasswordField({ password, setPassword, title }) {
                 onClick={() => setShowPass(!showPass)} />
 
         </label>
-
-
-
     )
 }
 
 
 export function EmailField({ email, setEmail, title }) {
-
-
-
     return (
         <label className={styles.label}> {title}
             <input className={styles.input}
@@ -60,7 +51,6 @@ export function EmailField({ email, setEmail, title }) {
 
 
 export function CodeField({ code, setCode, title }) {
-
     return (
         <label className={styles.label}> {title}
             <input className={styles.input}
@@ -73,7 +63,7 @@ export function CodeField({ code, setCode, title }) {
 }
 
 
-export function BrandHeader({ title}) {
+export function BrandHeader({ title }) {
     return (
         <>
             <div className={styles.titleAndIcon}>

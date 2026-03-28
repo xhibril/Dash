@@ -27,7 +27,7 @@ export default function VerifyEmail({ notify }) {
                 body: JSON.stringify({ email })
             }, nav, notify);
 
-                if(!res) return;
+            if (!res) return;
 
             if (!res.ok) {
                 notify("Failed to send verification email, please try again", "ERROR");

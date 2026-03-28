@@ -44,7 +44,7 @@ export default function UpdateEmail({ notify }) {
                 }, nav, notify
                 )
 
-                if(!emailRes) return;
+                if (!emailRes) return;
 
                 if (!emailRes.ok) {
                     const data = await emailRes.json();
@@ -54,7 +54,7 @@ export default function UpdateEmail({ notify }) {
 
                 notify("Verification code sent", "SUCCESS");
                 setStep("VERIFY");
-            } catch (err){
+            } catch (err) {
                 notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
@@ -84,7 +84,7 @@ export default function UpdateEmail({ notify }) {
                     nav, notify
                 )
 
-                     if(!codeRes) return;
+                if (!codeRes) return;
 
                 const codeResData = await codeRes.json();
 
@@ -92,6 +92,7 @@ export default function UpdateEmail({ notify }) {
                     notify(codeResData.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
+                
                 const token = codeResData.resetToken;
 
                 // change password if code is correct
@@ -102,7 +103,7 @@ export default function UpdateEmail({ notify }) {
                     body: JSON.stringify({ pendingEmail, resetToken: token })
                 }, nav, notify)
 
-                     if(!changeRes) return;
+                if (!changeRes) return;
 
                 const changeResData = await changeRes.json();
 

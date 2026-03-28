@@ -10,8 +10,8 @@ export default function Widgets({ visitsToday, trend, mostPopular, domain }) {
       <div className={styles.widgetsContainer}>
         <div className={styles.widgetsRow}>
 
-          <div className={`${styles.visitsWidget} ${global.glassyBackground}` }>
-            <p className={styles.visitsText}><FiEye className={styles.eyeIcon}/> Visits today</p>
+          <div className={`${styles.visitsWidget} ${global.glassyBackground}`}>
+            <p className={styles.visitsText}><FiEye className={styles.eyeIcon} /> Visits today</p>
 
             {visitsToday === "" ? (
               <NoDataAvailable />
@@ -28,14 +28,14 @@ export default function Widgets({ visitsToday, trend, mostPopular, domain }) {
 
           </div>
 
-          <div className={`${styles.popularWidget} ${global.glassyBackground}` }>
+          <div className={`${styles.popularWidget} ${global.glassyBackground}`}>
 
             <p className={styles.popularText}>
               <FiZap className={styles.zapIcon} />Most popular</p>
 
             {mostPopular === null ? (
-             <NoDataAvailable/>
-         
+              <NoDataAvailable />
+
             ) :
               <>
                 <p className={styles.mostPopular}>{domain}{mostPopular?.shortUrl}</p>

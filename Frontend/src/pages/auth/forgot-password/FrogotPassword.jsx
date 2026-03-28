@@ -37,7 +37,7 @@ export default function ForgotPassword({ notify }) {
                     headers: jsonHeaders,
                     body: JSON.stringify({ email })
                 }, nav, notify)
-                    if(!res) return;
+                if (!res) return;
 
 
                 if (!res.ok) {
@@ -50,8 +50,8 @@ export default function ForgotPassword({ notify }) {
                 setStep("VERIFY");
                 return;
 
-            }catch (err){
-            notify("Something went wrong, please try again", "ERROR");
+            } catch (err) {
+                notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
             }
@@ -74,7 +74,7 @@ export default function ForgotPassword({ notify }) {
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, code })
                 }, nav, notify)
-                    if(!res) return;
+                if (!res) return;
 
 
                 if (!res.ok) {
@@ -89,7 +89,7 @@ export default function ForgotPassword({ notify }) {
                 notify("Verification successful", "SUCCESS");
                 setStep("RESET");
                 return;
-            } catch (err){
+            } catch (err) {
                 notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);
@@ -119,7 +119,7 @@ export default function ForgotPassword({ notify }) {
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, newPassword, resetToken })
                 }, nav, notify)
-                    if(!res) return;
+                if (!res) return;
 
 
                 if (!res.ok) {
@@ -132,7 +132,7 @@ export default function ForgotPassword({ notify }) {
                 setConfirmPassword("")
                 notify("Password changed successfully", "SUCCESS");
                 return;
-            } catch(err) {
+            } catch (err) {
                 notify("Something went wrong, please try again", "ERROR");
             } finally {
                 setIsLoading(false);

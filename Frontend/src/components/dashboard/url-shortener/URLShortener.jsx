@@ -23,11 +23,13 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             return;
         }
 
-        const aliasRes = ValidateAlias(alias);
+        if (alias !== "") {
+            const aliasRes = ValidateAlias(alias);
 
-        if (aliasRes !== "VALID") {
-            notify(aliasRes, "ERROR");
-            return;
+            if (aliasRes !== "VALID") {
+                notify(aliasRes, "ERROR");
+                return;
+            }
         }
 
         setIsLoading(true);
@@ -69,10 +71,10 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
     return (
 
         <form className={`${styles.inputContainer} ${global.glassyBackground}`}
-        onSubmit={(e) =>{
-            e.preventDefault();
-            generateNewUrl();
-        }}>
+            onSubmit={(e) => {
+                e.preventDefault();
+                generateNewUrl();
+            }}>
 
             <label className={styles.inputTitle}>
                 <FiLink />
@@ -85,7 +87,6 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
                 value={originalUrl}
 
             ></input>
-
 
             <label className={styles.inputTitle}>
                 <FiPenTool />
@@ -102,7 +103,7 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             <p className={styles.aliasDesc}>Must be at least 5 characters</p>
 
             <button
-                type = "submit"
+                type="submit"
                 className={`${styles.shortenBtn} ${isLoading ? styles.disabled : ""}`}
                 disabled={isLoading}
 

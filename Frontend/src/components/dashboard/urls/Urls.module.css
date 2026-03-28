@@ -1,40 +1,43 @@
-
 .urlContainer,
 .urlList {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 95vh;
     width: 100%;
-
 }
 
-.urlContainer{
-    gap:1rem;
+.urlContainer {
+    gap: 1rem;
 }
 
 .deleteUrl {
     color: red;
     cursor: pointer;
     font-size: 1.5rem;
-
+    z-index: 999999;
+    position: absolute;
+    top: 1rem;
 }
 
 
 .urlList {
     position: relative;
-    height: 18rem;
+    min-height: 18rem;
+    align-self: flex-end;
     height: 90%;
-    width: 80%;
+    width: 60%;
     padding: 2rem 2.5rem;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
-
     border-radius: 1rem;
     justify-content: flex-start;
     gap: 1rem;
+    overflow-y: auto;
+    padding-top: 3rem;
+
 }
 
 
@@ -43,7 +46,7 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    border-bottom: 1px solid rgba(51,48,48,0.3);
+    border-bottom: 1px solid rgba(51, 48, 48, 0.3);
 }
 
 
@@ -86,3 +89,16 @@
     margin-left: 1rem;
 }
 
+@media (max-width: 1024px) {
+
+    .urlList {
+        align-self: center;
+        margin-top: 2rem;
+        height: 18rem;
+    }
+
+    .urlContainer {
+        padding-bottom: 5rem;
+        height: auto;
+    }
+}

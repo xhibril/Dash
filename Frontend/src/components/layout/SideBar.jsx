@@ -16,7 +16,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
 
     setIsLoading(true);
     const res = await apiFetch("/api/logout", {}, nav, notify);
-             if(!res) return;
+    if (!res) return;
 
     try {
       if (!res.ok) {
@@ -45,7 +45,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
     <>
       <div className={styles.sideBarContainer}>
         <button onClick={toggleSidebar} className={`${styles.sideBarBtn} ${active ? styles.active : ""}`}>
-          <FiMenu />
+          <FiMenu className={styles.sideBarBtnIcon} />
         </button>
 
         <div className={`${styles.sideBar} ${active ? styles.active : ""}`}>

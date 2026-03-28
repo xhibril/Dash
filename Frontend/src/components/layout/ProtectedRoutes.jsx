@@ -3,8 +3,6 @@ import { Outlet, Navigate } from "react-router-dom";
 export default function ({ isAuth }) {
 
     // if user is not logged redirect to login
-
-
     if(isAuth === null) {
         return;
     }

@@ -21,9 +21,11 @@ export default function Chart({ chartData, selectedUrl, domain, period, setSelec
           <p className={styles.viewing}>Currently viewing: {domain}{selectedUrl}</p>
         )}
 
-        <button className={`${styles.period} ${period === "DAILY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("DAILY")}>Daily</button>
-        <button className={`${styles.period} ${period === "WEEKLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("WEEKLY")}>Weekly</button>
-        <button className={`${styles.period} ${period === "MONTHLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("MONTHLY")}>Monthly</button>
+        <div className={styles.periodWrapper}>
+          <button className={`${styles.period} ${period === "DAILY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("DAILY")}>Daily</button>
+          <button className={`${styles.period} ${period === "WEEKLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("WEEKLY")}>Weekly</button>
+          <button className={`${styles.period} ${period === "MONTHLY" ? styles.selected : ""}`} onClick={() => setSelectedPeriod("MONTHLY")}>Monthly</button>
+        </div>
       </div>
 
       <div className={styles.chartCard}>
@@ -47,9 +49,6 @@ export default function Chart({ chartData, selectedUrl, domain, period, setSelec
           </ResponsiveContainer>
         )}
       </div>
-
-
-
     </div>
   );
 }

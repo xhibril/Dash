@@ -34,7 +34,7 @@ export default function DeleteAccount({ notify }) {
                 nav, notify
             );
 
-                     if(!res) return;
+            if (!res) return;
 
             if (!res.ok) {
                 const data = await res.text();
@@ -43,9 +43,9 @@ export default function DeleteAccount({ notify }) {
             }
 
             nav("/");
-        }catch (err){
+        } catch (err) {
             notify("Something went wrong, please try again", "ERROR");
-        
+
         } finally {
             setIsLoading(false);
         }

@@ -4,10 +4,8 @@ import { Outlet } from "react-router-dom";
 
 import "../../index.css";
 
-export default function Layout({notify}) {
-  const [active, setActive] = useState(true);
-
-
+export default function Layout({ notify }) {
+  const [active, setActive] = useState(false);
   const toggleSidebar = () => setActive(!active);
 
   return (
@@ -16,7 +14,7 @@ export default function Layout({notify}) {
       <div className="layout">
         <SideBar active={active} toggleSidebar={toggleSidebar} notify={notify} />
         <div className="content">
-          <Outlet/>
+          <Outlet />
         </div>
       </div>
     </>

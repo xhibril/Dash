@@ -1,17 +1,16 @@
 export function ValidatePassword(password) {
 
-    if(!password){
+    if (!password) {
         return "Input cannot be empty";
     }
 
     const minLength = 8;
     const maxLength = 32;
 
-
     if (password.length < minLength) return "Password must be longer than 8 characters.";
     if (password.length > maxLength) return "Password must be shorter than 32 characters.";
 
-        if(ValidateInput(password, "PASSWORD") !== "VALID"){
+    if (ValidateInput(password, "PASSWORD") !== "VALID") {
         return "Invalid Input";
     }
 
@@ -29,13 +28,13 @@ export function ValidatePassword(password) {
 
 export function ValidateEmail(email) {
 
-    if(!email){
+    if (!email) {
         return "Input cannot be empty"
     }
-    
+
     email = email.trim();
 
-      if(ValidateInput(email, "EMAIL") !== "VALID"){
+    if (ValidateInput(email, "EMAIL") !== "VALID") {
         return "Invalid Input";
     }
 
@@ -49,7 +48,7 @@ export function ValidateEmail(email) {
 
 export function ValidateCode(code, maxDigitsAllowed) {
 
-    if(!code){
+    if (!code) {
         return "Input cannot be empty";
     }
 
@@ -64,29 +63,29 @@ export function ValidateCode(code, maxDigitsAllowed) {
 
 
 
-export function ValidateURL(url){
+export function ValidateURL(url) {
 
-    if(!url) return "URL is required";
+    if (!url) return "URL is required";
 
-    if(url.length < 10) return "URL must be between 10 and 1024 characters";
-    if(url.length > 1024) return "URL must be between 10 and 1024 characters";
+    if (url.length < 10) return "URL must be between 10 and 1024 characters";
+    if (url.length > 1024) return "URL must be between 10 and 1024 characters";
 
     const regex = /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}/;
 
 
-    if(!regex.test(url)) return "Please enter a valid URL";
+    if (!regex.test(url)) return "Please enter a valid URL";
     return "VALID";
 
 }
 
 
-export function ValidateAlias(alias){
+export function ValidateAlias(alias) {
 
-    if(alias.length < 4) return "Alias must be at least 5 characters";
+    if (alias.length < 4) return "Alias must be at least 5 characters";
 
-    if(alias.length > 10) return "Alias must be less than 10 characters";
-    
-    if(ValidateInput(alias, "ALIAS") !== "VALID") return "Invalid alias";
+    if (alias.length > 10) return "Alias must be less than 10 characters";
+
+    if (ValidateInput(alias, "ALIAS") !== "VALID") return "Invalid alias";
 
     return "VALID";
 }

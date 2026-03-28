@@ -106,15 +106,15 @@ export default function Urls({
     <div className={styles.urlContainer}>
       <div className={`${styles.urlList} ${global.glassyBackground}`}>
 
-         <FiTrash className={styles.deleteUrl}
+        <FiTrash className={styles.deleteUrl}
 
-        onDragOver={(e) => e.preventDefault()}
+          onDragOver={(e) => e.preventDefault()}
 
-        onDrop={(e) => {
-          const id = e.dataTransfer.getData("id");
-          deleteUrl(id);
-        }}
-      />
+          onDrop={(e) => {
+            const id = e.dataTransfer.getData("id");
+            deleteUrl(id);
+          }}
+        />
 
         {urls.length === 0 ? (
           <NoDataAvailable />

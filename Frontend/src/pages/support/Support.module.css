@@ -1,19 +1,18 @@
 .supportContainer {
-    display: flex;
+    display: grid;
     width: 100%;
     height: 100%;
-    justify-content: space-around;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
 
 }
 
-
 .faqContainer {
     display: flex;
-    width:100%;
+    width: 100%;
     flex-direction: column;
     gap: 2rem;
-    align-items:center;
+    align-items: center;
     justify-content: center;
 }
 
@@ -56,9 +55,8 @@
 
 
 /* ticket submit */
-
 .inputContainer {
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,32 +73,34 @@
     flex-direction: column;
 }
 
-.supportText{
+.supportText {
     font-size: .9rem;
     margin: 0;
     margin-bottom: 1rem;
 }
 
 
-.supportTop{
+.supportTop {
     display: flex;
     flex-direction: row;
-    gap:1rem;
+    gap: 1rem;
 }
 
-.supportInput{
+.supportInput {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.supportInput input, .supportInput textarea {
-      background-color: rgb(255, 255, 255,0.1);
+.supportInput input,
+.supportInput textarea {
+    background-color: rgb(255, 255, 255, 0.1);
 }
 
-.input, .textArea{
+.input,
+.textArea {
     border: transparent;
-    background-color: rgb(0, 0, 0,0.05);
+    background-color: rgb(0, 0, 0, 0.05);
 }
 
 .input {
@@ -124,7 +124,7 @@
     width: 100%;
     height: 5rem;
     padding-left: 0.75rem;
-    padding-top:.5rem;
+    padding-top: .5rem;
     border-radius: .5rem;
     font-family: sans-serif;
 }
@@ -147,4 +147,43 @@
 
 .submit:hover {
     transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+    .supportContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .supportContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .inputContainer {
+        max-width: 90%;
+    }
+
+    .inputWrapper,
+    .supportTop {
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .supportContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .inputContainer {
+        max-width: 90%;
+    }
+
+    .inputWrapper,
+    .supportTop {
+        flex-direction: column;
+    }
 }

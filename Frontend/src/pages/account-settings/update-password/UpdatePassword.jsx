@@ -41,7 +41,7 @@ export default function UpdatePassword({ notify }) {
         }
 
 
-        if(oldPassword === newPassword){
+        if (oldPassword === newPassword) {
             notify("New password must be different from the old password", "ERROR");
             return;
         }
@@ -57,7 +57,7 @@ export default function UpdatePassword({ notify }) {
                 body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
             }, nav, notify)
 
-                if(!res) return;
+            if (!res) return;
 
             if (!res.ok) {
                 const data = await res.text();
@@ -70,7 +70,7 @@ export default function UpdatePassword({ notify }) {
             setNewPassword("");
             setConfirmPassword("");
 
-        }catch (err){
+        } catch (err) {
             notify("Something went wrong, please try again", "ERROR");
         } finally {
             setIsLoading(false);
@@ -89,8 +89,8 @@ export default function UpdatePassword({ notify }) {
                     update()
                 }}>
 
-              
-              <BrandHeader title = "Update Password"/>
+
+                <BrandHeader title="Update Password" />
 
                 <PasswordField
                     password={oldPassword}

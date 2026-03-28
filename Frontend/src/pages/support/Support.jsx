@@ -120,7 +120,7 @@ function TicketSubmit({ notify }) {
                 body: JSON.stringify({ email, subject, message })
             }, nav, notify)
 
-            if(!res) return;
+            if (!res) return;
 
             if (!res.ok) {
                 notify("Something went wrong, please try again", "ERROR");

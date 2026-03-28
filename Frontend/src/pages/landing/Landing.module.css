@@ -6,25 +6,37 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: row;
+display: grid;
+grid-template-rows: 5rem 1fr;
     height: 100%;
     width: 100%;
 }
 
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
 
 .leftContainer,
 .rightContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
+
 }
+
+
+
 
 .topRow {
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 5rem;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .brandHeader {
@@ -138,7 +150,7 @@
 
 .loginBtn {
     background-color: white;
-        box-shadow:
+    box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.08),
         inset 0 2px 2px rgba(0, 0, 0, 0.4);
 }
@@ -146,7 +158,7 @@
 .signUpBtn {
     background: linear-gradient(135deg, #7C3AED, #A855F7);
     color: white;
-        box-shadow:
+    box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.08),
         inset 0 2px 2px rgba(255, 255, 255, 0.4);
 }
@@ -177,7 +189,7 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    position: relative;
+
 }
 
 .beforeAfterWrapper {
@@ -191,6 +203,8 @@
     align-items: center;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
     animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
 
 }
 
@@ -222,24 +236,25 @@
     color: white;
     font-weight: bold;
     opacity: .7;
+    z-index: 2;
+
 
 }
 
 .miniOne {
-    left: 15%;
+    left: -8rem;
     transform: rotate(5deg);
-    font-size: 1.5rem;
 }
 
 .miniTwo {
-    right: 20%;
-    bottom: 25%;
+    bottom: -3.5rem;
+    right: 0;
     transform: rotate(-5deg);
 }
 
 .miniThree {
-    right: 30%;
-    top: 25%;
+    top: 0;
+    right: -4rem;
     transform: rotate(3deg);
 }
 
@@ -262,15 +277,18 @@
 .secondContainer {
     background: #F5F6FA;
     padding: 6rem 2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
+
+    display: grid;
+
     width: 100%;
-    align-items: center;
-    justify-self: center;
+    place-items: center;
     margin: 0;
     padding: 0;
-    min-height: 60vh;
+    grid-template-columns: 1fr 3fr;
+
+    padding-top: 4rem;
+    padding-bottom:4rem;
+
 }
 
 
@@ -331,3 +349,197 @@
     color: white;
 }
 
+@media (max-width: 1024px) {
+    .mainContainer {
+        background-color: #F5F6FA;
+       grid-template-columns: auto;
+     
+       background-image: none;
+       place-content: center;
+       place-items: center;
+    
+    height: auto;
+    
+    }
+
+    .beforeAfterContainer{
+            display: flex;
+    justify-content: center;
+    align-items: center;
+
+    }
+
+    .beforeAfterWrapper{
+        margin: 0;
+    }
+
+    .content {
+        flex-direction: column;
+        gap:3rem;
+        padding-top:3rem;
+    }
+
+
+
+
+    .topRow {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 0;
+
+    }
+
+    .navBar {
+        gap: 2rem;
+
+
+        padding-left: 2rem;
+    }
+
+
+
+
+
+    .miniOne,
+    .miniTwo,
+    .miniThree {
+        color: black;
+    }
+
+    .secondContainer {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .mainContainer{
+        grid-template-columns: 1fr;
+        padding-top:3rem;
+    }
+
+    .leftContainer{
+        padding-top:5rem;
+    }
+
+    .rightContainer,
+    .beforeAfterContainer {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .beforeAfterWrapper {
+        margin: 0;
+    }
+
+    .topRow {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+
+
+    }
+
+    .authRow {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        padding-left: 2rem;
+
+    }
+
+
+
+    .navBar {
+        margin-left: 3rem;
+    }
+
+    .features {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .featuresText {
+        text-align: center;
+
+
+        width: 100%
+    }
+
+    .footerContainer {
+        margin-top: 1rem;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+
+    .mainContainer{
+     grid-template-columns: 1fr;
+     padding-top:3rem;
+
+    }
+    .navBar{
+        margin:0;
+        width:100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        gap: 2rem;
+    }
+
+    .secondContainer {
+        margin-top: 3rem;
+    }
+
+    .leftContainer {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .topRow {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+
+
+    }
+    
+    .brandDesc {
+        max-width: 80%;
+        flex-wrap: wrap;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+
+    }
+
+    .beforeAfterContainer {
+        max-width: 80%;
+    }
+
+    .miniOne,
+    .miniThree,
+    .miniTwo {
+        display: none;
+    }
+
+}

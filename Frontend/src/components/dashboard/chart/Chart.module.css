@@ -4,10 +4,11 @@
     flex-direction: column;
     border-radius: 1.2rem;
     align-items: center;
-    width: 80%;
-    flex: 1;
+    min-width: 80%;
+    max-width: 100%;
+    min-height: 25rem;
+    height: 100%;
     border-radius: .5rem;
-    padding-top: 1rem;
     padding-top: 1rem;
 }
 
@@ -28,6 +29,13 @@
     height: 2rem;
 }
 
+.periodWrapper {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
 .period {
     background-color: transparent;
     border: none;
@@ -37,20 +45,54 @@
 
 
 .period.selected {
-    color:green;
+    color: green;
 
 }
 
 .viewing {
-
-    align-self: flex-start;
-    width: 75%;
+    width: 100%;
+    text-align: center;
     opacity: .7;
     font-size: .8rem;
     margin-bottom: 1rem;
 }
 
-
 *:focus {
     outline: none;
+}
+
+@media (max-width: 1024px) {
+    .chartCard {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .viewing {
+        text-align: start;
+    }
+
+    .chartSettings {
+        flex-direction: row;
+        padding-bottom: 1rem;
+        justify-content: center;
+    }
+
+    .chartCard {
+        margin-left: -2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chartSettings {
+        flex-direction: column;
+        padding-bottom: 1rem;
+        justify-content: center;
+
+    }
+
+    .periodWrapper {
+        align-items: center;
+        justify-content: center;
+    }
 }

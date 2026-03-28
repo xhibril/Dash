@@ -13,6 +13,5 @@ export default function AuthLayout({ isAuth }) {
     return <Navigate to="/dashboard" replace />;
   }
 
-
   return <Outlet />;
 }
