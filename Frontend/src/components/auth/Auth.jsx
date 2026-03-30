@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
 import global from "../../css/Global.module.css"
 
-import { ValidateEmail, ValidatePassword } from "../Utils/Validation.jsx";
-import { PasswordField, EmailField, BrandHeader } from "../UI/SmallComponents.jsx";
+import { ValidateEmail, ValidatePassword } from "../utils/Validation.jsx";
+import { PasswordField, EmailField, BrandHeader } from "../ui/SmallComponents.jsx";
 import apiFetch from "../utils/Api.jsx";
 
 export default function Auth({ mode, notify, setIsAuth }) {
