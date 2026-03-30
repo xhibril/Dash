@@ -15,6 +15,11 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
     const nav = useNavigate();
 
     async function generateNewUrl() {
+            console.log(import.meta.env.VITE_API_URL);
+                console.log(import.meta.env.VITE_API_URL);
+                    console.log(import.meta.env.VITE_API_URL);
+                    console.log(import.meta.env)
+                    console.log(import.meta.env)
         if (isLoading) return;
 
         const urlRes = ValidateURL(originalUrl);

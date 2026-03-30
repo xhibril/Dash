@@ -23,6 +23,7 @@ public class JwtService {
         SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
 
         JwtBuilder builder = Jwts.builder()
+
                 .setSubject(subject)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plusSeconds(time)));
