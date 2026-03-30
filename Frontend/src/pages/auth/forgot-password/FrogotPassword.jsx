@@ -1,7 +1,7 @@
 import global from "../../../css/Global.module.css";
 import { useState } from "react";
-import { ValidateEmail, ValidateCode, ValidatePassword } from "../../../components/Utils/Validation.jsx";
-import { PasswordField, EmailField, CodeField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
+import { ValidateEmail, ValidateCode, ValidatePassword } from "../../../components/utils/Validation.jsx";
+import { PasswordField, EmailField, CodeField, BrandHeader } from "../../../components/ui/SmallComponents.jsx";
 import apiFetch from "../../../components/utils/Api.jsx";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import styles from "./Chart.module.css";
-import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
+import { NoDataAvailable } from "../../ui/SmallComponents.jsx";
 
 import {
   ResponsiveContainer,

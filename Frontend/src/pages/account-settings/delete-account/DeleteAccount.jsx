@@ -1,6 +1,6 @@
 import styles from "./DeleteAccount.module.css"
 import global from "../../../css/Global.module.css"
-import { PasswordField } from "../../../components/UI/SmallComponents.jsx"
+import { PasswordField } from "../../../components/ui/SmallComponents.jsx"
 import { FiAlertTriangle } from "react-icons/fi"
 import { ValidatePassword } from "../../../components/utils/Validation.jsx"
 import apiFetch from "../../../components/utils/Api.jsx"

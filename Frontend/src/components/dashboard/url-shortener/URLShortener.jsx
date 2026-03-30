@@ -2,7 +2,7 @@ import styles from "./URLShortener.module.css";
 import { useState } from "react";
 import global from "../../../css/Global.module.css";
 import { FiLink, FiPenTool } from "react-icons/fi";
-import { ValidateAlias, ValidateURL } from "../../Utils/Validation.jsx";
+import { ValidateAlias, ValidateURL } from "../../utils/Validation.jsx";
 import apiFetch from "../../utils/Api.jsx";
 import { useNavigate } from "react-router-dom";
 

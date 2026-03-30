@@ -1,5 +1,5 @@
 import styles from "./Widgets.module.css";
-import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
+import { NoDataAvailable } from "../../ui/SmallComponents.jsx";
 import { FiZap, FiEye } from "react-icons/fi";
 import global from "../../../css/Global.module.css";
 

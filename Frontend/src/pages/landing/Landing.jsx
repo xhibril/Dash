@@ -1,6 +1,5 @@
 import styles from "./Landing.module.css";
 import siteIcon from "../../../public/favicon.svg";
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import arrowDown from "../../../src/assets/pointingDownArrow.svg"
 import statisticsIcon from "../../../src/assets/statisticsIcon.svg"
@@ -9,14 +8,11 @@ import linkIcon from "../../../src/assets/link.svg"
 
 
 export default function Landing() {
-
     const nav = useNavigate();
-
 
     return (
         <>
             <div className={styles.mainContainer}>
-
                 <div className={styles.topRow}>
                     <div className={styles.brandHeader}>
                         <img src={siteIcon}></img>
@@ -38,44 +34,34 @@ export default function Landing() {
                     </div>
                 </div>
 
-<div className = {styles.content}>
-                <div className={styles.leftContainer}>
-                    <div className={styles.brandDesc}>
-                        <h1>Links, but smarter.</h1>
-                        <p> Shorten, share, and track how your links are doing with clean, easy to read stats.</p>
-                        <button className={styles.tryNow}
-                            onClick={() => nav("/dashboard")}>Try now</button>
-                    </div>
-
-
-                </div>
-
-
-
-                <div className={styles.rightContainer}>
-
-
-                    <div className={styles.beforeAfterContainer}>
-
-
-                        <div className={styles.beforeAfterWrapper}>
-
-                            <p className={styles.before}>https://randomsite.com/very-long-link...</p>
-                            <img src={arrowDown} />
-                            <p className={styles.after}>dash.com/track123</p>
-
-                            <p className={styles.miniOne}>+1.2k clicks</p>
-                            <p className={styles.miniTwo}>38% CTR</p>
-                            <p className={styles.miniThree}>Stats</p>
+                <div className={styles.content}>
+                    <div className={styles.leftContainer}>
+                        <div className={styles.brandDesc}>
+                            <h1>Links, but smarter.</h1>
+                            <p> Shorten, share, and track how your links are doing with clean, easy to read stats.</p>
+                            <button className={styles.tryNow}
+                                onClick={() => nav("/dashboard")}>Try now</button>
                         </div>
-
-
-
                     </div>
 
+
+
+                    <div className={styles.rightContainer}>
+                        <div className={styles.beforeAfterContainer}>
+                            <div className={styles.beforeAfterWrapper}>
+
+                                <p className={styles.before}>https://randomsite.com/very-long-link...</p>
+                                <img src={arrowDown} />
+                                <p className={styles.after}>dash.com/track123</p>
+
+                                <p className={styles.miniOne}>+1.2k clicks</p>
+                                <p className={styles.miniTwo}>38% CTR</p>
+                                <p className={styles.miniThree}>Stats</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-</div>
 
             <div className={styles.secondContainer}>
                 <h1 id="features" className={styles.featuresText}>FEATURES</h1>
@@ -108,7 +94,6 @@ export default function Landing() {
                 <a href="https://github.com/xhibril" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/xhibril-lleshi/" target="_blank">LinkedIn </a>
                 <a href="mailto:xhibril.dev@gmail.com" target="_blank">Email</a>
-
             </div>
         </>
     )

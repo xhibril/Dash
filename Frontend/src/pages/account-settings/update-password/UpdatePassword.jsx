@@ -1,5 +1,5 @@
 import global from "../../../css/Global.module.css";
-import { PasswordField, BrandHeader } from "../../../components/UI/SmallComponents.jsx";
+import { PasswordField, BrandHeader } from "../../../components/ui/SmallComponents.jsx";
 import { ValidatePassword } from "../../../components/utils/Validation.jsx";
 import apiFetch from "../../../components/utils/Api.jsx";
 import { useState } from "react";

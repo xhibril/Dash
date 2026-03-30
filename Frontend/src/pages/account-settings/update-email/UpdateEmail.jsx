@@ -1,6 +1,6 @@
 import styles from "./UpdateEmail.module.css"
 import global from "../../../css/Global.module.css"
-import { EmailField, PasswordField, CodeField, BrandHeader } from "../../../components/uI/SmallComponents.jsx"
+import { EmailField, PasswordField, CodeField, BrandHeader } from "../../../components/ui/SmallComponents.jsx"
 import { ValidateEmail, ValidatePassword, ValidateCode } from "../../../components/utils/Validation.jsx"
 import apiFetch from "../../../components/utils/Api.jsx"
 import { useState } from "react"

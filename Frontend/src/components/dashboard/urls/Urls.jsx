@@ -1,7 +1,7 @@
 import styles from "./Urls.module.css";
 import { FiTrash } from "react-icons/fi";
 import { useState } from "react";
-import { NoDataAvailable } from "../../UI/SmallComponents.jsx";
+import { NoDataAvailable } from "../../ui/SmallComponents.jsx";
 import apiFetch from "../../utils/Api.jsx";
 import { useNavigate } from "react-router-dom";
 import global from "../../../css/Global.module.css";

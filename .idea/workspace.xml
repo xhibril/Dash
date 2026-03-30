@@ -5,35 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/RateLimiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/DashApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/DashApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/rightArrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/url-shortener/URLShortener.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/urls/Urls.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/layout/SideBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/css/Global.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/css/Global.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/delete-account/DeleteAccount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-email/UpdateEmail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/account-settings/update-password/UpdatePassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/forgot-password/FrogotPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/auth/verify-email/VerifyEmail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/dashboard/Dashboard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/support/Support.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/support/Support.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/support/Support.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +224,9 @@
       <workItem from="1774689881913" duration="15000" />
       <workItem from="1774689906809" duration="354000" />
       <workItem from="1774690275950" duration="1350000" />
-      <workItem from="1774691648108" duration="1371000" />
+      <workItem from="1774691648108" duration="5966000" />
+      <workItem from="1774778832053" duration="7000" />
+      <workItem from="1774778971101" duration="6000" />
     </task>
     <servers />
   </component>

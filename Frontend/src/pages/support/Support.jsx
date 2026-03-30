@@ -2,7 +2,7 @@ import styles from "./Support.module.css"
 import global from "../../css/Global.module.css"
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import { useState } from "react";
-import { ValidateEmail, ValidateInput } from "../../components/Utils/Validation.jsx";
+import { ValidateEmail, ValidateInput } from "../../components/utils/Validation.jsx";
 import { useNavigate } from "react-router-dom";
 import apiFetch from "../../components/utils/Api.jsx";
 
