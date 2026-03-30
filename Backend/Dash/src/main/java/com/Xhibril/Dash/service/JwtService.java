@@ -38,7 +38,7 @@ public class JwtService {
     public void saveToken(String tokenName, String token, int time, HttpServletResponse res){
         Cookie cookie = new Cookie(tokenName, token);
         cookie.setHttpOnly(true);
-        //  cookie.setSecure(true);
+        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setMaxAge(time);
         res.addCookie(cookie);
