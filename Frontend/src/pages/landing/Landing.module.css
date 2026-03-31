@@ -441,6 +441,7 @@ grid-template-rows: auto 1fr;
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
+        text-align: center;
         align-items: center;
         justify-content: center;
 
@@ -454,7 +455,7 @@ grid-template-rows: auto 1fr;
         justify-content: center;
         align-items: center;
        
-          width: fit-content;   /* 🔥 THIS IS THE REAL FIX */
+          width: fit-content; 
     margin: 0 auto;   
 
        
@@ -520,6 +521,7 @@ grid-template-rows: auto 1fr;
         gap: 1rem;
         flex-wrap: wrap;
         align-items: center;
+        text-align: center;
         justify-content: center;
 
 
