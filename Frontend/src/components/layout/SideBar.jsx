@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import apiFetch from "../utils/Api.jsx";
 
-export default function SideBar({ active, toggleSidebar, notify }) {
+export default function SideBar({ active, toggleSidebar, notify, setIsAuth }) {
 
   const [profileActive, setProfileActive] = useState(false);
   const nav = useNavigate();
@@ -19,12 +19,12 @@ export default function SideBar({ active, toggleSidebar, notify }) {
     const res = await apiFetch("/api/logout", {}, nav, notify);
     if (!res) return;
 
-  
       if (!res.ok) {
         notify("Logout failed. Please try again", "ERROR");
         return;
       }
 
+      setIsAuth(false);
       nav("/");
 
     } catch (err) {

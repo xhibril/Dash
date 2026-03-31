@@ -21,6 +21,7 @@ export default function App() {
   const [type, setType] = useState("")
   const [id, setId] = useState("")
   const [isAuth, setIsAuth] = useState(null);
+  const [checkedAuth, setCheckedAuth] = useState(false);
 
   let messageTimeout = useRef(null);
   function notify(msg, t) {
@@ -47,7 +48,8 @@ fetch("https://api.xhibril.dev/api/auth/status", {
 })
       .then(res => setIsAuth(res.ok))
       .catch(() => setIsAuth(false))
-  }, [])
+      .finally(() => setCheckedAuth(true))
+  }, [checkedAuth])
 
 
   return (
@@ -68,7 +70,7 @@ fetch("https://api.xhibril.dev/api/auth/status", {
             <Route path="/update-email" element={<UpdateEmail notify={notify} />} />
 
 
-            <Route element={<Layout notify={notify} />}>
+            <Route element={<Layout notify={notify} setIsAuth = {setIsAuth}/>}>
               <Route path="/dashboard" element={<Dashboard notify={notify} />} />
               <Route path="/support" element={<Support notify={notify} />} />
             </Route>
