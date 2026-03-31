@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Dash/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/configs/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/PasswordResetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/PasswordResetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/service/PasswordResetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/chart/Chart.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/dashboard/widgets/Widgets.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/Notification.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/Notification.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ui/SmallComponents.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,7 +235,7 @@
       <workItem from="1774944875490" duration="860000" />
       <workItem from="1774945815607" duration="72000" />
       <workItem from="1774945936412" duration="255000" />
-      <workItem from="1774946198205" duration="12082000" />
+      <workItem from="1774946198205" duration="12445000" />
     </task>
     <servers />
   </component>
