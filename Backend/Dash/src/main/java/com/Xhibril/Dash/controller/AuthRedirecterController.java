@@ -19,9 +19,9 @@ public class AuthRedirecterController {
     @GetMapping("/email/verify/{token}")
     public String verifyUser(@PathVariable String token) {
         if (authService.verifyUser(token)) {
-            return "redirect:http://localhost:5173/login?verified=true";
+            return "redirect:https://dash.xhibril.dev/login?verified=true";
         } else {
-            return "redirect:http://localhost:5173/login?verified=false";
+            return "redirect:https://dash.xhibril.dev/login?verified=false";
         }
     }
 }

@@ -22,8 +22,6 @@ public class EmailService {
     private final String apiKey = System.getenv("SMTP2GO_API_KEY");
     private final String fromEmail = System.getenv("FROM_EMAIL");
 
-    private String baseUrl = "dash.xhibril.dev";
-
     @Async
     public void sendVerificationEmail(String email) {
         Map<String, Object> claims = new HashMap<>();
@@ -31,7 +29,7 @@ public class EmailService {
 
         String token = jwtService.generateToken("verificationToken", claims, 600);
         String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);
-        String link = baseUrl + "/email/check-token?token=" + encodedToken;
+        String link = "https://api.xhibril.dev/api/email/verify/" + encodedToken;
 
         try {
             String html = """
