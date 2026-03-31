@@ -70,17 +70,19 @@
 }
 
 @media (max-width: 768px) {
-    .viewing {
-        text-align: start;
-    }
 
     .chartsContainer{
         width: 100%;
     }
     
-       .periodWrapper, .viewing {
+       .periodWrapper{
         align-items: center;
         justify-content: center;
+    
+    }
+
+    .viewing{
+        text-align: center;
     }
 
     .chartSettings {
