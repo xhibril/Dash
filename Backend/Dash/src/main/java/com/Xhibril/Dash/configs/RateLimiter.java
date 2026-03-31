@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class RateLimiter extends OncePerRequestFilter {
 
+
+
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
 
     private final AuthService authService;
@@ -33,6 +35,10 @@ public class RateLimiter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
+        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         Long userId = authService.getAuthenticatedId(request);
         String ip = request.getRemoteAddr();
