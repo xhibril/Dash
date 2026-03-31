@@ -29,7 +29,7 @@ public class EmailService {
 
         String token = jwtService.generateToken("verificationToken", claims, 600);
         String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);
-        String link = "https://api.xhibril.dev/api/email/verify/" + encodedToken;
+        String link = "http://localhost:5173/api/email/verify/" + encodedToken;
 
         try {
             String html = """

@@ -1,6 +1,7 @@
 package com.Xhibril.Dash.controller;
 import com.Xhibril.Dash.dto.auth.PasswordResetRequest;
 import com.Xhibril.Dash.dto.auth.PasswordResetResponse;
+import com.Xhibril.Dash.service.AuthService;
 import com.Xhibril.Dash.service.PasswordResetService;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class PasswordResetController {
+
+
 
     private final PasswordResetService passwordResetService;
     public PasswordResetController(PasswordResetService passwordResetService){

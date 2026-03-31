@@ -22,15 +22,18 @@ public class PasswordResetService {
     private final UserRepository userRepo;
     private final EmailService emailService;
     private final PasswordEncoder encoder;
+    private final AuthService authService;
 
     public PasswordResetService(PasswordResetRepository passwordResetRepo,
                                 UserRepository userRepo,
                                 EmailService emailService,
-                                PasswordEncoder encoder){
+                                PasswordEncoder encoder,
+                                AuthService authService){
         this.passwordResetRepo = passwordResetRepo;
         this.userRepo = userRepo;
         this.emailService = emailService;
         this.encoder = encoder;
+        this.authService = authService;
     }
 
 
@@ -135,6 +138,11 @@ public class PasswordResetService {
             // check if reset token is valid
             if(!resetToken.equals(passwordReset.getResetToken())){
                 return ResponseEntity.badRequest().body(new PasswordResetResponse(("Invalid request")));
+            }
+
+
+            if(!authService.isPasswordNew(newPassword, email)){
+                return ResponseEntity.badRequest().body(new PasswordResetResponse("New password cannot be the same as old"));
             }
 
             userRepo.updatePassword(encoder.encode(newPassword), email);

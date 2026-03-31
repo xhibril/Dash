@@ -76,6 +76,11 @@ public class AccountService {
                 return ResponseEntity.badRequest().body("Incorrect password");
             }
 
+
+            if(!authService.isPasswordNew(newPassword, user.getEmail())){
+                return ResponseEntity.badRequest().body("New password cannot be the same as old");
+            }
+
             userRepo.updatePassword(encoder.encode(newPassword), user.getEmail());
             return ResponseEntity.ok().body("Password successfully changed");
         }

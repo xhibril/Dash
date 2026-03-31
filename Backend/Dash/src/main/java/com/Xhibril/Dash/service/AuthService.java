@@ -125,4 +125,18 @@ public class AuthService {
         res.addCookie(cookie);
         return ResponseEntity.ok().build();
     }
+
+
+    // check if old pass matches new one
+    public boolean isPasswordNew(String newPassword, String email){
+        String oldPassword = userRepo.getStoredPassword(email);
+
+        if(encoder.matches(newPassword, oldPassword)){
+            return false;
+        }
+        return true;
+    }
+
+
+
 }

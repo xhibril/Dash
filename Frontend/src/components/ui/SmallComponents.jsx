@@ -2,6 +2,7 @@ import { FiInfo, FiEye } from "react-icons/fi";
 import styles from "./SmallComponents.module.css"
 import { useState } from "react";
 import icon from "../../../public/favicon.svg"
+import { useNavigate } from "react-router-dom";
 
 export function NoDataAvailable() {
     return (
@@ -64,15 +65,23 @@ export function CodeField({ code, setCode, title }) {
 
 
 export function BrandHeader({ title }) {
+
+    const nav = useNavigate();
     return (
         <>
             <div className={styles.titleAndIcon}>
-                <img src={icon} />
+                <div className = {styles.titleAndIconWrapper}
+                onClick={() => nav("/dashboard")}>
+                <img src={icon}/>
                 <h1 className={styles.siteName}>DASH</h1>
+                </div>
             </div>
             <h1 className={styles.pageTitle}>
                 {title}
             </h1>
+
+
+            
         </>
     )
 }

@@ -43,7 +43,7 @@ export default function App() {
 
 
   useEffect(() => {
-fetch("https://api.xhibril.dev/api/auth/status", {
+fetch("/api/auth/status", {
   credentials: "include"
 })
       .then(res => setIsAuth(res.ok))
