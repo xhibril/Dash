@@ -17,7 +17,7 @@ export default function Dashboard({ notify }) {
   const [selectedPeriod, setSelectedPeriod] = useState("DAILY");
   const [selectedUrl, setSelectedUrl] = useState("");
 
-  const domain = "api.xhibril.dev";
+  const domain = "api.xhibril.dev/";
   const [urls, setUrls] = useState([]);
   const nav = useNavigate();
 
