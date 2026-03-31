@@ -7,7 +7,7 @@
     background-position: center;
     background-repeat: no-repeat;
 display: grid;
-grid-template-rows: 5rem 1fr;
+grid-template-rows: auto 1fr; 
     height: 100%;
     width: 100%;
 }
@@ -142,8 +142,9 @@ grid-template-rows: 5rem 1fr;
 
 .authRow {
     display: flex;
-    width: 100%;
+    width: auto;
     align-items: flex-end;
+    margin-left:auto;
     justify-content: flex-end;
 }
 
@@ -449,12 +450,14 @@ grid-template-rows: 5rem 1fr;
 
     .authRow {
 
-        display: flex;
+       
         justify-content: center;
         align-items: center;
-        width: 100%;
+       
+          width: fit-content;   /* 🔥 THIS IS THE REAL FIX */
+    margin: 0 auto;   
 
-        padding-left: 2rem;
+       
 
     }
 

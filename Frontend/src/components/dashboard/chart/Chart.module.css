@@ -65,11 +65,22 @@
     .chartCard {
         margin: 0;
     }
+
+
 }
 
 @media (max-width: 768px) {
     .viewing {
         text-align: start;
+    }
+
+    .chartsContainer{
+        width: 100%;
+    }
+    
+       .periodWrapper, .viewing {
+        align-items: center;
+        justify-content: center;
     }
 
     .chartSettings {
@@ -91,8 +102,14 @@
 
     }
 
-    .periodWrapper {
+       .chartsContainer{
+        width: 100%;
+    }
+
+    .periodWrapper, .viewing {
         align-items: center;
         justify-content: center;
     }
+
+    
 }
