@@ -40,7 +40,7 @@ export default function Landing() {
                             <h1>Links, but smarter.</h1>
                             <p> Shorten, share, and track how your links are doing with clean, easy to read stats.</p>
                             <button className={styles.tryNow}
-                                onClick={() => nav("/dashboard")}>Try now</button>
+                                onClick={() => nav("/login")}>Try now</button>
                         </div>
                     </div>
 
