@@ -26,11 +26,6 @@
   pointer-events: none;
 }
 
-.titleAndIconWrapper{
-  display: flex;
-  flex-direction: row;
-}
-
 .bellIcon {
   width: 2rem;
   height: 1.5rem;

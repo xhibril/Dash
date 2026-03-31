@@ -43,9 +43,9 @@ export default function App() {
 
 
   useEffect(() => {
-fetch("/api/auth/status", {
-  credentials: "include"
-})
+    fetch("https://api.xhibril.dev/api/auth/status", {
+      credentials: "include"
+    })
       .then(res => setIsAuth(res.ok))
       .catch(() => setIsAuth(false))
       .finally(() => setCheckedAuth(true))
@@ -70,7 +70,7 @@ fetch("/api/auth/status", {
             <Route path="/update-email" element={<UpdateEmail notify={notify} />} />
 
 
-            <Route element={<Layout notify={notify} setIsAuth = {setIsAuth}/>}>
+            <Route element={<Layout notify={notify} setIsAuth={setIsAuth} />}>
               <Route path="/dashboard" element={<Dashboard notify={notify} />} />
               <Route path="/support" element={<Support notify={notify} />} />
             </Route>
