@@ -1,37 +1,40 @@
 package com.Xhibril.Dash.service;
-import jakarta.mail.internet.MimeMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class EmailService {
-
     private final JwtService jwtService;
-    private final JavaMailSender mailSender;
 
-    public EmailService(JwtService jwtService,
-                        JavaMailSender mailSender) {
+    public EmailService(JwtService jwtService) {
         this.jwtService = jwtService;
-        this.mailSender = mailSender;
     }
 
+    private static final HttpClient client = HttpClient.newHttpClient();
+    private final String apiKey = System.getenv("SMTP2GO_API_KEY");
+    private final String fromEmail = System.getenv("FROM_EMAIL");
+
+    private String baseUrl = "http://localhost:8080/";
 
     @Async
     public void sendVerificationEmail(String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("email", email);
 
-        String baseUrl = "http://localhost:8080/api";
-        String encodedToken = URLEncoder.encode(jwtService.generateToken("verificationToken", claims, 600), StandardCharsets.UTF_8);
-        String link = baseUrl + "/email/verify/" + encodedToken;
+        String token = jwtService.generateToken("verificationToken", claims, 600);
+        String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);
+        String link = baseUrl + "/email/check-token?token=" + encodedToken;
 
-        String html = """
+        try {
+            String html = """
                     <div style="font-family: Arial; line-height:1.6;">
                         <h2>Verify your email</h2>
                         <p>Click the button below to verify your account:</p>
@@ -50,57 +53,98 @@ public class EmailService {
                             If you didn’t request this, ignore this email.
                         </p>
                     </div>
-                """.formatted(link);
+                    """.formatted(link);
 
-        sendEmail(email, "Verify your email", html);
+            String json = """
+                    {
+                      "api_key": "%s",
+                      "to": ["%s"],
+                      "sender": "%s",
+                      "subject": "Verify your email",
+                      "html_body": "%s"
+                    }
+                    """.formatted(
+                    apiKey,
+                    email,
+                    fromEmail,
+                    escapeJson(html)
+            );
+            sendEmail(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
+    // send verification to their email
     @Async
     public void sendVerificationCode(String email, String code) {
-        String html = """
-                <div style="font-family: Arial; line-height:1.6; max-width:480px;">
-                    <h2 style="margin-bottom:10px;">Verify your account</h2>
-                    <p>Use the following verification code:</p>
-                
-                    <div style="
-                        margin:20px 0;
-                        padding:14px;
-                        background:#f2f4f7;
-                        border-radius:6px;
-                        font-size:24px;
-                        font-weight:bold;
-                        letter-spacing:4px;
-                        text-align:center;
-                        color:#667085;">
-                        %s
-                    </div>
-                
-                    <p style="font-size:13px;color:#666;">
-                        This code expires in 10 minutes.
-                    </p>
-                
-                    <p style="font-size:12px;color:#999;">
-                        If you didn’t request this, you can safely ignore this email.
-                    </p>
-                </div>
-                """.formatted(code);
 
-        sendEmail(email, "Verification Code", html);
+        try {
+            String html = """
+                    <div style="font-family: Arial; line-height:1.6; max-width:480px;">
+                        <h2 style="margin-bottom:10px;">Verify your account</h2>
+                        <p>Use the following verification code:</p>
+                    
+                        <div style="
+                            margin:20px 0;
+                            padding:14px;
+                            background:#f2f4f7;
+                            border-radius:6px;
+                            font-size:24px;
+                            font-weight:bold;
+                            letter-spacing:4px;
+                            text-align:center;
+                            color:#667085;">
+                            %s
+                        </div>
+                    
+                        <p style="font-size:13px;color:#666;">
+                            This code expires in 10 minutes.
+                        </p>
+                    
+                        <p style="font-size:12px;color:#999;">
+                            If you didn’t request this, you can safely ignore this email.
+                        </p>
+                    </div>
+                    """.formatted(code);
+            String json = """
+                    {
+                      "api_key": "%s",
+                      "to": ["%s"],
+                      "sender": "%s",
+                      "subject": "Verify your email",
+                      "html_body": "%s"
+                    }
+                    """.formatted(
+                    apiKey,
+                    email,
+                    fromEmail,
+                    escapeJson(html)
+            );
+            sendEmail(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-
-    public void sendEmail(String to, String subject, String html) {
+    private void sendEmail(String json){
         try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(html, true);
-            helper.setFrom("noreply@xhibril.dev");
-            mailSender.send(message);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.smtp2go.com/v3/email/send"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
-            System.err.println("Failed to send email: " + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+    private static String escapeJson(String s) {
+        return s.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "");
     }
 }
