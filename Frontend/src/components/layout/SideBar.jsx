@@ -25,7 +25,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
         return;
       }
 
-      nav("/dashboard");
+      nav("/");
 
     } catch (err) {
       notify("Something went wrong, please try again", "ERROR");
