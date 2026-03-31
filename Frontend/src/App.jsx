@@ -42,9 +42,9 @@ export default function App() {
 
 
   useEffect(() => {
-    fetch("/api/auth/status", {
-      credentials: "include"
-    })
+fetch("https://api.xhibril.dev/api/auth/status", {
+  credentials: "include"
+})
       .then(res => setIsAuth(res.ok))
       .catch(() => setIsAuth(false))
   }, [])

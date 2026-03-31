@@ -4,7 +4,7 @@ export default function ({ isAuth }) {
 
     // if user is not logged redirect to login
     if(isAuth === null) {
-        return;
+        return null;
     }
     if (isAuth === false) {
         return <Navigate to="/login" replace />;
