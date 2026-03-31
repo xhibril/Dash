@@ -22,7 +22,7 @@ public class EmailService {
     private final String apiKey = System.getenv("SMTP2GO_API_KEY");
     private final String fromEmail = System.getenv("FROM_EMAIL");
 
-    private String baseUrl = "http://localhost:8080/";
+    private String baseUrl = "api.xhibril.dev";
 
     @Async
     public void sendVerificationEmail(String email) {
