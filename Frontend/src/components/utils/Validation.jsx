@@ -81,7 +81,7 @@ export function ValidateURL(url) {
 
 export function ValidateAlias(alias) {
 
-    if (alias.length < 4) return "Alias must be at least 5 characters";
+    if (alias.length < 5) return "Alias must be at least 5 characters";
 
     if (alias.length > 10) return "Alias must be less than 10 characters";
 

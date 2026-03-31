@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/landing/Landing.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Dash/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Validation.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jistal\Desktop\personal projects\01_Java\Dash\Backend\Dash\src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="DashApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
@@ -237,7 +244,7 @@
       <workItem from="1774944875490" duration="860000" />
       <workItem from="1774945815607" duration="72000" />
       <workItem from="1774945936412" duration="255000" />
-      <workItem from="1774946198205" duration="15777000" />
+      <workItem from="1774946198205" duration="17830000" />
     </task>
     <servers />
   </component>

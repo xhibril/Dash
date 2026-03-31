@@ -108,9 +108,14 @@
         width: 100%;
     }
 
-    .periodWrapper, .viewing {
+        .periodWrapper{
         align-items: center;
         justify-content: center;
+    
+    }
+
+    .viewing{
+        text-align: center;
     }
 
     
