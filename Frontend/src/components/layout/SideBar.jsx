@@ -24,7 +24,7 @@ export default function SideBar({ active, toggleSidebar, notify }) {
         return;
       }
 
-      window.location.href = "/login"
+      nav("/dashboard");
 
     } catch (err) {
       notify("Something went wrong, please try again", "ERROR");
