@@ -1,5 +1,5 @@
 export default async function apiFetch(url, options = {}, nav, notify) {
-    const res = await fetch(`https://api.xhibril.dev${url}`, {
+    const res = await fetch(url, {
         credentials: "include",
         ...options
     });
