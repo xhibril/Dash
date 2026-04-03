@@ -1,7 +1,5 @@
 package com.Xhibril.Dash.configs;
-
 import com.Xhibril.Dash.service.AuthService;
-import com.fasterxml.classmate.AnnotationOverrides;
 import io.github.bucket4j.*;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,11 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
@@ -45,7 +41,7 @@ public class RateLimiter extends OncePerRequestFilter {
         String path = request.getRequestURI();
 
 
-        String identifier = null;
+        String identifier;
         Config con = null;
         for (Config config : configs) {
             if (!config.endpoint.equals("DEFAULT") && path.startsWith(config.endpoint)) {
@@ -59,7 +55,7 @@ public class RateLimiter extends OncePerRequestFilter {
         }
 
         if (con.key.equals("USER") && userId != null) {
-            identifier = "USER_" + userId.toString();
+            identifier = "USER_" + userId;
         } else {
             identifier = "IP_" + ip;
         }

@@ -1,4 +1,6 @@
 package com.Xhibril.Dash.service;
+import com.Xhibril.Dash.dto.auth.LoginResponse;
+import com.Xhibril.Dash.dto.auth.SignUpResponse;
 import org.springframework.http.ResponseEntity;
 import com.Xhibril.Dash.repository.UserRepository;
 import com.Xhibril.Dash.model.User;
@@ -46,7 +48,7 @@ public class AuthService {
     }
 
 
-    public ResponseEntity<String> registerUser(String email, String password){
+    public ResponseEntity<SignUpResponse> registerUser(String email, String password){
         if(userRepo.findByEmail(email).isEmpty()){
             User user = new User();
             user.setEmail(email);
@@ -57,12 +59,12 @@ public class AuthService {
             emailService.sendVerificationEmail(email);
             return ResponseEntity.ok().build();
         } else {
-            return ResponseEntity.badRequest().body("Account already exists");
+            return ResponseEntity.badRequest().body(new SignUpResponse("Account already exists"));
         }
     }
 
 
-    public ResponseEntity<String> login(String email, String password, boolean rememberMe, HttpServletResponse res) throws Exception {
+    public ResponseEntity<LoginResponse> login(String email, String password, boolean rememberMe, HttpServletResponse res) throws Exception {
         Optional<User> userOpt = userRepo.findByEmail(email);
 
         if(userOpt.isPresent()){
@@ -83,10 +85,10 @@ public class AuthService {
                 String token = jwtService.generateToken("authToken", claims, time);
                 jwtService.saveToken("authToken",token,time, res);
             } else {
-                return ResponseEntity.badRequest().body("Incorrect credentials");
+                return ResponseEntity.badRequest().body(new LoginResponse("Incorrect credentials"));
             }
         } else {
-            return ResponseEntity.badRequest().body("Incorrect credentials");
+            return ResponseEntity.badRequest().body(new LoginResponse("Incorrect credentials"));
         }
         return ResponseEntity.ok().build();
     }

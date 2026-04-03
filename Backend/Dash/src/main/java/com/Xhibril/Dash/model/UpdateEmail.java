@@ -21,10 +21,8 @@ public class UpdateEmail {
     @Column(name = "verification_code")
     private String verificationCode;
 
-
     @Column(name = "expires_at")
     private Instant expiresAt;
-
 
     @Column(name = "reset_token")
     private String resetToken;
@@ -36,7 +34,6 @@ public class UpdateEmail {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -44,7 +41,6 @@ public class UpdateEmail {
     public Long getUserId() {
         return userId;
     }
-
     public void setUserId(Long userId) {
         this.userId = userId;
     }
@@ -52,7 +48,6 @@ public class UpdateEmail {
     public String getPendingEmail() {
         return pendingEmail;
     }
-
     public void setPendingEmail(String pendingEmail) {
         this.pendingEmail = pendingEmail;
     }
@@ -60,7 +55,6 @@ public class UpdateEmail {
     public String getVerificationCode() {
         return verificationCode;
     }
-
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
@@ -68,7 +62,6 @@ public class UpdateEmail {
     public Instant getExpiresAt() {
         return expiresAt;
     }
-
     public void setExpiresAt(Instant expiresAt) {
         this.expiresAt = expiresAt;
     }
@@ -76,7 +69,6 @@ public class UpdateEmail {
     public void setResetToken(String resetToken){
         this.resetToken = resetToken;
     }
-
     public String getResetToken(){ return resetToken;}
 
     public void setResetTokenExpiration(Instant resetTokenExpiration){ this.resetTokenExpiration = resetTokenExpiration;}

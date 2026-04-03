@@ -17,8 +17,12 @@
 }
 
 .title {
-    width: 50%;
-    max-width: 30rem;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 .question {
@@ -155,24 +159,8 @@
     }
 }
 
+
 @media (max-width: 768px) {
-    .supportContainer {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .inputContainer {
-        max-width: 90%;
-    }
-
-    .inputWrapper,
-    .supportTop {
-        flex-direction: column;
-    }
-}
-
-
-@media (max-width: 480px) {
     .supportContainer {
         grid-template-columns: 1fr;
         gap: 2rem;

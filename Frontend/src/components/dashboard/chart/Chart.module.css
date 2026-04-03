@@ -6,10 +6,10 @@
     align-items: center;
     min-width: 80%;
     max-width: 100%;
-    flex:1;
+    flex: 1;
     border-radius: .5rem;
     padding-top: 1rem;
-     min-height: clamp(200px, 40vh, 400px);
+    min-height: clamp(200px, 40vh, 400px);
 }
 
 .chartCard {
@@ -25,7 +25,6 @@
 .chartSettings {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
     height: 2rem;
 }
 
@@ -65,23 +64,21 @@
     .chartCard {
         margin: 0;
     }
-
-
 }
 
 @media (max-width: 768px) {
 
-    .chartsContainer{
+    .chartsContainer {
         width: 100%;
     }
-    
-       .periodWrapper{
+
+    .periodWrapper {
         align-items: center;
         justify-content: center;
-    
+
     }
 
-    .viewing{
+    .viewing {
         text-align: center;
     }
 
@@ -96,27 +93,10 @@
     }
 }
 
+
+
 @media (max-width: 480px) {
     .chartSettings {
         flex-direction: column;
-        padding-bottom: 1rem;
-        justify-content: center;
-
     }
-
-       .chartsContainer{
-        width: 100%;
-    }
-
-        .periodWrapper{
-        align-items: center;
-        justify-content: center;
-    
-    }
-
-    .viewing{
-        text-align: center;
-    }
-
-    
 }

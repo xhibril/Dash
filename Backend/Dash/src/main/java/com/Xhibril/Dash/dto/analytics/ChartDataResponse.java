@@ -21,7 +21,6 @@ public class ChartDataResponse {
     public ChartDataResponse(LocalDate bucket, Long visits) {
         this.bucket = bucket;
         this.visits = visits;
-
     }
 
     public ChartDataResponse(Integer hour, Long visits){
@@ -29,6 +28,7 @@ public class ChartDataResponse {
         this.visits = visits;
 
     }
+
 
 
     public void setUrlId(Long urlId){ this.urlId = urlId; }
@@ -47,8 +47,6 @@ public class ChartDataResponse {
     public void setHour(Integer hour){this.hour = hour;}
     public Integer getHour(){return hour;}
 
-
     public void setShortUrl(String shortUrl){ this.shortUrl = shortUrl;}
     public String getShortUrl(){ return shortUrl;}
-
 }

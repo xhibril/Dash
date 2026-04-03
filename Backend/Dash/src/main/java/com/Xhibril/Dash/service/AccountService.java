@@ -1,4 +1,6 @@
 package com.Xhibril.Dash.service;
+import com.Xhibril.Dash.dto.account.DeleteAccountResponse;
+import com.Xhibril.Dash.dto.account.UpdatePasswordResponse;
 import com.Xhibril.Dash.model.User;
 import com.Xhibril.Dash.repository.SupportRepository;
 import com.Xhibril.Dash.repository.UrlRepository;
@@ -38,13 +40,13 @@ public class AccountService {
 
 
     @Transactional
-    public ResponseEntity<String> deleteAccount(Long id, String password, HttpServletResponse res) {
+    public ResponseEntity<DeleteAccountResponse> deleteAccount(Long id, String password, HttpServletResponse res) {
         Optional<User> userOpt = userRepo.findById(id);
 
         if (userOpt.isPresent()) {
             User user = userOpt.get();
             if (!(encoder.matches(password, user.getPassword()))){
-                return ResponseEntity.badRequest().body("Incorrect password");
+                return ResponseEntity.badRequest().body(new DeleteAccountResponse("Incorrect password"));
             }
 
             // delete support tickets
@@ -66,24 +68,27 @@ public class AccountService {
 
 
     @Transactional
-    public ResponseEntity<String> updatePassword(Long id, String oldPassword, String newPassword){
+    public ResponseEntity<UpdatePasswordResponse> updatePassword(Long id, String oldPassword, String newPassword, String confirmPassword){
         Optional<User> userOpt = userRepo.findById(id);
 
         if(userOpt.isPresent()){
             User user = userOpt.get();
 
             if(!encoder.matches(oldPassword, user.getPassword())){
-                return ResponseEntity.badRequest().body("Incorrect password");
+                return ResponseEntity.badRequest().body(new UpdatePasswordResponse("Incorrect password"));
             }
 
+            if(!newPassword.equals(confirmPassword)){
+                return ResponseEntity.badRequest().body(new UpdatePasswordResponse("Passwords do not match"));
+            }
 
             if(!authService.isPasswordNew(newPassword, user.getEmail())){
-                return ResponseEntity.badRequest().body("New password cannot be the same as old");
+                return ResponseEntity.badRequest().body(new UpdatePasswordResponse("New password cannot be the same as old"));
             }
 
             userRepo.updatePassword(encoder.encode(newPassword), user.getEmail());
-            return ResponseEntity.ok().body("Password successfully changed");
+            return ResponseEntity.ok().body(new UpdatePasswordResponse("Password successfully changed"));
         }
-        return ResponseEntity.badRequest().body("Something went wrong, please try again");
+        return ResponseEntity.badRequest().body(new UpdatePasswordResponse("Something went wrong, please try again"));
     }
 }

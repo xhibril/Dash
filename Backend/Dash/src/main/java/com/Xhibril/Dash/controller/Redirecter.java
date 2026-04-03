@@ -20,6 +20,6 @@ public class Redirecter {
             urlService.incrementVisit(shortUrl);
             return "redirect:" + originalUrl;
         }
-        return "redirect:http://localhost:5173/dashboard";
+        return "redirect:https://dash.xhibril.dev/dashboard";
     }
 }

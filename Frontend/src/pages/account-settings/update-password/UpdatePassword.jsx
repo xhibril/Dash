@@ -59,13 +59,14 @@ export default function UpdatePassword({ notify }) {
 
             if (!res) return;
 
+            const data = await res.json();
+
             if (!res.ok) {
-                const data = await res.text();
-                notify(data || "Could not update password", "ERROR");
+                notify(data.message || "Could not update password", "ERROR");
                 return;
             }
 
-            notify("Password updated successfully", "SUCCESS");
+            notify(data.message, "SUCCESS");
             setOldPassword("");
             setNewPassword("");
             setConfirmPassword("");

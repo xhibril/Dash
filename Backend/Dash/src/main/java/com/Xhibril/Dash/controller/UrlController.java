@@ -5,6 +5,7 @@ import com.Xhibril.Dash.service.AuthService;
 import com.Xhibril.Dash.service.UrlService;
 import com.Xhibril.Dash.model.Url;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,7 +23,7 @@ public class UrlController {
     }
 
     @PostMapping("/urls")
-    public ResponseEntity<GenerateUrlResponse> generateUrl(@RequestBody GenerateUrlRequest request, HttpServletRequest req) {
+    public ResponseEntity<GenerateUrlResponse> generateUrl(@Valid  @RequestBody GenerateUrlRequest request, HttpServletRequest req) {
         Long id = authService.getAuthenticatedId(req);
         return urlService.addUrl(id, request.getOriginalUrl(), request.getAlias());
     }

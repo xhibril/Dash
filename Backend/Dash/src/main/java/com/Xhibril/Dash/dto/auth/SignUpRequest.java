@@ -1,11 +1,15 @@
-package com.Xhibril.Dash.dto.account;
+package com.Xhibril.Dash.dto.auth;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class DeleteAccountRequest {
+public class SignUpRequest {
+    @NotBlank(message = "Email is required")
+    @Email(message = "Enter a valid email address")
+    private String email;
 
-    @NotBlank( message = "Password is required")
+    @NotBlank(message = "Password is required")
     @Size(min = 8, max = 32, message = "Password must be 8–32 characters long")
     @Pattern(
             regexp = "^$|^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).+$",
@@ -13,6 +17,7 @@ public class DeleteAccountRequest {
     )
     private String password;
 
-    public void setPassword(String password){ this.password = password;}
-    public String getPassword(){ return password;}
+
+    public String getEmail(){ return email; }
+    public String getPassword(){ return password; }
 }

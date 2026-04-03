@@ -122,13 +122,14 @@ function TicketSubmit({ notify }) {
 
             if (!res) return;
 
+            const data = await res.json();
+
             if (!res.ok) {
-                notify("Something went wrong, please try again", "ERROR");
+                notify(data.message || "Something went wrong, please try again", "ERROR");
                 return;
             }
 
-
-            notify("Message sent successfully", "SUCCESS");
+            notify(data.message, "SUCCESS");
             setEmail("");
             setSubject("");
             setMessage("");

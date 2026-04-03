@@ -13,6 +13,7 @@
 .verifyContainer p {
     font-family: sans-serif;
     font-size: .9rem;
+    text-align: center;
 }
 
 
@@ -27,7 +28,7 @@
     text-decoration: underline;
     text-underline-offset: 4px;
     font-size: .9rem;
-  transition: all 0.2s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
 }
 
@@ -42,3 +43,20 @@
     padding-bottom: .5rem;
     border-bottom: 1px solid rgb(0, 0, 0, 0.5);
 }
+
+@media (max-width: 1024px) {
+
+    .verifyContainer {
+        max-width: 90%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .verifyContainer {
+        max-width: 70%;
+    }
+
+}
+

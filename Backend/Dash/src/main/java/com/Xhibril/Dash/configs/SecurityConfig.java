@@ -15,6 +15,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(12);
     }
 
+    // lets all requests through w minimal security
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http,
                                            CorsConfigurationSource corsConfigurationSource) throws Exception {

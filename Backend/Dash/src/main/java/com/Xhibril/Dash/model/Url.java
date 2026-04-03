@@ -26,13 +26,11 @@ public class Url {
     private LocalDate createdDate;
 
 
-
     public Long getId(){
         return id;
     }
 
     public void setUserId(Long userId){ this.userId = userId;}
-
     public Long getUserId(){
         return userId;
     }
@@ -40,7 +38,6 @@ public class Url {
     public void setOriginalUrl(String url){
         this.originalUrl = url;
     }
-
     public String getOriginalUrl(){
         return originalUrl;
     }
@@ -48,7 +45,6 @@ public class Url {
     public void setShortUrl(String url){
         this.shortUrl = url;
     }
-
     public String getShortUrl(){
         return shortUrl;
     }
@@ -61,5 +57,4 @@ public class Url {
 
     public void setCreatedDate(LocalDate date){ this.createdDate = date; }
     public LocalDate getCreatedDate(){ return createdDate; }
-
 }

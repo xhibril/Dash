@@ -67,7 +67,7 @@ public class PasswordResetService {
 
         emailService.sendVerificationCode(email, code);
 
-        return ResponseEntity.ok(new PasswordResetResponse("Code sent"));
+        return ResponseEntity.ok(new PasswordResetResponse("Verification code sent"));
     }
 
 
@@ -110,6 +110,7 @@ public class PasswordResetService {
 
            String resetToken = saveResetToken(email);
            response.setResetToken(resetToken);
+           response.setMessage("Verification successful");
 
            passwordResetRepo.deleteConfirmationCode(email);
         } else {
@@ -122,7 +123,7 @@ public class PasswordResetService {
 
 
     @Transactional
-    public ResponseEntity<PasswordResetResponse> resetPassword(String email, String newPassword, String resetToken){
+    public ResponseEntity<PasswordResetResponse> resetPassword(String email, String newPassword, String confirmPassword, String resetToken){
         Optional<PasswordReset> isFound = passwordResetRepo.findByEmail(email);
 
         if(isFound.isPresent()){
@@ -140,6 +141,9 @@ public class PasswordResetService {
                 return ResponseEntity.badRequest().body(new PasswordResetResponse(("Invalid request")));
             }
 
+            if(!newPassword.equals(confirmPassword)){
+                return ResponseEntity.badRequest().body(new PasswordResetResponse("Passwords do not match"));
+            }
 
             if(!authService.isPasswordNew(newPassword, email)){
                 return ResponseEntity.badRequest().body(new PasswordResetResponse("New password cannot be the same as old"));

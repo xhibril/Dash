@@ -23,7 +23,7 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             return;
         }
 
-        if (alias !== "") {
+        if (alias.trim() !== "") {
             const aliasRes = ValidateAlias(alias);
 
             if (aliasRes !== "VALID") {
@@ -38,7 +38,7 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
             const res = await apiFetch("/api/urls", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ originalUrl, alias })
+                body: JSON.stringify({ originalUrl, alias: alias.trim() === "" ? null : alias })
             },
                 nav
             )
@@ -57,7 +57,7 @@ export default function URLShortener({ notify, setUrls, setMostPopular, mostPopu
 
             setAlias("");
             setOriginalUrl("");
-            notify("URL Successfully created", "SUCCESS");
+            notify(data.message, "SUCCESS");
             setIsLoading(false);
         } catch (err) {
             notify("Something went wrong, please try again", "ERROR");

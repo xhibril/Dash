@@ -3,7 +3,6 @@ import com.Xhibril.Dash.dto.analytics.ChartDataResponse;
 import com.Xhibril.Dash.model.Url;
 import com.Xhibril.Dash.service.AuthService;
 import com.Xhibril.Dash.service.AnalyticsService;
-import com.Xhibril.Dash.service.UrlService;
 import com.Xhibril.Dash.service.AnalyticsService.Period;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;

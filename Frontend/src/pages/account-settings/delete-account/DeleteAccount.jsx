@@ -23,6 +23,7 @@ export default function DeleteAccount({ notify }) {
         }
 
         setIsLoading(true);
+
         try {
             const res = await apiFetch(
                 "/api/delete/account",
@@ -37,8 +38,8 @@ export default function DeleteAccount({ notify }) {
             if (!res) return;
 
             if (!res.ok) {
-                const data = await res.text();
-                notify(data || "Something went wrong, please try again", "ERROR");
+                const data = await res.json();
+                notify(data.message || "Something went wrong, please try again", "ERROR");
                 return;
             }
 

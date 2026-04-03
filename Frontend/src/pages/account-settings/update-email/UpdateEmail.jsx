@@ -45,14 +45,14 @@ export default function UpdateEmail({ notify }) {
                 )
 
                 if (!emailRes) return;
+                const data = await emailRes.json();
 
                 if (!emailRes.ok) {
-                    const data = await emailRes.json();
                     notify(data.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
 
-                notify("Verification code sent", "SUCCESS");
+                notify(data.message, "SUCCESS");
                 setStep("VERIFY");
             } catch (err) {
                 notify("Something went wrong, please try again", "ERROR");
@@ -115,7 +115,7 @@ export default function UpdateEmail({ notify }) {
                 setOldEmail(changeResData.oldEmail);
                 setPassword("")
                 setCode("");
-                notify("Email updated successfully", "SUCCESS");
+                notify(changeResData.message, "SUCCESS");
                 setStep("CHANGED");
             } catch {
                 notify("Something went wrong, please try again", "ERROR");

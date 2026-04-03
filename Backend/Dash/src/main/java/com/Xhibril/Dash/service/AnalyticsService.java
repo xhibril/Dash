@@ -41,6 +41,7 @@ public class AnalyticsService {
                 return transformData(urlStatRepo.getDaily(urlId, start, end), Period.DAILY);
 
 
+                // returns data starting from monday of current week to current day
             case WEEKLY:
                 date = date.with(DayOfWeek.MONDAY);
                 start = date.atStartOfDay();
@@ -48,6 +49,7 @@ public class AnalyticsService {
                 return transformData(urlStatRepo.getStats(urlId, start, end), Period.WEEKLY);
 
 
+                // returns data starting from 1st of current month to current date
             case MONTHLY:
                 date = date.withDayOfMonth(1);
                 LocalDate lastDay = date.withDayOfMonth(date.lengthOfMonth());
@@ -149,6 +151,7 @@ public class AnalyticsService {
     }
 
 
+    // calculate trend
     public Integer getTrend(Long id) {
         LocalDate date = LocalDate.now();
         LocalDateTime start = date.atStartOfDay();

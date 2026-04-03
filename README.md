@@ -33,5 +33,3 @@ Create short links and track usage with time-based stats.
 git clone https://github.com/xhibril/Dash.git
 cd Dash
 mvn spring-boot:run
-
-

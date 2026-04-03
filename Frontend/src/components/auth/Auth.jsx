@@ -78,11 +78,10 @@ export default function Auth({ mode, notify, setIsAuth }) {
             if (res.status === 403) return;
 
             if (!res.ok) {
-                const data = await res.text();
-                notify(data || "Something went wrong, please try again", "ERROR");
+                const data = await res.json();
+                notify(data.message || "Something went wrong, please try again", "ERROR");
                 return;
             }
-
 
 
             if (isLogin) {

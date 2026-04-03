@@ -1,5 +1,4 @@
 package com.Xhibril.Dash.controller;
-
 import com.Xhibril.Dash.service.AuthService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

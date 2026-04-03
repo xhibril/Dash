@@ -17,7 +17,6 @@ public class UrlStat {
     @Column(name = "short_url")
     private String shortUrl;
 
-
     private Integer visits;
 
     private LocalDateTime bucket;

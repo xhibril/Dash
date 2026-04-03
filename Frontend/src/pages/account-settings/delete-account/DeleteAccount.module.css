@@ -8,7 +8,10 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+}
 
+.deleteAccountContainer p {
+    text-align: center;
 }
 
 .deleteAccountIcon {
@@ -57,8 +60,22 @@
     cursor: pointer;
 }
 
-
-
 .cancelDeletion:hover {
     background-color: rgb(241, 241, 241);
+}
+
+@media (max-width: 1024px) {
+
+    .deleteAccountContainer {
+        max-width: 90%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .deleteAccountContainer {
+        max-width: 70%;
+    }
+
 }

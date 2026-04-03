@@ -43,7 +43,7 @@ export default function App() {
 
 
   useEffect(() => {
-    fetch("https://api.xhibril.dev/api/auth/status", {
+    fetch("/api/auth/status", {
       credentials: "include"
     })
       .then(res => setIsAuth(res.ok))
@@ -60,9 +60,6 @@ export default function App() {
         <Routes>
 
           <Route path="/" element={<Landing notify={notify} />} />
-
-
-
 
           <Route element={<ProtectedRoutes isAuth={isAuth} />}>
             <Route path="/delete-account" element={<DeleteAccount notify={notify} />} />

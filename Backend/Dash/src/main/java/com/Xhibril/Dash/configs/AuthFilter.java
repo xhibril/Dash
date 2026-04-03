@@ -1,5 +1,4 @@
 package com.Xhibril.Dash.configs;
-
 import com.Xhibril.Dash.service.AuthService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,17 +7,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 
 
 @Component
 public class AuthFilter extends OncePerRequestFilter {
 
-    @Autowired
-    AuthService authService;
+    @Autowired AuthService authService;
 
-
+    // check if user id is valid in certain endpoints
     @Override
     protected void doFilterInternal(
             HttpServletRequest req,
@@ -40,8 +37,8 @@ public class AuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        Long id = authService.getAuthenticatedId(req);
 
+        Long id = authService.getAuthenticatedId(req);
 
         if(id == null){
              res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

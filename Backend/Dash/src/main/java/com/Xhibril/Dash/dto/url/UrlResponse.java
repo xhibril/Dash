@@ -10,7 +10,6 @@ public class UrlResponse {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -18,7 +17,6 @@ public class UrlResponse {
     public String getOriginalUrl() {
         return originalUrl;
     }
-
     public void setOriginalUrl(String originalUrl) {
         this.originalUrl = originalUrl;
     }
@@ -26,7 +24,6 @@ public class UrlResponse {
     public String getShortUrl() {
         return shortUrl;
     }
-
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
@@ -34,7 +31,6 @@ public class UrlResponse {
     public Integer getVisits() {
         return visits;
     }
-
     public void setVisits(Integer visits) {
         this.visits = visits;
     }

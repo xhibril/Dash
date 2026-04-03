@@ -18,7 +18,6 @@ public class GenerateUrlResponse {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -26,7 +25,6 @@ public class GenerateUrlResponse {
     public String getShortUrl() {
         return this.shortUrl;
     }
-
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
@@ -34,7 +32,6 @@ public class GenerateUrlResponse {
     public String getOriginalUrl() {
         return originalUrl;
     }
-
     public void setOriginalUrl(String originalUrl) {
         this.originalUrl = originalUrl;
     }
@@ -42,7 +39,6 @@ public class GenerateUrlResponse {
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -50,7 +46,6 @@ public class GenerateUrlResponse {
     public void setVisits(Integer visits){
         this.visits = visits;
     }
-
     public Integer getVisits(){
         return visits;
     }

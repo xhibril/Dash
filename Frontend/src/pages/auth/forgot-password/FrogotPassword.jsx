@@ -37,16 +37,16 @@ export default function ForgotPassword({ notify }) {
                     headers: jsonHeaders,
                     body: JSON.stringify({ email })
                 }, nav, notify)
-                if (!res) return;
 
+                if (!res) return;
+                const data = await res.json();
 
                 if (!res.ok) {
-                    const data = await res.json();
                     notify(data.message || "Something went wrong, please try again", "ERROR")
                     return;
                 }
 
-                notify("Verification code sent", "SUCCESS");
+                notify(data.message, "SUCCESS");
                 setStep("VERIFY");
                 return;
 
@@ -74,19 +74,18 @@ export default function ForgotPassword({ notify }) {
                     headers: jsonHeaders,
                     body: JSON.stringify({ email, code })
                 }, nav, notify)
-                if (!res) return;
 
+                if (!res) return;
+                    const data = await res.json();
 
                 if (!res.ok) {
-                    const data = await res.json();
                     notify(data.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
-
-                const data = await res.json();
+            
                 setResetToken(data.resetToken);
                 setCode("");
-                notify("Verification successful", "SUCCESS");
+                notify(data.message, "SUCCESS");
                 setStep("RESET");
                 return;
             } catch (err) {
@@ -117,20 +116,20 @@ export default function ForgotPassword({ notify }) {
                     "/api/password/reset/reset", {
                     method: "POST",
                     headers: jsonHeaders,
-                    body: JSON.stringify({ email, newPassword, resetToken })
+                    body: JSON.stringify({ email, newPassword, confirmPassword, resetToken })
                 }, nav, notify)
-                if (!res) return;
 
+                if (!res) return;
+                    const data = await res.json();
 
                 if (!res.ok) {
-                    const data = await res.json();
                     notify(data.message || "Something went wrong, please try again", "ERROR");
                     return;
                 }
 
                 setNewPassword("")
                 setConfirmPassword("")
-                notify("Password changed successfully", "SUCCESS");
+                notify(data.message, "SUCCESS");
                 return;
             } catch (err) {
                 notify("Something went wrong, please try again", "ERROR");

@@ -137,6 +137,7 @@ public class UpdateEmailService {
 
             UpdateEmailResponse response = new UpdateEmailResponse();
             response.setOldEmail(savedUser.getEmail());
+            response.setMessage("Email updated successfully");
 
             return ResponseEntity.ok().body(response);
         }
