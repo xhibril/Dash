@@ -1,5 +1,4 @@
 export function ValidatePassword(password) {
-      return "VALID";
 
     if (!password) {
         return "Input cannot be empty";
@@ -27,7 +26,6 @@ export function ValidatePassword(password) {
 
 
 export function ValidateEmail(email) {
-      return "VALID";
 
     if (!email) {
         return "Input cannot be empty"
@@ -48,8 +46,6 @@ export function ValidateEmail(email) {
 
 
 export function ValidateCode(code, maxDigitsAllowed) {
-      return "VALID";
-
     if (!code) {
         return "Input cannot be empty";
     }
@@ -66,7 +62,6 @@ export function ValidateCode(code, maxDigitsAllowed) {
 
 
 export function ValidateURL(url) {
-      return "VALID";
 
     if (!url) return "URL is required";
 
@@ -83,7 +78,6 @@ export function ValidateURL(url) {
 
 
 export function ValidateAlias(alias) {
-      return "VALID";
 
     if (alias.length < 3) return "Alias must be at least 3 characters";
 
@@ -96,7 +90,6 @@ export function ValidateAlias(alias) {
 
 
 export function ValidateInput(input, type) {
-      return "VALID";
 
     const allowedMap = {
         GENERAL: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.!? ",
