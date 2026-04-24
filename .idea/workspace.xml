@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f2ff0e7-0fd8-4772-b6a3-366e3c099d07" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/AuthRedirecterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dash/src/main/java/com/Xhibril/Dash/controller/AuthRedirecterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/utils/Api.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +246,64 @@
       <workItem from="1774946198205" duration="17961000" />
       <workItem from="1774984340374" duration="74000" />
       <workItem from="1775132274672" duration="8916000" />
-      <workItem from="1775206039751" duration="15222000" />
+      <workItem from="1775206039751" duration="15594000" />
+      <workItem from="1775301695715" duration="923000" />
+      <workItem from="1775378211790" duration="203000" />
+      <workItem from="1775378477553" duration="3000" />
+      <workItem from="1775378534386" duration="3000" />
+      <workItem from="1775381532513" duration="9000" />
+      <workItem from="1775382477451" duration="10000" />
+      <workItem from="1775382687504" duration="3000" />
+      <workItem from="1775384056799" duration="29000" />
+      <workItem from="1775384238231" duration="16000" />
+      <workItem from="1775468579437" duration="15000" />
+      <workItem from="1775468930850" duration="3000" />
+      <workItem from="1775471403508" duration="6000" />
+      <workItem from="1775471464414" duration="2000" />
+      <workItem from="1775471903000" duration="42000" />
+      <workItem from="1775488205990" duration="121000" />
+      <workItem from="1775633861406" duration="4000" />
+      <workItem from="1776591145759" duration="18000" />
+      <workItem from="1776591222393" duration="122000" />
+      <workItem from="1776591374042" duration="46000" />
+      <workItem from="1776591436905" duration="6000" />
+      <workItem from="1776591484600" duration="6000" />
+      <workItem from="1776591605116" duration="152000" />
+      <workItem from="1776592082404" duration="10000" />
+      <workItem from="1776592146118" duration="15000" />
+      <workItem from="1776592518079" duration="71000" />
+      <workItem from="1776592668146" duration="11000" />
+      <workItem from="1776592715890" duration="9000" />
+      <workItem from="1776598472670" duration="86000" />
+      <workItem from="1776598793847" duration="35000" />
+      <workItem from="1776598859704" duration="5000" />
+      <workItem from="1776599049788" duration="8000" />
+      <workItem from="1776599189474" duration="156000" />
+      <workItem from="1776599407987" duration="3000" />
+      <workItem from="1776599575532" duration="2000" />
+      <workItem from="1776599618218" duration="11000" />
+      <workItem from="1776599647827" duration="10000" />
+      <workItem from="1776600337681" duration="63000" />
+      <workItem from="1776600621854" duration="16000" />
+      <workItem from="1776600720013" duration="7000" />
+      <workItem from="1776600975262" duration="54000" />
+      <workItem from="1776601072097" duration="6000" />
+      <workItem from="1776601094153" duration="3000" />
+      <workItem from="1776601168115" duration="8000" />
+      <workItem from="1776601293073" duration="31000" />
+      <workItem from="1776601532476" duration="2000" />
+      <workItem from="1776601756385" duration="6000" />
+      <workItem from="1776601799855" duration="4000" />
+      <workItem from="1776687844975" duration="14000" />
+      <workItem from="1776697408433" duration="9000" />
+      <workItem from="1776697509777" duration="10000" />
+      <workItem from="1776697671459" duration="2000" />
+      <workItem from="1776703411217" duration="20000" />
+      <workItem from="1776703845730" duration="146000" />
+      <workItem from="1776704299323" duration="7000" />
+      <workItem from="1776704772543" duration="7000" />
+      <workItem from="1776857807727" duration="619000" />
+      <workItem from="1777038033446" duration="687000" />
     </task>
     <servers />
   </component>

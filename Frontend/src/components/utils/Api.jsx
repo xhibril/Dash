@@ -7,10 +7,12 @@ export default async function apiFetch(url, options = {}, nav, notify) {
 
     if (res.status == 401) {
         nav("/login");
+        return null;
     }
 
     if (res.status == 403) {
         nav("/verify/email");
+        return null;
     }
 
     if (res.status == 429) {
