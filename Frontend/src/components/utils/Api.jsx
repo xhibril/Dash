@@ -6,7 +6,7 @@ export default async function apiFetch(url, options = {}, nav, notify) {
 
 
     if (res.status == 401) {
-        nav("/login");
+        window.location.href = "/login"
         return null;
     }
 
