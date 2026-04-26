@@ -26,6 +26,11 @@ public class AuthFilter extends OncePerRequestFilter {
         String path = req.getRequestURI();
 
 
+        if (!path.startsWith("/api/")) {
+            chain.doFilter(req, res);
+            return;
+        }
+
         if(path.startsWith("/api/login") ||
                 path.startsWith("/api/signup") ||
                 path.startsWith("/api/account/status") ||
