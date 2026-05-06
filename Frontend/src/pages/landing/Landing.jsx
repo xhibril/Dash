@@ -93,7 +93,7 @@ export default function Landing() {
                 <footer> © 2026 Xhibril </footer>
                 <a href="https://github.com/xhibril" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/xhibril-lleshi/" target="_blank">LinkedIn </a>
-                <a href="mailto:xhibril.dev@gmail.com" target="_blank">Email</a>
+                <a href="mailto:contact@xhibril.dev" target="_blank">Email</a>
             </div>
         </>
     )
