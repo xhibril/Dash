@@ -20,7 +20,6 @@ export default function Landing() {
                     </div>
 
                     <nav className={styles.navBar}>
-                        <Link to="/">Home</Link>
                         <a href="#features">Features</a>
                         <a href="https://github.com/xhibril" target="_blank">GitHub</a>
 
