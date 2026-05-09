@@ -1,6 +1,5 @@
 # Dash
-
-Full-stack URL shortener with analytics.
+URL shortener with link tracking, custom aliases and performance analytics.
 
 ![Dash demo](docs/demo.gif)
 
